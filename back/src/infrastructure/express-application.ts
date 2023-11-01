@@ -2,7 +2,7 @@ import { ExpressServer } from './express-server';
 import * as dotenv from 'dotenv';
 import { ExpressRouter } from './express-router';
 import { UserService } from '../user/UserService';
-import { UserJSONService } from '../user/UserJSONService';
+import { UserBDDService } from '../user/UserBDDService';
 
 export class ExpressApplication {
     private server!: ExpressServer;
@@ -38,7 +38,7 @@ export class ExpressApplication {
     }
 
     private configureServices(): void {
-        this.userService = new UserJSONService();
+        this.userService = new UserBDDService();
     }
 
     private configureExpressRouter(): void {

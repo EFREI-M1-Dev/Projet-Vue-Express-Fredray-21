@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back): ajout schema BDD">
-      <change afterPath="$PROJECT_DIR$/back/db.ts" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back): structure BDD">
+      <change afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/schema_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/back/schema_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/User.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/user/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserJSONService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserJSONService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserJSONService.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/user/UserRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserRouter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/user/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +67,9 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -76,30 +78,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
-    "ts.external.directory.path": "C:\\dev\\EFREI\\Projet-Vue-Express-Fredray-21\\front\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\"main\""
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\&quot;main\&quot;&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front" />
@@ -128,7 +130,10 @@
       <updated>1698761204467</updated>
       <workItem from="1698761205906" duration="2250000" />
       <workItem from="1698763702004" duration="3755000" />
-      <workItem from="1698829751728" duration="8849000" />
+      <workItem from="1698829751728" duration="9175000" />
+      <workItem from="1698849406706" duration="164000" />
+      <workItem from="1698849582091" duration="592000" />
+      <workItem from="1698861661713" duration="3470000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -158,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698835674990</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat(back): structure BDD">
+      <created>1698840036278</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698840036278</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +182,7 @@
     <MESSAGE value="feat(all): back et front / et script setup/start" />
     <MESSAGE value="feat(readme): ajout readme setup / start" />
     <MESSAGE value="feat(back): ajout schema BDD" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(back): ajout schema BDD" />
+    <MESSAGE value="feat(back): structure BDD" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(back): structure BDD" />
   </component>
 </project>

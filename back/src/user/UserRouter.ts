@@ -16,6 +16,25 @@ export class UserRouter {
                     req.body.username,
                     req.body.email,
                     req.body.password,
+                    req.body.avatarUrl,
+                    req.body.bio,
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
+        //update
+        this.router.put('/:id', (req, res,next) => {
+            try {
+                const result = this.userController.update(
+                    Number(req.params.id),
+                    req.body.username,
+                    req.body.email,
+                    req.body.password,
+                    req.body.avatarUrl,
+                    req.body.bio,
                 );
                 res.status(200).json(result);
             } catch (error: unknown) {
@@ -27,15 +46,6 @@ export class UserRouter {
         this.router.get('/', (req, res,next) => {
             try {
                 const result = this.userController.getAll();
-                res.status(200).json(result);
-            } catch (error: unknown) {
-                next(error);
-            }
-        });
-
-        this.router.get('/test', (req, res,next) => {
-            try {
-                const result = this.userController.getAllTest();
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);

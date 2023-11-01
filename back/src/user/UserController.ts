@@ -4,12 +4,21 @@ import { UserService } from './UserService';
 export class UserController {
     constructor(private userService: UserService) {}
 
-    add(username: string, email: string, password: string): User {
+    add(username: string, email: string, password: string, avatarUrl: string | null, bio: string | null): User {
         this.checkUsername(username);
         this.checkEmail(email);
         this.checkPassword(password);
 
-        return this.userService.add(username, email, password);
+        return this.userService.add(username, email, password, avatarUrl, bio);
+    }
+
+    update(id: number, username: string, email: string, password: string, avatarUrl: string | null, bio: string | null): User {
+        this.checkId(id);
+        this.checkUsername(username);
+        this.checkEmail(email);
+        this.checkPassword(password);
+
+        return this.userService.update(id, username, email, password, avatarUrl, bio);
     }
 
     getById(id: number): User | null {
@@ -24,12 +33,9 @@ export class UserController {
         return this.userService.remove(id);
     }
 
+
     getAll(): User[] {
         return this.userService.getAll();
-    }
-
-    getAllTest(): User[] {
-        return this.userService.getAllTest();
     }
 
 
