@@ -9,7 +9,7 @@ export interface UserData {
 }
 export class User {
     constructor(
-        private userID: number,
+        private userId: number,
         private username: string,
         private email: string,
         private password: string,
@@ -21,7 +21,7 @@ export class User {
 
 
     getId(): number {
-        return this.userID;
+        return this.userId;
     }
 
     getUsername(): string {

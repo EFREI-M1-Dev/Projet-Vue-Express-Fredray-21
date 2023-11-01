@@ -10,8 +10,9 @@ export class UserBDDService implements UserService {
         try {
             const creationDate = new Date().getTime();
             const statement = db.prepare('INSERT INTO users (username, email, password, creationDate, avatarUrl, bio) VALUES (?, ?, ?, ?, ?, ?)');
-            const result = statement.run(username, email, password, creationDate, avatarUrl, bio);
-            const userId = Number(result.lastInsertRowid);
+            const info = statement.run(username, email, password, creationDate, avatarUrl, bio);
+            if (info.changes !== 1) throw new Error('Failed to insert user');
+            const userId = Number(info.lastInsertRowid);
             return new User(userId, username, email, password, new Date(creationDate), avatarUrl || '', bio || '');
         } finally {
             db.close();

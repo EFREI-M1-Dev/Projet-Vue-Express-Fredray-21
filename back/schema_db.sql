@@ -15,7 +15,9 @@ CREATE TABLE Servers
 (
     serverId     INTEGER PRIMARY KEY AUTOINCREMENT,
     owner        INT REFERENCES Users (userId),
-    creationDate TIMESTAMP
+    creationDate TIMESTAMP,
+    serverName   VARCHAR(255),
+    description  VARCHAR(255)
 );
 
 -- Création de la table "Channels"

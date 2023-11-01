@@ -3,12 +3,14 @@ import * as dotenv from 'dotenv';
 import { ExpressRouter } from './express-router';
 import { UserService } from '../user/UserService';
 import { UserBDDService } from '../user/UserBDDService';
+import { ServerBDDService } from '../servers/ServerBDDService';
 
 export class ExpressApplication {
     private server!: ExpressServer;
     private expressRouter!: ExpressRouter;
     private port!: string;
     private userService!: UserService;
+    private serverService!: ServerBDDService;
 
     constructor() {
         this.configureApplication();
@@ -39,10 +41,11 @@ export class ExpressApplication {
 
     private configureServices(): void {
         this.userService = new UserBDDService();
+        this.serverService = new ServerBDDService();
     }
 
     private configureExpressRouter(): void {
-        this.expressRouter = new ExpressRouter(this.userService);
+        this.expressRouter = new ExpressRouter(this.userService, this.serverService);
     }
 
     private configureServer(): void {

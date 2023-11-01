@@ -4,16 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back): structure BDD">
-      <change afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back): ajout du CRUD users en SQL">
+      <change afterPath="$PROJECT_DIR$/back/src/servers/Server.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/servers/ServerBDDService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/servers/ServerController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/servers/ServerRouter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/servers/ServerService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/schema_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/back/schema_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/data/userData.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/user/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/User.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserJSONService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserRouter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +79,9 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2XX2f4nP6ziyy5AiCFkhqi05jAO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -83,11 +91,12 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/src/servers&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/node_modules/jest&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
@@ -103,19 +112,53 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\servers" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Jest.UserJSONService.getById">
     <configuration name="schema_db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/back/schema_db.sql" />
       <script-mode>FILE</script-mode>
       <data-source id="23fcf996-6358-46fd-89ff-09f0fd19addc" namespace="schema/&quot;main&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="UserJSONService.getById" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/back/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/back" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/back/src/user/UserBDDService.test.ts" />
+      <test-names>
+        <test-name value="UserJSONService" />
+        <test-name value="getById" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserJSONService.getById.doit renvoyer un utilisateur par son identifiant s'il existe" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/back/node_modules/jest" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/back/src/user/UserBDDService.test.ts" />
+      <test-names>
+        <test-name value="UserJSONService" />
+        <test-name value="getById" />
+        <test-name value="doit renvoyer un utilisateur par son identifiant s'il existe" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.UserJSONService.getById" />
+        <item itemvalue="Jest.UserJSONService.getById.doit renvoyer un utilisateur par son identifiant s'il existe" />
         <item itemvalue="Database Script.schema_db.sql" />
       </list>
     </recent_temporary>
@@ -133,7 +176,9 @@
       <workItem from="1698829751728" duration="9175000" />
       <workItem from="1698849406706" duration="164000" />
       <workItem from="1698849582091" duration="592000" />
-      <workItem from="1698861661713" duration="3470000" />
+      <workItem from="1698861661713" duration="5045000" />
+      <workItem from="1698867023634" duration="5418000" />
+      <workItem from="1698877852181" duration="1530000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -170,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698840036278</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat(back): ajout du CRUD users en SQL">
+      <created>1698865408698</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698865408698</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +235,7 @@
     <MESSAGE value="feat(readme): ajout readme setup / start" />
     <MESSAGE value="feat(back): ajout schema BDD" />
     <MESSAGE value="feat(back): structure BDD" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(back): structure BDD" />
+    <MESSAGE value="feat(back): ajout du CRUD users en SQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(back): ajout du CRUD users en SQL" />
   </component>
 </project>
