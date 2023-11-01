@@ -1,7 +1,7 @@
 -- Création de la table "Users"
 CREATE TABLE Users
 (
-    userId       INT PRIMARY KEY,
+    userId       INTEGER PRIMARY KEY AUTOINCREMENT,
     username     VARCHAR(255) UNIQUE,
     email        VARCHAR(255),
     password     VARCHAR(255),
@@ -13,7 +13,7 @@ CREATE TABLE Users
 -- Création de la table "Servers"
 CREATE TABLE Servers
 (
-    serverId     INT PRIMARY KEY,
+    serverId     INTEGER PRIMARY KEY AUTOINCREMENT,
     owner        INT REFERENCES Users (userId),
     creationDate TIMESTAMP
 );
@@ -21,7 +21,7 @@ CREATE TABLE Servers
 -- Création de la table "Channels"
 CREATE TABLE Channels
 (
-    channelId    INT PRIMARY KEY,
+    channelId    INTEGER PRIMARY KEY AUTOINCREMENT,
     name         VARCHAR(255),
     description  TEXT,
     creationDate TIMESTAMP,
@@ -31,7 +31,7 @@ CREATE TABLE Channels
 -- Création de la table "Messages"
 CREATE TABLE Messages
 (
-    messageId    INT PRIMARY KEY,
+    messageId    INTEGER PRIMARY KEY AUTOINCREMENT,
     creationDate TIMESTAMP,
     owner        INT REFERENCES Users (userId),
     content      TEXT,
@@ -52,7 +52,7 @@ CREATE TABLE Memberships
 
 -- Création de la table "Invitations"
 -- CREATE TABLE Invitations (
---     invitationId INT PRIMARY KEY,
+--     invitationId INT PRIMARY KEY AUTOINCREMENT,
 --     serverId INT REFERENCES Servers(serverId),
 --     invitationCode VARCHAR(255),
 --     creationDate TIMESTAMP
@@ -60,7 +60,7 @@ CREATE TABLE Memberships
 
 -- Création de la table "PrivateMessages"
 -- CREATE TABLE PrivateMessages (
---     privateMessageId INT PRIMARY KEY,
+--     privateMessageId INT PRIMARY KEY AUTOINCREMENT,
 --     userSender INT REFERENCES Users(userId),
 --     userReceiver INT REFERENCES Users(userId),
 --     creationDate TIMESTAMP
@@ -68,7 +68,7 @@ CREATE TABLE Memberships
 
 -- Création de la table "Reactions"
 -- CREATE TABLE Reactions (
---     reactionId INT PRIMARY KEY,
+--     reactionId INT PRIMARY KEY AUTOINCREMENT,
 --     messageId INT REFERENCES Messages(messageId),
 --     userId INT REFERENCES Users(userId),
 --     emoji VARCHAR(255)

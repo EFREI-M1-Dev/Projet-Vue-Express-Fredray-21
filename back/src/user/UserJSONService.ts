@@ -1,6 +1,7 @@
 import { User } from './User';
 import { UserService } from './UserService';
 import * as fs from 'fs';
+import {openConnection} from "../../db";
 
 export class UserJSONService implements UserService {
 
@@ -95,4 +96,21 @@ export class UserJSONService implements UserService {
         }
         return users[index];
     }
+
+    getAllTest(): any[] {
+        const users: any[] = [];
+        const db = openConnection();
+        try {
+            const statement = db.prepare('SELECT * FROM users');
+
+            for (const row of statement.iterate()) {
+                users.push(row);
+            }
+
+            return users;
+        } finally {
+            db.close(); // Assurez-vous de fermer la connexion à la base de données lorsque vous avez terminé.
+        }
+    }
+
 }

@@ -28,6 +28,10 @@ export class UserController {
         return this.userService.getAll();
     }
 
+    getAllTest(): User[] {
+        return this.userService.getAllTest();
+    }
+
 
     // 1. id est un entier positif
     private checkId(id: number): void {

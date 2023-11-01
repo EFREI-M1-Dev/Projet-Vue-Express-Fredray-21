@@ -1,4 +1,4 @@
-import { Router,NextFunction } from 'express';
+import { Router } from 'express';
 import { UserController } from './UserController';
 
 export class UserRouter {
@@ -17,6 +17,25 @@ export class UserRouter {
                     req.body.email,
                     req.body.password,
                 );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
+        //all
+        this.router.get('/', (req, res,next) => {
+            try {
+                const result = this.userController.getAll();
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
+        this.router.get('/test', (req, res,next) => {
+            try {
+                const result = this.userController.getAllTest();
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
@@ -47,14 +66,5 @@ export class UserRouter {
             }
         });
 
-        //all
-        this.router.get('/', (req, res,next) => {
-            try {
-                const result = this.userController.getAll();
-                res.status(200).json(result);
-            } catch (error: unknown) {
-                next(error);
-            }
-        });
     }
 }
