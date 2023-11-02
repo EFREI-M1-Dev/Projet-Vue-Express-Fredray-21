@@ -17,8 +17,7 @@ export class Server {
     ) {
     }
 
-
-
-
-
+    getId(): number {
+        return this.serverId;
+    }
 }

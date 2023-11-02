@@ -11,7 +11,6 @@ export class ServerBDDService implements ServerService {
     add(serverName: string, description: string | null, owner: UserData): Server {
         const db = openConnection();
         const userService = new UserBDDService();
-        const ownerFormated = userService.getById(owner.userId);
 
         try {
             const creationDate = new Date().getTime();
@@ -20,9 +19,9 @@ export class ServerBDDService implements ServerService {
             if (info.changes !== 1) throw new Error('Failed to insert server');
             const serverId = Number(info.lastInsertRowid);
 
-            const ownerUser = userService.getById(owner.userId);
-            if (!ownerUser) throw new Error('Owner not found');
-            return new Server(serverId, ownerUser, new Date(creationDate), serverName, description || '');
+            const ownerFormated = userService.getById(owner.userId);
+            if (!ownerFormated) throw new Error('Owner not found');
+            return new Server(serverId, ownerFormated, new Date(creationDate), serverName, description || '');
         } finally {
             db.close();
         }
@@ -92,7 +91,5 @@ export class ServerBDDService implements ServerService {
         } finally {
             db.close();
         }
-
     }
-
 }

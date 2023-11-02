@@ -24,8 +24,8 @@ CREATE TABLE Servers
 CREATE TABLE Channels
 (
     channelId    INTEGER PRIMARY KEY AUTOINCREMENT,
-    name         VARCHAR(255),
-    description  TEXT,
+    channelName  VARCHAR(255),
+    description  VARCHAR(255),
     creationDate TIMESTAMP,
     serverId     INT REFERENCES Servers (serverId)
 );

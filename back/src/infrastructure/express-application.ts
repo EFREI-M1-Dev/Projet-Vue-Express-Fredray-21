@@ -1,16 +1,23 @@
 import { ExpressServer } from './express-server';
 import * as dotenv from 'dotenv';
 import { ExpressRouter } from './express-router';
+
 import { UserService } from '../user/UserService';
 import { UserBDDService } from '../user/UserBDDService';
-import { ServerBDDService } from '../servers/ServerBDDService';
+
+import { ServerService } from '../server/ServerService';
+import { ServerBDDService } from '../server/ServerBDDService';
+import { ChannelService } from '../channel/ChannelService';
+import { ChannelBDDService } from '../channel/ChannelBDDService';
 
 export class ExpressApplication {
     private server!: ExpressServer;
     private expressRouter!: ExpressRouter;
     private port!: string;
+
     private userService!: UserService;
-    private serverService!: ServerBDDService;
+    private serverService!: ServerService;
+    private channelService!: ChannelService;
 
     constructor() {
         this.configureApplication();
@@ -42,10 +49,11 @@ export class ExpressApplication {
     private configureServices(): void {
         this.userService = new UserBDDService();
         this.serverService = new ServerBDDService();
+        this.channelService = new ChannelBDDService();
     }
 
     private configureExpressRouter(): void {
-        this.expressRouter = new ExpressRouter(this.userService, this.serverService);
+        this.expressRouter = new ExpressRouter(this.userService, this.serverService, this.channelService);
     }
 
     private configureServer(): void {

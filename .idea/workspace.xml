@@ -4,21 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back): ajout du CRUD users en SQL">
-      <change afterPath="$PROJECT_DIR$/back/src/servers/Server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/servers/ServerBDDService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/servers/ServerController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/servers/ServerRouter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/servers/ServerService.ts" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back-server): ajout du CRUD server">
+      <change afterPath="$PROJECT_DIR$/back/src/channel/Channel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/server/ServerController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/server/ServerService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/back/schema_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/back/schema_db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/data/userData.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/User.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/servers/Server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/Server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/servers/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/servers/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/servers/ServerRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/servers/ServerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,33 +86,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/src/servers&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/src/channel",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ],
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\&quot;main\&quot;&quot;
+    "RunConfigurationTargetLRU": [
+      "23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\"main\""
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\channel" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\servers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -178,7 +179,8 @@
       <workItem from="1698849582091" duration="592000" />
       <workItem from="1698861661713" duration="5045000" />
       <workItem from="1698867023634" duration="5418000" />
-      <workItem from="1698877852181" duration="1530000" />
+      <workItem from="1698877852181" duration="1641000" />
+      <workItem from="1698910138268" duration="3846000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -222,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698865408698</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat(back-server): ajout du CRUD server">
+      <created>1698880016058</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698880016058</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +245,7 @@
     <MESSAGE value="feat(back): ajout schema BDD" />
     <MESSAGE value="feat(back): structure BDD" />
     <MESSAGE value="feat(back): ajout du CRUD users en SQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(back): ajout du CRUD users en SQL" />
+    <MESSAGE value="feat(back-server): ajout du CRUD server" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(back-server): ajout du CRUD server" />
   </component>
 </project>
