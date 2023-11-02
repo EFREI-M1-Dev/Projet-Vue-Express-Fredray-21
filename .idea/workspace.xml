@@ -4,16 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back-channel): ajout du CRUD channel">
-      <change afterPath="$PROJECT_DIR$/back/src/message/Message.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/message/MessageController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/message/MessageRouter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/message/MessageService.ts" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back-message): ajout du CRUD message">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/message/MessageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/message/MessageController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/message/MessageRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/message/MessageRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/message/MessageService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/message/MessageService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserJSONService.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserJSONService.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +190,7 @@
       <workItem from="1698861661713" duration="5045000" />
       <workItem from="1698867023634" duration="5418000" />
       <workItem from="1698877852181" duration="1641000" />
-      <workItem from="1698910138268" duration="6612000" />
+      <workItem from="1698910138268" duration="12813000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -234,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698914057891</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat(back-message): ajout du CRUD message">
+      <created>1698916830330</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1698916830330</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,6 +271,7 @@
     <MESSAGE value="feat(back): ajout du CRUD users en SQL" />
     <MESSAGE value="feat(back-server): ajout du CRUD server" />
     <MESSAGE value="feat(back-channel): ajout du CRUD channel" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(back-channel): ajout du CRUD channel" />
+    <MESSAGE value="feat(back-message): ajout du CRUD message" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(back-message): ajout du CRUD message" />
   </component>
 </project>

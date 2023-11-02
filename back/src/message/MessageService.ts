@@ -1,16 +1,16 @@
-import {ChannelData} from '../channel/Channel';
-import {ServerData} from '../server/Server';
-import {UserData} from '../user/User';
-import {Message, MessageData} from './Message';
+import { ChannelData } from '../channel/Channel';
+import { ServerData } from '../server/Server';
+import { UserData } from '../user/User';
+import { Message, MessageData } from './Message';
 
 export interface MessageService {
-    add(owner: UserData, content: string, server: ServerData, channel: ChannelData): Message;
+    add(owner: UserData, content: string, server: ServerData, channel: ChannelData): Promise<Message>;
 
-    update(id: number, content: string): Message;
+    update(id: number, content: string): Promise<Message>;
 
-    remove(id: number): Boolean;
+    remove(id: number): Promise<boolean>;
 
-    getAll(): Message[];
+    getAll(): Promise<Message[]>;
 
-    getById(id: number): Message | null;
+    getById(id: number): Promise<Message | null>;
 }

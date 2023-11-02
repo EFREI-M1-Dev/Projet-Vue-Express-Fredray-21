@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import {openConnection} from "../../db";
+import {openConnection} from '../../db';
 import {User, UserData} from '../user/User';
 import {UserBDDService} from '../user/UserBDDService';
 import {ChannelService} from './ChannelService';
@@ -7,10 +7,8 @@ import {Channel, ChannelData} from './Channel';
 import {Server, ServerData} from '../server/Server';
 import {ServerBDDService} from '../server/ServerBDDService';
 
-
 export class ChannelBDDService implements ChannelService {
-
-    add(channelName: string, description: string | null, server: ServerData): Channel {
+    async add(channelName: string, description: string | null, server: ServerData): Promise<Channel> {
         const db = openConnection();
         const serverService = new ServerBDDService();
 
@@ -21,7 +19,7 @@ export class ChannelBDDService implements ChannelService {
             if (info.changes !== 1) throw new Error('Failed to insert channel');
             const channelId = Number(info.lastInsertRowid);
 
-            const serverFormated = serverService.getById(server.serverId);
+            const serverFormated = await serverService.getById(server.serverId);
             if (!serverFormated) throw new Error('Server not found');
             return new Channel(channelId, channelName, description || '', new Date(creationDate), serverFormated);
         } finally {
@@ -29,13 +27,13 @@ export class ChannelBDDService implements ChannelService {
         }
     }
 
-    update(id: number, channelName: string, description: string | null): Channel {
+    async update(id: number, channelName: string, description: string | null): Promise<Channel> {
         const db = openConnection();
         try {
             const statement = db.prepare('UPDATE channels SET channelName = ?, description = ? WHERE channelId = ?');
             const info = statement.run(channelName, description, id);
             if (info.changes !== 1) throw new Error('Failed to update channel');
-            const channel = this.getById(id);
+            const channel = await this.getById(id);
             if (!channel) throw new Error('Channel not found');
             return channel;
         } finally {
@@ -43,19 +41,18 @@ export class ChannelBDDService implements ChannelService {
         }
     }
 
-    remove(id: number): Boolean {
+    async remove(id: number): Promise<boolean> {
         const db = openConnection();
         try {
             const statement = db.prepare('DELETE FROM channels WHERE channelId = ?');
             const info = statement.run(id);
             return info.changes > 0;
-            return true;
         } finally {
             db.close();
         }
     }
 
-    getAll(): Channel[] {
+    async getAll(): Promise<Channel[]> {
         const channels: Channel[] = [];
         const db = openConnection();
         const serverService = new ServerBDDService();
@@ -65,18 +62,17 @@ export class ChannelBDDService implements ChannelService {
             const result = statement.all();
             for (const row of result) {
                 const typedRow = row as ChannelData;
-                const server = serverService.getById(typedRow.serverId);
+                const server = await serverService.getById(typedRow.serverId);
                 if (!server) throw new Error('Server not found');
                 channels.push(new Channel(typedRow.channelId, typedRow.channelName, typedRow.description, typedRow.creationDate, server));
             }
             return channels;
-
         } finally {
             db.close();
         }
     }
 
-    getById(id: number): Channel | null {
+    async getById(id: number): Promise<Channel | null> {
         const db = openConnection();
         try {
             const statement = db.prepare('SELECT * FROM channels WHERE channelId = ?');
@@ -86,7 +82,7 @@ export class ChannelBDDService implements ChannelService {
             }
             const typedRow = result as ChannelData;
             const serverService = new ServerBDDService();
-            const server = serverService.getById(typedRow.serverId);
+            const server = await serverService.getById(typedRow.serverId);
             if (!server) throw new Error('Server not found');
             return new Channel(typedRow.channelId, typedRow.channelName, typedRow.description, typedRow.creationDate, server);
         } finally {

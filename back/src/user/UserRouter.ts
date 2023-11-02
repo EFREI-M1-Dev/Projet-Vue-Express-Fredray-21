@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { UserController } from './UserController';
 
 export class UserRouter {
@@ -9,10 +9,10 @@ export class UserRouter {
     }
 
     private configureRoutes(): void {
-        //add
-        this.router.post('/', (req, res,next) => {
+        // Add
+        this.router.post('/', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.userController.add(
+                const result = await this.userController.add(
                     req.body.username,
                     req.body.email,
                     req.body.password,
@@ -25,10 +25,10 @@ export class UserRouter {
             }
         });
 
-        //update
-        this.router.put('/:id', (req, res,next) => {
+        // Update
+        this.router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.userController.update(
+                const result = await this.userController.update(
                     Number(req.params.id),
                     req.body.username,
                     req.body.email,
@@ -42,20 +42,20 @@ export class UserRouter {
             }
         });
 
-        //all
-        this.router.get('/', (req, res,next) => {
+        // All
+        this.router.get('/', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.userController.getAll();
+                const result = await this.userController.getAll();
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
             }
         });
 
-        //delete
-        this.router.delete('/:id', (req, res,next) => {
+        // Delete
+        this.router.delete('/:id', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.userController.remove(
+                const result = await this.userController.remove(
                     Number(req.params.id),
                 );
                 res.status(200).json(result);
@@ -64,10 +64,10 @@ export class UserRouter {
             }
         });
 
-        //get
-        this.router.get('/:id', (req, res,next) => {
+        // Get
+        this.router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.userController.getById(
+                const result = await this.userController.getById(
                     Number(req.params.id),
                 );
                 res.status(200).json(result);
@@ -75,6 +75,5 @@ export class UserRouter {
                 next(error);
             }
         });
-
     }
 }

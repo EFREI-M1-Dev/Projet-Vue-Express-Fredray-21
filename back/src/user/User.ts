@@ -19,7 +19,6 @@ export class User {
     ) {
     }
 
-
     getId(): number {
         return this.userId;
     }

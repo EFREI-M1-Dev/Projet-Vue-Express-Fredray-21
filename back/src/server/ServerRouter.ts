@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { ServerController } from './ServerController';
 
 export class ServerRouter {
@@ -9,50 +9,43 @@ export class ServerRouter {
     }
 
     private configureRoutes(): void {
-
-        //all
-        this.router.get('/', (req, res,next) => {
+        // All
+        this.router.get('/', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.serverController.getAll();
+                const result = await this.serverController.getAll();
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
             }
         });
 
-        //get
-        this.router.get('/:id', (req, res,next) => {
+        // Get
+        this.router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.serverController.getById(
-                    Number(req.params.id),
-                );
+                const result = await this.serverController.getById(Number(req.params.id));
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
             }
         });
 
-        //add
-        this.router.post('/', (req, res,next) => {
+        // Add
+        this.router.post('/', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.serverController.add(
-                    req.body.serverName,
-                    req.body.description,
-                    req.body.owner,
-                );
+                const result = await this.serverController.add(req.body.serverName, req.body.description, req.body.owner);
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
             }
         });
 
-        //update
-        this.router.put('/:id', (req, res,next) => {
+        // Update
+        this.router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.serverController.update(
+                const result = await this.serverController.update(
                     Number(req.params.id),
                     req.body.serverName,
-                    req.body.description,
+                    req.body.description
                 );
                 res.status(200).json(result);
             } catch (error: unknown) {
@@ -60,17 +53,14 @@ export class ServerRouter {
             }
         });
 
-        //delete
-        this.router.delete('/:id', (req, res,next) => {
+        // Delete
+        this.router.delete('/:id', async (req: Request, res: Response, next: NextFunction) => {
             try {
-                const result = this.serverController.remove(
-                    Number(req.params.id),
-                );
+                const result = await this.serverController.remove(Number(req.params.id));
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
             }
         });
-
     }
 }

@@ -10,20 +10,20 @@ export class MessageRouter {
 
     private configureRoutes(): void {
 
-        //all
-        this.router.get('/', (req, res,next) => {
+        // all
+        this.router.get('/', async (req, res, next) => {
             try {
-                const result = this.messageController.getAll();
+                const result = await this.messageController.getAll();
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
             }
         });
 
-        //get
-        this.router.get('/:id', (req, res,next) => {
+        // get
+        this.router.get('/:id', async (req, res, next) => {
             try {
-                const result = this.messageController.getById(
+                const result = await this.messageController.getById(
                     Number(req.params.id),
                 );
                 res.status(200).json(result);
@@ -32,11 +32,10 @@ export class MessageRouter {
             }
         });
 
-
-        //add
-        this.router.post('/', (req, res,next) => {
+        // add
+        this.router.post('/', async (req, res, next) => {
             try {
-                const result = this.messageController.add(
+                const result = await this.messageController.add(
                     req.body.owner,
                     req.body.content,
                     req.body.server,
@@ -48,10 +47,10 @@ export class MessageRouter {
             }
         });
 
-        //update
-        this.router.put('/:id', (req, res,next) => {
+        // update
+        this.router.put('/:id', async (req, res, next) => {
             try {
-                const result = this.messageController.update(
+                const result = await this.messageController.update(
                     Number(req.params.id),
                     req.body.content,
                 );
@@ -61,10 +60,10 @@ export class MessageRouter {
             }
         });
 
-        //delete
-        this.router.delete('/:id', (req, res,next) => {
+        // delete
+        this.router.delete('/:id', async (req, res, next) => {
             try {
-                const result = this.messageController.remove(
+                const result = await this.messageController.remove(
                     Number(req.params.id),
                 );
                 res.status(200).json(result);

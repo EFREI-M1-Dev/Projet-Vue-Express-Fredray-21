@@ -10,32 +10,30 @@ export class ChannelRouter {
 
     private configureRoutes(): void {
 
-        //all
-        this.router.get('/', (req, res,next) => {
+        // all
+        this.router.get('/', async (req, res, next) => {
             try {
-                const result = this.channelController.getAll();
+                const result = await this.channelController.getAll();
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
             }
         });
 
-        //get
-        this.router.get('/:id', (req, res,next) => {
+        // get
+        this.router.get('/:id', async (req, res, next) => {
             try {
-                const result = this.channelController.getById(
-                    Number(req.params.id),
-                );
+                const result = await this.channelController.getById(Number(req.params.id));
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
             }
         });
 
-        //add
-        this.router.post('/', (req, res,next) => {
+        // add
+        this.router.post('/', async (req, res, next) => {
             try {
-                const result = this.channelController.add(
+                const result = await this.channelController.add(
                     req.body.channelName,
                     req.body.description,
                     req.body.server,
@@ -46,13 +44,13 @@ export class ChannelRouter {
             }
         });
 
-        //update
-        this.router.put('/:id', (req, res,next) => {
+        // update
+        this.router.put('/:id', async (req, res, next) => {
             try {
-                const result = this.channelController.update(
+                const result = await this.channelController.update(
                     Number(req.params.id),
                     req.body.channelName,
-                    req.body.description
+                    req.body.description,
                 );
                 res.status(200).json(result);
             } catch (error: unknown) {
@@ -60,17 +58,14 @@ export class ChannelRouter {
             }
         });
 
-        //delete
-        this.router.delete('/:id', (req, res,next) => {
+        // delete
+        this.router.delete('/:id', async (req, res, next) => {
             try {
-                const result = this.channelController.remove(
-                    Number(req.params.id),
-                );
+                const result = await this.channelController.remove(Number(req.params.id));
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);
             }
         });
-
     }
 }

@@ -1,10 +1,11 @@
-import { User } from './User';
-import { UserService } from './UserService';
+import {User} from './User';
+import {UserService} from './UserService';
 
 export class UserController {
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService) {
+    }
 
-    add(username: string, email: string, password: string, avatarUrl: string | null, bio: string | null): User {
+    async add(username: string, email: string, password: string, avatarUrl: string | null, bio: string | null): Promise<User> {
         this.checkUsername(username);
         this.checkEmail(email);
         this.checkPassword(password);
@@ -12,7 +13,7 @@ export class UserController {
         return this.userService.add(username, email, password, avatarUrl, bio);
     }
 
-    update(id: number, username: string, email: string, password: string, avatarUrl: string | null, bio: string | null): User {
+    async update(id: number, username: string, email: string, password: string, avatarUrl: string | null, bio: string | null): Promise<User> {
         this.checkId(id);
         this.checkUsername(username);
         this.checkEmail(email);
@@ -21,20 +22,19 @@ export class UserController {
         return this.userService.update(id, username, email, password, avatarUrl, bio);
     }
 
-    getById(id: number): User | null {
+    async getById(id: number): Promise<User | null> {
         this.checkId(id);
 
         return this.userService.getById(id);
     }
 
-    remove(id: number): Boolean {
+    async remove(id: number): Promise<boolean> {
         this.checkId(id);
 
         return this.userService.remove(id);
     }
 
-
-    getAll(): User[] {
+    async getAll(): Promise<User[]> {
         return this.userService.getAll();
     }
 
