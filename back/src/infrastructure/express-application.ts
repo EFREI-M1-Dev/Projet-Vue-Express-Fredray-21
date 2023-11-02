@@ -9,6 +9,8 @@ import { ServerService } from '../server/ServerService';
 import { ServerBDDService } from '../server/ServerBDDService';
 import { ChannelService } from '../channel/ChannelService';
 import { ChannelBDDService } from '../channel/ChannelBDDService';
+import { MessageService } from '../message/MessageService';
+import { MessageBDDService } from '../message/MessageBDDService';
 
 export class ExpressApplication {
     private server!: ExpressServer;
@@ -18,6 +20,7 @@ export class ExpressApplication {
     private userService!: UserService;
     private serverService!: ServerService;
     private channelService!: ChannelService;
+    private messageService!: MessageService;
 
     constructor() {
         this.configureApplication();
@@ -50,10 +53,11 @@ export class ExpressApplication {
         this.userService = new UserBDDService();
         this.serverService = new ServerBDDService();
         this.channelService = new ChannelBDDService();
+        this.messageService = new MessageBDDService();
     }
 
     private configureExpressRouter(): void {
-        this.expressRouter = new ExpressRouter(this.userService, this.serverService, this.channelService);
+        this.expressRouter = new ExpressRouter(this.userService, this.serverService, this.channelService, this.messageService);
     }
 
     private configureServer(): void {

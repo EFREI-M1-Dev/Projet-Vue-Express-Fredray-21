@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back-server): ajout du CRUD server">
-      <change afterPath="$PROJECT_DIR$/back/src/channel/Channel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/server/ServerController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/server/ServerService.ts" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back-channel): ajout du CRUD channel">
+      <change afterPath="$PROJECT_DIR$/back/src/message/Message.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/message/MessageController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/message/MessageRouter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/message/MessageService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/schema_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/back/schema_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-application.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/servers/Server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/Server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/servers/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/servers/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/servers/ServerRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelRouter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/servers/ServerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +86,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/src/channel",
+    "last_opened_file_path": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/src/message",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -113,6 +108,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\message" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\channel" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\servers" />
     </key>
@@ -180,7 +176,7 @@
       <workItem from="1698861661713" duration="5045000" />
       <workItem from="1698867023634" duration="5418000" />
       <workItem from="1698877852181" duration="1641000" />
-      <workItem from="1698910138268" duration="3846000" />
+      <workItem from="1698910138268" duration="6612000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -231,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698880016058</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat(back-channel): ajout du CRUD channel">
+      <created>1698914057891</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1698914057891</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +249,7 @@
     <MESSAGE value="feat(back): structure BDD" />
     <MESSAGE value="feat(back): ajout du CRUD users en SQL" />
     <MESSAGE value="feat(back-server): ajout du CRUD server" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(back-server): ajout du CRUD server" />
+    <MESSAGE value="feat(back-channel): ajout du CRUD channel" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(back-channel): ajout du CRUD channel" />
   </component>
 </project>
