@@ -1,23 +1,34 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+
+import Login from '../components/Login.vue';
+import Home from '../components/Home.vue';
+
+const routes = [
+    { path: '/', component: Home },
+    { path: '/login', component: Login },
+    // Ajoutez d'autres routes ici
+];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
-})
+    history: createWebHistory(),
+    routes,
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+    // Vérifiez si l'utilisateur est logué
+    const loggedIn = window.localStorage.getItem('tokenAuthExpressChat');
+
+    if (!loggedIn && to.path !== '/login') {
+        // Si l'utilisateur n'est pas logué et qu'il essaie d'accéder à une autre page que /login, redirigez-le vers la page d'accueil
+        next('/login');
+    } else {
+        if(loggedIn && to.path === '/login') {
+            // Si l'utilisateur est logué et qu'il essaie d'accéder à la page /login, redirigez-le vers la page d'accueil
+            next('/');
+        }
+        // Sinon, autorisez l'accès à la page
+        next();
+    }
+});
+
+export default router;

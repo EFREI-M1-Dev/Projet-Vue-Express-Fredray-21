@@ -1,0 +1,43 @@
+@import "src/styles/variables";
+
+body {
+  cursor  : none;
+  margin  : 0;
+  padding : 0;
+  font-family: $font-family
+}
+
+a, button, input, label {
+  cursor : none;
+}
+
+.custom-cursor {
+  position         : fixed;
+  width            : 5px;
+  height           : 5px;
+  background-color : #000000;
+  border           : 2px solid #000000;
+  border-radius    : 50%;
+  transform        : translate(-50%, -50%);
+  pointer-events   : none;
+  transition       : width 0.3s, height 0.3s;
+
+  &.hovered {
+    width  : 20px;
+    height : 20px;
+    cursor : none;
+  }
+}
+
+::selection {
+  color: #fff;
+  background: $hover-primary;
+}
+::-moz-selection {
+  color: #fff;
+  background: $hover-primary;
+}
+
+.color-primary {
+  color: $primary;
+}

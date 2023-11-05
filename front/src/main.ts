@@ -1,11 +1,13 @@
-import './assets/main.css'
+import "./icons"; // Importez les icônes
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(router)
+app.use(router); // Utilisez le routeur
+app.component('font-awesome-icon', FontAwesomeIcon) // Ajoutez l'icône font-awesome-icon
 
-app.mount('#app')
+app.mount('#app');
