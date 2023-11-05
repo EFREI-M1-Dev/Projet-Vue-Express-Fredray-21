@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import passport from './auth/express-auth';
 import { generateAuthToken } from './auth/authUtils';
+import { configurePassport } from './auth/express-auth';
 
 import { Request, Response } from 'express';
 import { UserService } from '../user/UserService';
@@ -19,6 +20,7 @@ import { MessageService } from '../message/MessageService';
 import { MessageRouter } from '../message/MessageRouter';
 import { MessageController } from '../message/MessageController';
 import { User } from '../user/User';
+
 
 export class ExpressRouter {
     router = Router();
@@ -44,6 +46,7 @@ export class ExpressRouter {
         this.configureRouters();
         this.configureRoutes();
         this.configureAuthRoutes();
+        configurePassport(userService);
     }
 
     private configureControllers(): void {

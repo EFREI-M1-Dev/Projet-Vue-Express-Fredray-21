@@ -1,5 +1,5 @@
-import { Router, Request, Response, NextFunction } from 'express';
-import { UserController } from './UserController';
+import {Router, Request, Response, NextFunction} from 'express';
+import {UserController} from './UserController';
 
 export class UserRouter {
     router = Router();
@@ -75,5 +75,18 @@ export class UserRouter {
                 next(error);
             }
         });
+
+        // check if username exists
+        this.router.get('/username/:username', async (req: Request, res: Response, next: NextFunction) => {
+                try {
+                    const result = await this.userController.findUserByUsername(
+                        req.params.username,
+                    );
+                    res.status(200).json((result !== null && result.getId() !== undefined) ? true : false  );
+                } catch (error: unknown) {
+                    next(error);
+                }
+            }
+        );
     }
 }

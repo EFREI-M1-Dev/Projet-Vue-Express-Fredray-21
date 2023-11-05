@@ -70,4 +70,11 @@ export class UserController {
             throw new Error('Password is not strong enough');
         }
     }
+
+    // findUserByUsername
+    async findUserByUsername(username: string): Promise<User | null> {
+        this.checkUsername(username);
+        return this.userService.findUserByUsername(username);
+    }
+
 }

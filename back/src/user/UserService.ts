@@ -6,4 +6,5 @@ export interface UserService {
     remove(id: number): Promise<boolean>;
     getAll(): Promise<User[]>;
     getById(id: number): Promise<User | null>;
+    findUserByUsername(username: string): Promise<User | null>;
 }

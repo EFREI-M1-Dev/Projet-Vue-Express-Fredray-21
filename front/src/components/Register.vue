@@ -1,11 +1,17 @@
 <template>
   <div class="card-container">
     <div class="card">
-      <h1 class="card-title">Se connecter à Express<span class="color-primary">Chat</span></h1>
-      <form @submit.prevent="login">
+      <h1 class="card-title">Rejoignez Express<span class="color-primary">Chat</span></h1>
+      <form @submit.prevent="registration">
         <div class="form-group">
           <label for="username">Identifiant</label>
-          <input v-model="username" type="text" name="username" class="form-control" required>
+          <input v-model="username" type="text" name="username" class="form-control" required autofocus>
+          <p class="infoUsername">
+            Il s'agit du nom par lequel les autres utilisateurs vous verront.
+            <br>
+            Vous pourrez toujours le modifier plus tard.
+          </p>
+
         </div>
         <div class="form-group">
           <label for="password">Mot de passe</label>
@@ -18,9 +24,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Connexion</button>
       </form>
+
       <p>
-        Envie de créer un compte ?
-        <router-link to="/register">Inscrivez-vous</router-link>
+        Vous utilisez déjà ExpressChat ?
+        <router-link to="/login">Connexion</router-link>
       </p>
       <div class="logo-container">
         <img src="/img/logo.png" alt="Logo" class="logo">
@@ -54,11 +61,11 @@ export default {
     return {
       username: '',
       password: '',
-      showPassword: false
+      showPassword: false,
     };
   },
   methods: {
-    login() {
+    registration() {
       // Créez un objet contenant les données à envoyer dans la requête POST
       const userData = {
         username: this.username,
@@ -108,6 +115,24 @@ export default {
       }
     });
 
+    const usernameInput = document.querySelector('input[name="username"]');
+    usernameInput.addEventListener('input', (e) => {
+      const username = e.target.value;
+
+      if (username.length > 3) {
+        axios.get('http://127.0.0.1:3000/api/user/username/'+ username)
+            .then(response => {
+
+             console.log(response.data);
+
+            })
+            .catch(error => {
+              // Gérez les erreurs ici (par exemple, affichez un message d'erreur)
+              console.log("ERROR", error);
+            });
+      }
+
+    });
 
   },
 };
