@@ -1,13 +1,13 @@
 import * as fs from 'fs';
-import { openConnection } from '../../db';
-import { UserBDDService } from '../user/UserBDDService';
-import { ServerBDDService } from '../server/ServerBDDService';
-import { ChannelBDDService } from '../channel/ChannelBDDService';
-import { User, UserData } from '../user/User';
-import { ServerData } from '../server/Server';
-import { ChannelData } from '../channel/Channel';
-import { Message, MessageData } from './Message';
-import { MessageService } from './MessageService';
+import {openConnection} from '../../db';
+import {UserBDDService} from '../user/UserBDDService';
+import {ServerBDDService} from '../server/ServerBDDService';
+import {ChannelBDDService} from '../channel/ChannelBDDService';
+import {User, UserData} from '../user/User';
+import {ServerData} from '../server/Server';
+import {ChannelData} from '../channel/Channel';
+import {Message, MessageData} from './Message';
+import {MessageService} from './MessageService';
 
 export class MessageBDDService implements MessageService {
     async add(owner: UserData, content: string, server: ServerData, channel: ChannelData): Promise<Message> {
@@ -39,7 +39,18 @@ export class MessageBDDService implements MessageService {
     }
 
     async update(id: number, content: string): Promise<Message> {
-        throw new Error('Method not implemented.');
+        const db = openConnection();
+        try {
+            const statement = db.prepare('UPDATE messages SET content = ? WHERE messageId = ?');
+            const info = statement.run(content, id);
+            if (info.changes !== 1) throw new Error('Failed to update message');
+
+            const message = await this.getById(id);
+            if (!message) throw new Error('Message not found');
+            return message;
+        } finally {
+            db.close();
+        }
     }
 
     async remove(id: number): Promise<boolean> {

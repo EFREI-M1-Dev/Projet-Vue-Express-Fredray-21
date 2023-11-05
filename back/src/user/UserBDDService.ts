@@ -78,11 +78,12 @@ export class UserBDDService implements UserService {
         }
     }
 
-    async authenticate(email: string, password: string): Promise<User | null> {
+    // findUserByUsername
+    async findUserByUsername(username: string): Promise<User | null> {
         const db = openConnection();
         try {
-            const statement = db.prepare('SELECT * FROM users WHERE email = ? AND password = ?');
-            const result = await statement.get(email, password);
+            const statement = db.prepare('SELECT * FROM users WHERE username = ?');
+            const result = await statement.get(username);
             if (result === undefined) {
                 return null;
             }
