@@ -1,4 +1,5 @@
 import {Router, Request, Response, NextFunction} from 'express';
+import { verifyTokenMiddleware } from '../infrastructure/auth/authUtils';
 import {UserController} from './UserController';
 
 export class UserRouter {
@@ -43,8 +44,11 @@ export class UserRouter {
         });
 
         // All
-        this.router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+        this.router.get('/', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
+
+                console.log("req: ",req.user);
+
                 const result = await this.userController.getAll();
                 res.status(200).json(result);
             } catch (error: unknown) {
@@ -82,7 +86,7 @@ export class UserRouter {
                     const result = await this.userController.findUserByUsername(
                         req.params.username,
                     );
-                    res.status(200).json((result !== null && result.getId() !== undefined) ? true : false  );
+                    res.status(200).json((result !== null && result.getId() !== undefined) ? true : false);
                 } catch (error: unknown) {
                     next(error);
                 }

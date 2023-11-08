@@ -1,5 +1,6 @@
 import {User} from './User';
 import {UserService} from './UserService';
+import * as bcrypt from 'bcrypt';
 
 export class UserController {
     constructor(private userService: UserService) {
@@ -10,7 +11,10 @@ export class UserController {
         this.checkEmail(email);
         this.checkPassword(password);
 
-        return this.userService.add(username, email, password, avatarUrl, bio);
+        const saltRounds = 10;
+        const passwordHashed = bcrypt.hashSync(password, saltRounds);
+
+        return this.userService.add(username, email, passwordHashed, avatarUrl, bio);
     }
 
     async update(id: number, username: string, email: string, password: string, avatarUrl: string | null, bio: string | null): Promise<User> {
