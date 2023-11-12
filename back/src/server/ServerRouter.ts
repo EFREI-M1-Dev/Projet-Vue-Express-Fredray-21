@@ -21,6 +21,19 @@ export class ServerRouter {
             }
         });
 
+        // get all users by server
+        this.router.get('/:id/users', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const result = await this.serverController.getUsersByServer(
+                    Number(req.params.id),
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
+
         // Get
         this.router.get('/:id', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {

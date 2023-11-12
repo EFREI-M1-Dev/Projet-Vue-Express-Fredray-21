@@ -25,4 +25,8 @@ export class ServerController {
         return await this.serverService.getAll();
     }
 
+    async getUsersByServer(id: number): Promise<User[]> {
+        return await this.serverService.getUsersByServer(id);
+    }
+
 }

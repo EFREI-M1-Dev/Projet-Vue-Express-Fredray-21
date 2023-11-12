@@ -94,4 +94,25 @@ export class ServerBDDService implements ServerService {
         }
     }
 
+    // get all servers by user =  db.prepare('SELECT servers.* FROM servers INNER JOIN memberships ON servers.serverId = memberships.serverId INNER JOIN users ON memberships.userId = users.userId WHERE users.username = ?');
+    // get all users by server :
+    async getUsersByServer(id: number): Promise<User[]> {
+        const users: User[] = [];
+        const db = openConnection();
+        const userService = new UserBDDService();
+
+        try {
+            const statement = db.prepare('SELECT users.* FROM users INNER JOIN memberships ON users.userId = memberships.userId INNER JOIN servers ON memberships.serverId = servers.serverId WHERE servers.serverId = ?');
+            for (const row of statement.iterate(id)) {
+                const typedRow = row as UserData;
+
+                users.push(new User(typedRow.userId, typedRow.username, typedRow.email, typedRow.password, typedRow.creationDate, typedRow.avatarUrl, typedRow.bio));
+            }
+
+            return users;
+        } finally {
+            db.close();
+        }
+    }
+
 }

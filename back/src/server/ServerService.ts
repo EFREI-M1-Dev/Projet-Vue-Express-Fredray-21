@@ -7,4 +7,5 @@ export interface ServerService {
     remove(id: number): Promise<boolean>;
     getAll(): Promise<Server[]>;
     getById(id: number): Promise<Server | null>;
+    getUsersByServer(id: number): Promise<User[]>;
 }

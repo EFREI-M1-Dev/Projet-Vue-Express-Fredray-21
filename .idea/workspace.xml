@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front): non conditionel">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back): changement route get all server -&gt; user">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/server/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/server/ServerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserRouter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +282,7 @@
       <workItem from="1699783545208" duration="8233000" />
       <workItem from="1699803358829" duration="461000" />
       <workItem from="1699804183904" duration="15585000" />
-      <workItem from="1699825533272" duration="6313000" />
+      <workItem from="1699825533272" duration="6685000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -408,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699831691502</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="feat(back): changement route get all server -&gt; user">
+      <created>1699832811928</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1699832811928</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,6 +435,7 @@
     <MESSAGE value="feat(back-auth): add verifyTokenMiddleware to secure request &amp;&amp; start use &amp;&amp; back to register" />
     <MESSAGE value="feat(front): ajout des composant server/channel List et get Username by token" />
     <MESSAGE value="feat(front): non conditionel" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front): non conditionel" />
+    <MESSAGE value="feat(back): changement route get all server -&gt; user" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(back): changement route get all server -&gt; user" />
   </component>
 </project>
