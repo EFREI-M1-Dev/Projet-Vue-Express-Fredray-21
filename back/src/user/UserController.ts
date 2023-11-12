@@ -1,4 +1,5 @@
 import {User} from './User';
+import {Server} from '../server/Server';
 import {UserService} from './UserService';
 import * as bcrypt from 'bcrypt';
 
@@ -79,6 +80,12 @@ export class UserController {
     async findUserByUsername(username: string): Promise<User | null> {
         this.checkUsername(username);
         return this.userService.findUserByUsername(username);
+    }
+
+    // getServersByUser
+    async getServersByUser(username: string): Promise<Server[]> {
+        this.checkUsername(username);
+        return this.userService.getServersByUser(username);
     }
 
 }

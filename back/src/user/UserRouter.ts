@@ -1,5 +1,5 @@
 import {Router, Request, Response, NextFunction} from 'express';
-import { verifyTokenMiddleware } from '../infrastructure/auth/authUtils';
+import {verifyTokenMiddleware} from '../infrastructure/auth/authUtils';
 import {UserController} from './UserController';
 
 export class UserRouter {
@@ -10,6 +10,19 @@ export class UserRouter {
     }
 
     private configureRoutes(): void {
+
+        // get all servers by user
+        this.router.get('/:username/servers', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const result = await this.userController.getServersByUser(
+                    req.params.username,
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
         // Add
         this.router.post('/', async (req: Request, res: Response, next: NextFunction) => {
             try {
@@ -92,5 +105,8 @@ export class UserRouter {
                 }
             }
         );
+
+
+
     }
 }

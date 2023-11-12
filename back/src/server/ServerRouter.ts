@@ -66,15 +66,6 @@ export class ServerRouter {
         });
 
 
-        // Get all servers by user
-        this.router.get('/user/:username', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
-            try {
-                const result = await this.serverController.getByUser(req.params.username);
-                res.status(200).json(result);
-            } catch (error: unknown) {
-                next(error);
-            }
-        });
 
 
     }

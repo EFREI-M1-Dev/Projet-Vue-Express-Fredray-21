@@ -25,7 +25,4 @@ export class ServerController {
         return await this.serverService.getAll();
     }
 
-    async getByUser(username: string): Promise<Server[]> {
-        return await this.serverService.getByUser(username);
-    }
 }
