@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back): changement route get all server -&gt; user">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back): get all users by server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/ServerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/auth/authUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/auth/authUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/auth/express-auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/auth/express-auth.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,7 +281,7 @@
       <workItem from="1699783545208" duration="8233000" />
       <workItem from="1699803358829" duration="461000" />
       <workItem from="1699804183904" duration="15585000" />
-      <workItem from="1699825533272" duration="6685000" />
+      <workItem from="1699825533272" duration="6745000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -410,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699832811928</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat(back): get all users by server">
+      <created>1699833173662</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1699833173662</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,6 +442,7 @@
     <MESSAGE value="feat(front): ajout des composant server/channel List et get Username by token" />
     <MESSAGE value="feat(front): non conditionel" />
     <MESSAGE value="feat(back): changement route get all server -&gt; user" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(back): changement route get all server -&gt; user" />
+    <MESSAGE value="feat(back): get all users by server" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(back): get all users by server" />
   </component>
 </project>

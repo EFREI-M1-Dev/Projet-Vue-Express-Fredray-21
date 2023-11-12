@@ -17,7 +17,6 @@ export const generateAuthToken = (user: User) => {
 export const verifyTokenMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const token: string | undefined = req.headers.authorization;
 
-    console.log('token', token);
     if (!token) {
         return res.status(401).json({ message: 'Jetons d\'authentification manquant' });
     }
