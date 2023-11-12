@@ -1,0 +1,13 @@
+
+.container {
+  display               : grid;
+  grid-template-columns : 70px 225px 1fr 225px;
+  height                : 100%;
+}
+
+.container > div {
+  display         : flex;
+  justify-content : center;
+  align-items     : flex-start;
+  border          : 1px solid black;
+}

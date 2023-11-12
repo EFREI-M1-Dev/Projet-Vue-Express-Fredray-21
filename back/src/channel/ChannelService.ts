@@ -7,4 +7,5 @@ export interface ChannelService {
     remove(id: number): Promise<boolean>;
     getAll(): Promise<Channel[]>;
     getById(id: number): Promise<Channel | null>;
+    getByServer(serverId: number): Promise<Channel[]>;
 }

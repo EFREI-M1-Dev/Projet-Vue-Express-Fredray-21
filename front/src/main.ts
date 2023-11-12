@@ -8,6 +8,7 @@ import router from './router';
 const app = createApp(App);
 
 app.use(router); // Utilisez le routeur
+
 app.component('font-awesome-icon', FontAwesomeIcon) // Ajoutez l'icône font-awesome-icon
 
 app.mount('#app');

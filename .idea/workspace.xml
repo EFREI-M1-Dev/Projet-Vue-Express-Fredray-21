@@ -4,14 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front): ajout page register et debut loginUnique">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back-auth): add verifyTokenMiddleware to secure request &amp;&amp; start use &amp;&amp; back to register">
+      <change afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/script/customCursor.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/styles/components/_channelsList.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/styles/pages/_home.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/infrastructure/auth/authUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/auth/authUtils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/auth/express-auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/auth/express-auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/user/UserRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserRouter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/pages/_loginRegistration.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/pages/_loginRegistration.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/services/user.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,10 +138,11 @@
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\servers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\components\Home" />
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\views" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\styles\pages" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\styles" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\infrastructure\auth" />
-      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.UserJSONService.getById">
@@ -279,7 +305,11 @@
       <workItem from="1699018580955" duration="8477000" />
       <workItem from="1699180532872" duration="15103000" />
       <workItem from="1699481067422" duration="2313000" />
-      <workItem from="1699483493794" duration="3471000" />
+      <workItem from="1699483493794" duration="3757000" />
+      <workItem from="1699783545208" duration="8233000" />
+      <workItem from="1699803358829" duration="461000" />
+      <workItem from="1699804183904" duration="15585000" />
+      <workItem from="1699825533272" duration="4854000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -372,7 +402,21 @@
       <option name="project" value="LOCAL" />
       <updated>1699223092640</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="feat(front): style error register / form">
+      <created>1699487188289</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1699487188289</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat(back-auth): add verifyTokenMiddleware to secure request &amp;&amp; start use &amp;&amp; back to register">
+      <created>1699487269431</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1699487269431</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,6 +437,8 @@
     <MESSAGE value="feat(back): ajout update message et auth" />
     <MESSAGE value="feat(front): ajout form login &amp;&amp; home page" />
     <MESSAGE value="feat(front): ajout page register et debut loginUnique" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front): ajout page register et debut loginUnique" />
+    <MESSAGE value="feat(front): style error register / form" />
+    <MESSAGE value="feat(back-auth): add verifyTokenMiddleware to secure request &amp;&amp; start use &amp;&amp; back to register" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(back-auth): add verifyTokenMiddleware to secure request &amp;&amp; start use &amp;&amp; back to register" />
   </component>
 </project>

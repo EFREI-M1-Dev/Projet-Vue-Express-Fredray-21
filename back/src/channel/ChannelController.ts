@@ -26,4 +26,8 @@ export class ChannelController {
     async getAll(): Promise<Channel[]> {
         return this.channelService.getAll();
     }
+
+    async getByServer(serverId: number): Promise<Channel[]> {
+        return this.channelService.getByServer(serverId);
+    }
 }

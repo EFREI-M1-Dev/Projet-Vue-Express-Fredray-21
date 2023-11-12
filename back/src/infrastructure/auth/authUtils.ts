@@ -1,4 +1,4 @@
-import jwt, { VerifyErrors, JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { User } from '../../user/User';
 import { Request, Response, NextFunction } from 'express';
 
@@ -7,7 +7,7 @@ const secretKey = 'maSuperCléeSecrete';
 
 export const generateAuthToken = (user: User) => {
     // Créez un jeton avec les informations de l'utilisateur (vous pouvez ajouter d'autres données si nécessaire)
-    const token = jwt.sign({ userId: user.getId(), username: user.getUsername() }, secretKey, {
+    const token = jwt.sign({username: user.getUsername() }, secretKey, {
         expiresIn: '1h', // Durée de validité du jeton (par exemple, 1 heure)
     });
 
@@ -17,6 +17,7 @@ export const generateAuthToken = (user: User) => {
 export const verifyTokenMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const token: string | undefined = req.headers.authorization;
 
+    console.log('token', token);
     if (!token) {
         return res.status(401).json({ message: 'Jetons d\'authentification manquant' });
     }

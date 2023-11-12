@@ -1,0 +1,20 @@
+@import "src/styles/variables";
+
+#channels-container {
+  display         : flex;
+  justify-content : flex-start;
+  align-items     : center;
+  flex-direction  : column;
+  padding         : 10px;
+  overflow        : hidden;
+
+  #nameOfServer {
+    width         : 100%;
+    text-align    : center;
+    font-size     : 1.5rem;
+    font-weight   : bold;
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+  }
+}

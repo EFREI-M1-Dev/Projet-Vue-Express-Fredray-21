@@ -41,10 +41,7 @@
       <div class="bubble"></div>
     </div>
   </section>
-
-  <div class="custom-cursor"></div>
 </template>
-
 <script>
 import axios from 'axios';
 
@@ -70,9 +67,9 @@ export default {
           .then(response => {
 
             const token = response.data.token;
-            window.localStorage.setItem('tokenAuthExpressChat', token);
-            this.$router.push('/');
+            window.localStorage.setItem('token', token);
 
+            this.$router.push('/');
           })
           .catch(error => {
             // Gérez les erreurs ici (par exemple, affichez un message d'erreur)
@@ -107,14 +104,11 @@ export default {
         }
       }
     });
-
-
   },
 };
-
 </script>
 
 
 <style lang="scss">
-@import '../styles/pages/_loginRegistration';
+@import 'src/styles/pages/loginRegistration';
 </style>

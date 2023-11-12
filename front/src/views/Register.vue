@@ -53,8 +53,6 @@
       <div class="bubble"></div>
     </div>
   </section>
-
-  <div class="custom-cursor"></div>
 </template>
 
 <script>
@@ -79,18 +77,17 @@ export default {
         password: this.password,
       };
 
+
       // Faites la requête POST à l'URL avec Axios
       axios.post('http://127.0.0.1:3000/api/user/', userData)
           .then(response => {
 
             console.log(response.data);
-
-            //this.$router.push('/');
-
+            this.$router.push('/');
           })
           .catch(error => {
             // Gérez les erreurs ici (par exemple, affichez un message d'erreur)
-            console.log("ERROR", error);
+            console.log("ERROR", error.response.data.message);
           });
     },
     togglePasswordVisibility() {
@@ -100,28 +97,6 @@ export default {
     }
   },
   mounted() {
-    document.addEventListener('mousemove', (e) => {
-      const cursor = document.querySelector('.custom-cursor');
-
-      if (cursor) {
-        // Calcul de la vitesse en fonction des déplacements du curseur
-        const dx = e.pageX - cursor.offsetLeft;
-        const dy = e.pageY - cursor.offsetTop;
-        const speed = Math.sqrt(dx * dx + dy * dy);
-
-        // Mise à jour de la position du curseur noir en fonction de la vitesse
-        cursor.style.top = e.pageY + 'px';
-        cursor.style.left = e.pageX + 'px';
-
-        // Vérifier si le curseur survole un élément de type lien (<a>) ou d'entrée (<input>)
-        if (e.target.tagName === 'A' || e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') {
-          cursor.classList.add('hovered');
-        } else {
-          cursor.classList.remove('hovered');
-        }
-      }
-    });
-
     const usernameInput = document.querySelector('input[name="username"]');
     usernameInput.addEventListener('input', (e) => {
       const username = e.target.value;
@@ -146,9 +121,7 @@ export default {
         containerInfo.innerHTML="*L’identifiant doit faire entre 4 et 25 caractères.";
         containerInfo.style.color="red";
       }
-
     });
-
   },
 };
 
@@ -156,5 +129,5 @@ export default {
 
 
 <style lang="scss">
-@import '../styles/pages/_loginRegistration';
+@import 'src/styles/pages/loginRegistration';
 </style>

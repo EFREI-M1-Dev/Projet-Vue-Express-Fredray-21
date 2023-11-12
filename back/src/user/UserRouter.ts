@@ -27,7 +27,7 @@ export class UserRouter {
         });
 
         // Update
-        this.router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
+        this.router.put('/:id', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await this.userController.update(
                     Number(req.params.id),
@@ -47,7 +47,7 @@ export class UserRouter {
         this.router.get('/', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
 
-                console.log("req: ",req.user);
+                //console.log("req: ",req.user);
 
                 const result = await this.userController.getAll();
                 res.status(200).json(result);
@@ -57,7 +57,7 @@ export class UserRouter {
         });
 
         // Delete
-        this.router.delete('/:id', async (req: Request, res: Response, next: NextFunction) => {
+        this.router.delete('/:id', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await this.userController.remove(
                     Number(req.params.id),
@@ -69,7 +69,7 @@ export class UserRouter {
         });
 
         // Get
-        this.router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+        this.router.get('/:id', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await this.userController.getById(
                     Number(req.params.id),

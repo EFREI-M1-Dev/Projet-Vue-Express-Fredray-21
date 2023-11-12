@@ -93,4 +93,27 @@ export class ServerBDDService implements ServerService {
             db.close();
         }
     }
+
+    async getByUser(username: string): Promise<Server[]> {
+        const servers: Server[] = [];
+        const db = openConnection();
+        const userService = new UserBDDService();
+
+        try {
+            const statement = db.prepare('SELECT servers.* FROM servers INNER JOIN memberships ON servers.serverId = memberships.serverId INNER JOIN users ON memberships.userId = users.userId WHERE users.username = ?');
+            for (const row of statement.iterate(username)) {
+                const typedRow = row as ServerData;
+
+                const owner = await userService.getById(typedRow.owner);
+                if (!owner) throw new Error('Owner not found');
+                servers.push(new Server(typedRow.serverId, owner, typedRow.creationDate, typedRow.serverName, typedRow.description));
+            }
+
+            return servers;
+        } finally {
+            db.close();
+        }
+
+    }
+
 }

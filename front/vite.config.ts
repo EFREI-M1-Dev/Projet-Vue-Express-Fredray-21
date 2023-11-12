@@ -11,7 +11,18 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url))
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+            buffer: 'buffer/',
+            util: "util/",
+            stream: "stream-browserify",
+            events: "events/",
+            crypto: "crypto-browserify",
         }
-    }
+    },
+    define: {
+        process: {
+            env: {},
+        },
+        global: {},
+    },
 })

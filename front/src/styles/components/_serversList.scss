@@ -1,0 +1,75 @@
+@import "src/styles/variables";
+
+
+#servers-container {
+  display         : flex;
+  justify-content : flex-start;
+  align-items     : center;
+  flex-direction  : column;
+
+  #icon-home {
+    width  : 70px;
+    height : 70px;
+
+    img {
+      width   : 50px;
+      height  : 50px;
+      padding : 10px;
+    }
+  }
+
+  #server-list {
+    display         : flex;
+    justify-content : flex-start;
+    align-items     : center;
+    flex-direction  : column;
+    height          : 100%;
+    width           : 100%;
+
+    .server-item {
+      display         : flex;
+      justify-content : center;
+      align-items     : center;
+      flex-direction  : column;
+      width           : 50px;
+      height          : 50px;
+      padding         : 10px;
+      border-radius   : 50%;
+      cursor          : pointer;
+      transition      : all 0.2s ease-in-out;
+      position        : relative;
+
+      img {
+        width         : 100%;
+        height        : 100%;
+        border-radius : 50%;
+      }
+
+      .server-name {
+        position         : absolute;
+        display          : none;
+        top              : 50%;
+        left             : 70px;
+        transform        : translate(0, -50%);
+        padding          : 10px;
+        background-color : $primary;
+        border-radius    : 15px;
+        box-shadow       : 0 0 10px rgba(0, 0, 0, 0.4);
+
+        &::before {
+          content          : '';
+          display          : block;
+          position         : absolute;
+          left             : -18px;
+          top              : 50%;
+          width            : 30px;
+          height           : 10px;
+
+          background-color : inherit;
+          transform        : translate(0, -50%) rotate(90deg);
+          clip-path        : polygon(12.5% 0, 87.5% 0, 50% 100%)
+        }
+      }
+    }
+  }
+}

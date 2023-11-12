@@ -67,5 +67,16 @@ export class ChannelRouter {
                 next(error);
             }
         });
+
+
+        // get channel by server
+        this.router.get('/server/:id', async (req, res, next) => {
+            try {
+                const result = await this.channelController.getByServer(Number(req.params.id));
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
     }
 }

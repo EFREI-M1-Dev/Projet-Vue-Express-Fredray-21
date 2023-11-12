@@ -91,7 +91,7 @@ export class ExpressRouter {
                 //     user: user.getId(),
                 // });
 
-                return res.status(200).json({token: token, user: user.getId()});
+                return res.status(200).json({token: token});
 
 
             })(req, res, next);

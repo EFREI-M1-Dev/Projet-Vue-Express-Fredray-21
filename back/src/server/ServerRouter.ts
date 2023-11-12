@@ -1,5 +1,7 @@
-import { Router, Request, Response, NextFunction } from 'express';
-import { ServerController } from './ServerController';
+import {Router, Request, Response, NextFunction} from 'express';
+import {ServerController} from './ServerController';
+import {verifyTokenMiddleware} from '../infrastructure/auth/authUtils';
+
 
 export class ServerRouter {
     router = Router();
@@ -10,7 +12,7 @@ export class ServerRouter {
 
     private configureRoutes(): void {
         // All
-        this.router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+        this.router.get('/', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await this.serverController.getAll();
                 res.status(200).json(result);
@@ -20,7 +22,7 @@ export class ServerRouter {
         });
 
         // Get
-        this.router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+        this.router.get('/:id', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await this.serverController.getById(Number(req.params.id));
                 res.status(200).json(result);
@@ -30,7 +32,7 @@ export class ServerRouter {
         });
 
         // Add
-        this.router.post('/', async (req: Request, res: Response, next: NextFunction) => {
+        this.router.post('/', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await this.serverController.add(req.body.serverName, req.body.description, req.body.owner);
                 res.status(200).json(result);
@@ -40,7 +42,7 @@ export class ServerRouter {
         });
 
         // Update
-        this.router.put('/:id', async (req: Request, res: Response, next: NextFunction) => {
+        this.router.put('/:id', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await this.serverController.update(
                     Number(req.params.id),
@@ -54,7 +56,7 @@ export class ServerRouter {
         });
 
         // Delete
-        this.router.delete('/:id', async (req: Request, res: Response, next: NextFunction) => {
+        this.router.delete('/:id', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await this.serverController.remove(Number(req.params.id));
                 res.status(200).json(result);
@@ -62,5 +64,18 @@ export class ServerRouter {
                 next(error);
             }
         });
+
+
+        // Get all servers by user
+        this.router.get('/user/:username', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const result = await this.serverController.getByUser(req.params.username);
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
+
     }
 }

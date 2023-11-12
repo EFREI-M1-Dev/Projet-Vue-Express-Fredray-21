@@ -89,4 +89,24 @@ export class ChannelBDDService implements ChannelService {
             db.close();
         }
     }
+
+    async getByServer(serverId: number): Promise<Channel[]> {
+        const channels: Channel[] = [];
+        const db = openConnection();
+        const serverService = new ServerBDDService();
+
+        try {
+            const statement = db.prepare('SELECT * FROM channels WHERE serverId = ?');
+            const result = statement.all(serverId);
+            for (const row of result) {
+                const typedRow = row as ChannelData;
+                const server = await serverService.getById(typedRow.serverId);
+                if (!server) throw new Error('Server not found');
+                channels.push(new Channel(typedRow.channelId, typedRow.channelName, typedRow.description, typedRow.creationDate, server));
+            }
+            return channels;
+        } finally {
+            db.close();
+        }
+    }
 }

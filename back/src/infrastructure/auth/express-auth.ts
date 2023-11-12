@@ -15,6 +15,7 @@ export const configurePassport = (userService: UserService) => {
                     return done(null, false, {message: 'Nom d\'utilisateur incorrect'});
                 }
 
+
                 // password de test : passWord-1
 
                 // Vérifiez le mot de passe en utilisant bcrypt.
