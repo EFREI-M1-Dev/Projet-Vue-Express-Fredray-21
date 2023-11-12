@@ -46,7 +46,7 @@ export default {
         const token = localStorage.getItem("token");
         const decodedToken = jwt.decode(token);
 
-        const response = await axios.get('http://127.0.0.1:3000/api/server/user/'+ decodedToken?.username ?? "", {
+        const response = await axios.get('http://127.0.0.1:3000/api/server/user/'+ decodedToken.username, {
           headers: {
             Authorization: 'Bearer ' + token,
           },
