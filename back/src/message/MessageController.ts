@@ -27,4 +27,8 @@ export class MessageController {
     async getAll(): Promise<Message[]> {
         return await this.messageService.getAll();
     }
+
+    async getByServerAndChannel(serverId: number, channelId: number): Promise<Message[]> {
+        return await this.messageService.getByServerAndChannel(serverId, channelId);
+    }
 }

@@ -114,4 +114,32 @@ export class MessageBDDService implements MessageService {
             db.close();
         }
     }
+
+    //getByServerAndChannel
+    async getByServerAndChannel(serverId: number, channelId: number): Promise<Message[]> {
+        const messages: Message[] = [];
+        const db = openConnection();
+        const serverService = new ServerBDDService();
+        const userService = new UserBDDService();
+        const channelService = new ChannelBDDService();
+
+        try {
+            const statement = db.prepare('SELECT * FROM messages WHERE serverId = ? AND channelId = ? ORDER BY creationDate ASC');
+            const result = statement.all(serverId, channelId);
+            for (const row of result) {
+                const typedRow = row as MessageData;
+                const server = await serverService.getById(typedRow.serverId);
+                if (!server) throw new Error('Server not found');
+                const user = await userService.getById(typedRow.owner);
+                if (!user) throw new Error('User not found');
+                const channel = await channelService.getById(typedRow.channelId);
+                if (!channel) throw new Error('Channel not found');
+
+                messages.push(new Message(typedRow.messageId, user, typedRow.creationDate, typedRow.content, server, channel));
+            }
+            return messages;
+        } finally {
+            db.close();
+        }
+    }
 }

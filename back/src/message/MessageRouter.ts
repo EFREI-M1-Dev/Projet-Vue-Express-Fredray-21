@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { MessageController } from './MessageController';
+import {verifyTokenMiddleware} from '../infrastructure/auth/authUtils';
 
 export class MessageRouter {
     router = Router();
@@ -11,7 +12,7 @@ export class MessageRouter {
     private configureRoutes(): void {
 
         // all
-        this.router.get('/', async (req, res, next) => {
+        this.router.get('/', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.messageController.getAll();
                 res.status(200).json(result);
@@ -20,8 +21,21 @@ export class MessageRouter {
             }
         });
 
+        // get by server and channel
+        this.router.get('/server/:server/channel/:channel', verifyTokenMiddleware, async (req, res, next) => {
+            try {
+                const result = await this.messageController.getByServerAndChannel(
+                    Number(req.params.server),
+                    Number(req.params.channel),
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
         // get
-        this.router.get('/:id', async (req, res, next) => {
+        this.router.get('/:id', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.messageController.getById(
                     Number(req.params.id),
@@ -33,7 +47,7 @@ export class MessageRouter {
         });
 
         // add
-        this.router.post('/', async (req, res, next) => {
+        this.router.post('/', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.messageController.add(
                     req.body.owner,
@@ -48,7 +62,7 @@ export class MessageRouter {
         });
 
         // update
-        this.router.put('/:id', async (req, res, next) => {
+        this.router.put('/:id', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.messageController.update(
                     Number(req.params.id),
@@ -61,7 +75,7 @@ export class MessageRouter {
         });
 
         // delete
-        this.router.delete('/:id', async (req, res, next) => {
+        this.router.delete('/:id', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.messageController.remove(
                     Number(req.params.id),

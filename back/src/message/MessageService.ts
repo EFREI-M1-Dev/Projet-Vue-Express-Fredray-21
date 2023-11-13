@@ -13,4 +13,6 @@ export interface MessageService {
     getAll(): Promise<Message[]>;
 
     getById(id: number): Promise<Message | null>;
+
+    getByServerAndChannel(serverId: number, channelId: number): Promise<Message[]>;
 }
