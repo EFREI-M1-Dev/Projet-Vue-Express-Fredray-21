@@ -1,13 +1,16 @@
 <template>
   <div className="container">
-    <ServersList @serverSelected="handleServerSelected"/>
-    <ChannelsList :selectedServer="selectedServer" @channelSelected="handleChannelSelected"/>
-    <MessagesList :selectedServer="selectedServer" :selectedChannel="selectedChannel"/>
-    <MembersList
-        :selectedServer="selectedServer"
-        :selectedChannel="selectedChannel"
-        @memberSelected="handleMemberSelected"
-    />
+    <ServersList @serverSelected="handleServerSelected" />
+    <div class="container__child" >
+      <ChannelsList :selectedServer="selectedServer" @channelSelected="handleChannelSelected" class="container__child--channels" />
+      <MessagesList :selectedServer="selectedServer" :selectedChannel="selectedChannel" class="container__child--chat"/>
+      <MembersList
+          :selectedServer="selectedServer"
+          :selectedChannel="selectedChannel"
+          @memberSelected="handleMemberSelected"
+          class="container__child--users"
+      />
+    </div>
   </div>
 </template>
 

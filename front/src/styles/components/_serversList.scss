@@ -1,28 +1,14 @@
 @import "src/styles/variables";
 
-
 #servers-container {
-  display         : flex;
-  justify-content : flex-start;
-  align-items     : center;
-  flex-direction  : column;
-
-  #icon-home {
-    width  : 70px;
-    height : 70px;
-
-    img {
-      width   : 50px;
-      height  : 50px;
-      padding : 10px;
-    }
-  }
+  background-color : red;
+  border-radius    : $global-radius;
 
   #server-list {
     display         : flex;
     justify-content : flex-start;
     align-items     : center;
-    flex-direction  : column;
+    flex-direction  : row;
     height          : 100%;
     width           : 100%;
 
@@ -48,9 +34,8 @@
       .server-name {
         position         : absolute;
         display          : none;
-        top              : 50%;
-        left             : 70px;
-        transform        : translate(0, -50%);
+        top              : 100%;
+        left             : 0;
         padding          : 10px;
         background-color : $primary;
         border-radius    : 15px;
@@ -60,14 +45,17 @@
           content          : '';
           display          : block;
           position         : absolute;
-          left             : -18px;
-          top              : 50%;
+          left             : 4px;
+          top              : 0;
           width            : 30px;
           height           : 10px;
 
           background-color : inherit;
-          transform        : translate(0, -50%) rotate(90deg);
-          clip-path        : polygon(12.5% 0, 87.5% 0, 50% 100%)
+          border-left      : 8px solid transparent;
+          border-right     : 8px solid transparent;
+          border-bottom    : 20px solid transparent; /* Ajustez la taille et la couleur de la pointe de la flèche */
+          clip-path        : polygon(0% 70%, 50% 0%, 100% 70%); /* Ajustez la coordonnée y du premier et dernier point pour la hauteur de la flèche */
+          transform        : translate(0, -50%);
         }
       }
     }

@@ -1,9 +1,5 @@
 <template>
   <div id="servers-container">
-    <div id="icon-home">
-      <img src="/img/logo.png" />
-    </div>
-
     <!-- Liste des serveurs -->
     <div v-if="servers.length > 0" id="server-list">
       <div v-for="server in servers" :key="server.id" class="server-item" ref="serverItems" @click="selectServer(server)">

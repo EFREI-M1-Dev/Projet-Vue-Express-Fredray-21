@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="fix(front): token dans messageList">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="fix(front): passage en composition api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/pages/_home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/pages/_home.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +285,7 @@
       <workItem from="1699804183904" duration="15585000" />
       <workItem from="1699825533272" duration="7751000" />
       <workItem from="1699910410483" duration="3873000" />
-      <workItem from="1699995909786" duration="1950000" />
+      <workItem from="1699995909786" duration="6292000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -443,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699997369794</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fix(front): passage en composition api">
+      <created>1699998669036</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1699998669036</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -473,6 +478,7 @@
     <MESSAGE value="fix(back): rm console.log" />
     <MESSAGE value="fix(front-back): ajout list Members et messages" />
     <MESSAGE value="fix(front): token dans messageList" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front): token dans messageList" />
+    <MESSAGE value="fix(front): passage en composition api" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(front): passage en composition api" />
   </component>
 </project>
