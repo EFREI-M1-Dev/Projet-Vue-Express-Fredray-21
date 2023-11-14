@@ -44,8 +44,12 @@ export default {
           // Si selectedServer est null ou selectedChannel est null, ne faites rien
           return;
         }
-
-        const response = await axios.get(`http://127.0.0.1:3000/api/message/server/${this.selectedServer.serverId}/channel/${this.selectedChannel.channelId}`);
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`http://127.0.0.1:3000/api/message/server/${this.selectedServer.serverId}/channel/${this.selectedChannel.channelId}`, {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        });
         this.messages = response.data;
 
 

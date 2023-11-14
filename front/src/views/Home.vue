@@ -2,9 +2,7 @@
   <div class="container">
     <ServersList @serverSelected="handleServerSelected"/>
     <ChannelsList :selectedServer="selectedServer" @channelSelected="handleChannelSelected"/>
-
     <MessagesList :selectedServer="selectedServer" :selectedChannel="selectedChannel"/>
-
     <MembersList :selectedServer="selectedServer" :selectedChannel="selectedChannel"
                  @memberSelected="handleMemberSelected"/>
   </div>
