@@ -6,11 +6,11 @@
         <p>{{ message.content }}</p>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import { ref, onMounted, watch, nextTick } from 'vue';
 import axios from 'axios';
 
 export default {
@@ -25,52 +25,47 @@ export default {
       default: null,
     },
   },
-  data() {
-    return {
-      messages: [], // Initialiser avec un tableau vide
-    };
-  },
-  mounted() {
-    this.fetchMessages();
-  },
-  watch: {
-    selectedChannel: 'fetchMessages', // Observer les changements de selectedChannel
-    selectedServer: 'fetchMessages', // Observer les changements de selectedChannel
-  },
-  methods: {
-    async fetchMessages() {
+  setup(props) {
+    const messages = ref([]);
+
+    const fetchMessages = async () => {
       try {
-        if (!this.selectedServer || !this.selectedChannel) {
+        if (!props.selectedServer || !props.selectedChannel) {
           // Si selectedServer est null ou selectedChannel est null, ne faites rien
           return;
         }
         const token = localStorage.getItem("token");
-        const response = await axios.get(`http://127.0.0.1:3000/api/message/server/${this.selectedServer.serverId}/channel/${this.selectedChannel.channelId}`, {
+        const response = await axios.get(`http://127.0.0.1:3000/api/message/server/${props.selectedServer.serverId}/channel/${props.selectedChannel.channelId}`, {
           headers: {
             Authorization: 'Bearer ' + token,
           },
         });
-        this.messages = response.data;
+        messages.value = response.data;
 
-
-        this.$nextTick(() => {
-          this.handleElements();
+        nextTick(() => {
+          handleElements();
         });
       } catch (error) {
         console.error('Erreur lors de la récupération des channels', error);
       }
-    },
-    handleElements() {
-      const messages = this.$refs.messageItems; // Récupérer les éléments du DOM
-      if (messages) {
-        messages.forEach(channel => {
+    };
+
+    const handleElements = () => {
+      const messageItems = document.getElementsByClassName('message-item');
+      if (messageItems) {
+        Array.from(messageItems).forEach(message => {
+          // Handle individual message item if needed
         });
       }
-    },
-    // selectChannel(channel) {
-    //   // Émettre un événement pour indiquer la sélection du channel
-    //   this.$emit('channelSelected', channel);
-    // },
+    };
+
+    // Lifecycle hooks
+    onMounted(fetchMessages);
+    watch([() => props.selectedServer, () => props.selectedChannel], fetchMessages);
+
+    return {
+      messages,
+    };
   },
 };
 </script>

@@ -5,14 +5,14 @@
       <form @submit.prevent="login">
         <div class="form-group">
           <label for="username">Identifiant</label>
-          <input v-model="username" type="text" name="username" class="form-control" required>
+          <input v-model="username" type="text" name="username" class="form-control" required />
         </div>
         <div class="form-group">
           <label for="password">Mot de passe</label>
           <div class="input-container">
-            <input v-model="password" type="password" name="password" class="form-control" required>
+            <input v-model="password" :type="showPassword ? 'text' : 'password'" name="password" class="form-control" required />
             <i class="iconPassword" @click="togglePasswordVisibility">
-              <font-awesome-icon :icon="showPassword ? 'eye' : 'eye-slash'"/>
+              <font-awesome-icon :icon="showPassword ? 'eye' : 'eye-slash'" />
             </i>
           </div>
         </div>
@@ -23,7 +23,7 @@
         <router-link to="/register">Inscrivez-vous</router-link>
       </p>
       <div class="logo-container">
-        <img src="/img/logo.png" alt="Logo" class="logo">
+        <img src="/img/logo.png" alt="Logo" class="logo" />
       </div>
     </div>
   </div>
@@ -42,72 +42,56 @@
     </div>
   </section>
 </template>
+
 <script>
+import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'Login',
-  data() {
-    return {
-      username: '',
-      password: '',
-      showPassword: false
-    };
-  },
-  methods: {
-    login() {
-      // Créez un objet contenant les données à envoyer dans la requête POST
+  setup() {
+    const username = ref('');
+    const password = ref('');
+    const showPassword = ref(false);
+    const router = useRouter();
+
+
+    const login = () => {
       const userData = {
-        username: this.username,
-        password: this.password,
+        username: username.value,
+        password: password.value,
       };
 
-      // Faites la requête POST à l'URL avec Axios
-      axios.post('http://127.0.0.1:3000/api/login', userData, {withCredentials: true, credentials: 'include'})
+      axios.post('http://127.0.0.1:3000/api/login', userData, { withCredentials: true, credentials: 'include' })
           .then(response => {
-
             const token = response.data.token;
             window.localStorage.setItem('token', token);
-
-            this.$router.push('/');
+            router.push('/');
           })
           .catch(error => {
-            // Gérez les erreurs ici (par exemple, affichez un message d'erreur)
-            console.log("ERROR", error);
+            console.error('Error:', error);
           });
-    },
-    togglePasswordVisibility() {
-      this.showPassword = !this.showPassword;
-      const password = document.querySelector('input[name="password"]');
-      password.type = this.showPassword ? 'text' : 'password';
-    }
-  },
-  mounted() {
-    document.addEventListener('mousemove', (e) => {
-      const cursor = document.querySelector('.custom-cursor');
+    };
 
-      if (cursor) {
-        // Calcul de la vitesse en fonction des déplacements du curseur
-        const dx = e.pageX - cursor.offsetLeft;
-        const dy = e.pageY - cursor.offsetTop;
-        const speed = Math.sqrt(dx * dx + dy * dy);
-
-        // Mise à jour de la position du curseur noir en fonction de la vitesse
-        cursor.style.top = e.pageY + 'px';
-        cursor.style.left = e.pageX + 'px';
-
-        // Vérifier si le curseur survole un élément de type lien (<a>) ou d'entrée (<input>)
-        if (e.target.tagName === 'A' || e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') {
-          cursor.classList.add('hovered');
-        } else {
-          cursor.classList.remove('hovered');
-        }
+    const togglePasswordVisibility = () => {
+      showPassword.value = !showPassword.value;
+      const passwordInput = document.querySelector('input[name="password"]');
+      if (passwordInput) {
+        passwordInput.type = showPassword.value ? 'text' : 'password';
       }
-    });
+    };
+
+    return {
+      username,
+      password,
+      showPassword,
+      login,
+      togglePasswordVisibility
+    };
   },
 };
 </script>
-
 
 <style lang="scss">
 @import 'src/styles/pages/loginRegistration';

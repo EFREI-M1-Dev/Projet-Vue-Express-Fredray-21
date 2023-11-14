@@ -23,27 +23,18 @@
 </template>
 
 <script>
+import { ref, onMounted, nextTick } from 'vue';
 import axios from 'axios';
-import jwt from "jsonwebtoken";
-
-
+import jwt from 'jsonwebtoken';
 
 export default {
   name: 'ServersList',
-  data() {
-    return {
-      servers: [], // Initialiser avec un tableau vide
-    };
-  },
-  mounted() {
-    this.fetchServers();
+  setup(props, { emit }) {
+    const servers = ref([]);
 
-
-  },
-  methods: {
-    async fetchServers() {
+    const fetchServers = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem('token');
         const decodedToken = jwt.decode(token);
 
         const response = await axios.get(`http://127.0.0.1:3000/api/user/${decodedToken.username}/servers`, {
@@ -51,20 +42,20 @@ export default {
             Authorization: 'Bearer ' + token,
           },
         });
-        this.servers = response.data; // Met à jour la liste des serveurs dans les données du composant
+        servers.value = response.data;
 
-        // $nextTick pour garantir que le rendu est terminé
-        this.$nextTick(() => {
-          this.handleElements(); // Appeler la méthode pour ajouter les écouteurs d'événements
+        nextTick(() => {
+          handleElements();
         });
       } catch (error) {
         console.error('Erreur lors de la récupération des serveurs', error);
       }
-    },
-    handleElements() {
-      const servers = this.$refs.serverItems;
-      if (servers) {
-        servers.forEach(server => {
+    };
+
+    const handleElements = () => {
+      const serverItems = document.getElementsByClassName('server-item');
+      if (serverItems) {
+        Array.from(serverItems).forEach(server => {
           server.addEventListener('mouseenter', () => {
             server.querySelector('.server-name').style.display = 'block';
           });
@@ -74,11 +65,20 @@ export default {
           });
         });
       }
-    },
-    selectServer(server) {
+    };
+
+    const selectServer = (server) => {
       // Émettre un événement pour indiquer la sélection du serveur
-      this.$emit('serverSelected', server);
-    },
+      emit('serverSelected', server);
+    };
+
+    // Lifecycle hooks
+    onMounted(fetchServers);
+
+    return {
+      servers,
+      selectServer,
+    };
   },
 };
 </script>

@@ -13,11 +13,11 @@
         <!-- Vous pouvez ajouter d'autres détails du member ici -->
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import { ref, onMounted, watch, nextTick } from 'vue';
 import axios from 'axios';
 
 export default {
@@ -28,51 +28,53 @@ export default {
       default: null,
     },
   },
-  data() {
-    return {
-      members: [], // Initialiser avec un tableau vide
-    };
-  },
-  mounted() {
-    this.fetchMembers();
-  },
-  watch: {
-    selectedServer: 'fetchMembers', // Observer les changements de selectedServer
-  },
-  methods: {
-    async fetchMembers() {
+  setup(props, { emit }) {
+    const members = ref([]);
+
+    const fetchMembers = async () => {
       try {
-        if (!this.selectedServer) {
+        if (!props.selectedServer) {
           // Si selectedServer est null, ne faites rien
           return;
         }
 
         const token = localStorage.getItem("token");
-        const response = await axios.get(`http://127.0.0.1:3000/api/server/${this.selectedServer.serverId}/users`, {
+        const response = await axios.get(`http://127.0.0.1:3000/api/server/${props.selectedServer.serverId}/users`, {
           headers: {
             Authorization: 'Bearer ' + token,
           },
         });
-        this.members = response.data; // Met à jour la liste des serveurs dans les données du composant
+        members.value = response.data; // Met à jour la liste des serveurs dans les données du composant
 
-        this.$nextTick(() => {
-          this.handleElements();
+        nextTick(() => {
+          handleElements();
         });
       } catch (error) {
         console.error('Erreur lors de la récupération des members', error);
       }
-    },
-    handleElements() {
-      const members = this.$refs.memberItems; // Récupérer les éléments du DOM
-      if (members) {
-        members.forEach(member => {
+    };
+
+    const handleElements = () => {
+      const memberItems = document.getElementsByClassName('member-item');
+      if (memberItems) {
+        Array.from(memberItems).forEach(member => {
+          // Handle individual member item if needed
         });
       }
-    },
-    selectMember(member) {
-      // Émettre un événement pour indiquer la sélection du channel
-      this.$emit('memberSelected', member);
-    },
+    };
+
+    const selectMember = (member) => {
+      // Émettre un événement pour indiquer la sélection du member
+      emit('memberSelected', member);
+    };
+
+    onMounted(fetchMembers);
+    watch(() => props.selectedServer, fetchMembers);
+
+    return {
+      members,
+      selectMember,
+    };
   },
 };
 </script>

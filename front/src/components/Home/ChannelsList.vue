@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { ref, onMounted, watch, nextTick } from 'vue';
 import axios from 'axios';
 
 export default {
@@ -26,46 +27,48 @@ export default {
       default: null,
     },
   },
-  data() {
-    return {
-      channels: [], // Initialiser avec un tableau vide
-    };
-  },
-  mounted() {
-    this.fetchChannels();
-  },
-  watch: {
-    selectedServer: 'fetchChannels', // Observer les changements de selectedServer
-  },
-  methods: {
-    async fetchChannels() {
+  setup(props,{ emit }) {
+    const channels = ref([]);
+
+    const fetchChannels = async () => {
       try {
-        if (!this.selectedServer) {
+        if (!props.selectedServer) {
           // Si selectedServer est null, ne faites rien
           return;
         }
 
-        const response = await axios.get('http://127.0.0.1:3000/api/channel/server/' + this.selectedServer.serverId);
-        this.channels = response.data;
+        const response = await axios.get('http://127.0.0.1:3000/api/channel/server/' + props.selectedServer.serverId);
+        channels.value = response.data;
 
-        this.$nextTick(() => {
-          this.handleElements();
+        nextTick(() => {
+          handleElements();
         });
       } catch (error) {
         console.error('Erreur lors de la récupération des channels', error);
       }
-    },
-    handleElements() {
-      const channels = this.$refs.channelItems; // Récupérer les éléments du DOM
-      if (channels) {
-        channels.forEach(channel => {
+    };
+
+    const handleElements = () => {
+      const channelItems = document.getElementsByClassName('channel-item');
+      if (channelItems) {
+        Array.from(channelItems).forEach(channel => {
+          // Handle individual channel item if needed
         });
       }
-    },
-    selectChannel(channel) {
+    };
+
+    const selectChannel = (channel) => {
       // Émettre un événement pour indiquer la sélection du channel
-      this.$emit('channelSelected', channel);
-    },
+      emit('channelSelected', channel);
+    };
+
+    onMounted(fetchChannels);
+    watch(() => props.selectedServer, fetchChannels);
+
+    return {
+      channels,
+      selectChannel,
+    };
   },
 };
 </script>
