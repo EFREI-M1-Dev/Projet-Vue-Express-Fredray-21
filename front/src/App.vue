@@ -10,13 +10,8 @@
 </style>
 
 <script>
-import initializeCustomCursor from "./script/customCursor"
-
 export default {
   name: 'App',
-  mounted() {
-    initializeCustomCursor();
-  }
 }
 </script>
 

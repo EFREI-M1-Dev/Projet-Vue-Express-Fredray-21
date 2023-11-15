@@ -1,0 +1,125 @@
+@import "src/styles/variables";
+
+#messages-container {
+  display         : flex;
+  justify-content : space-between;
+  flex-direction  : column;
+  width           : 100%;
+
+  #messages-list {
+    box-sizing : border-box;
+    padding    : calc($global-spacing / 2) $global-spacing;
+
+    .message-item {
+      height          : $global-spacing*2;
+      display         : flex;
+      justify-content : flex-start;
+      align-items     : center;
+      margin          : 1em 0;
+
+      &.message-item_me {
+        justify-content : flex-end;
+
+        .message-item__content-txt {
+          border-radius : $global-radius $global-radius 0 $global-radius;
+          margin-left   : 0;
+          margin-right  : 1em;
+
+          &:before {
+            left         : auto;
+            right        : -1em;
+            border-width : 0 1em 1em 0;
+            border-color : transparent transparent $color-primaryDark $color-primaryDark;
+          }
+        }
+
+        .message-item__content-info {
+          flex-direction : row-reverse;
+        }
+      }
+
+      &__avatar {
+        width         : 50px;
+        height        : 50px;
+        border-radius : 50%;
+      }
+
+      &__content {
+        min-width       : 20em;
+        display         : flex;
+        flex-direction  : column;
+        justify-content : space-between;
+
+        &-txt {
+          padding          : 1em;
+          color            : $white;
+          background-color : $color-primaryDark;
+          border-radius    : $global-radius $global-radius $global-radius 0;
+          position         : relative;
+
+          margin-left      : 1em;
+          margin-right     : 0;
+
+          &:before {
+            content      : "";
+            position     : absolute;
+            bottom       : 0;
+            left         : -1em;
+            border-width : 0 0 1em 1em;
+            border-style : solid;
+            border-color : transparent $color-primaryDark $color-primaryDark transparent;
+          }
+        }
+
+        &-info {
+          display         : flex;
+          justify-content : space-between;
+          align-items     : center;
+          color           : $gray;
+          margin          : 0 1em;
+          padding-top     : .1em;
+        }
+      }
+    }
+  }
+
+  #message-input-container {
+    display : flex;
+    padding : calc($global-spacing / 2) $global-spacing;
+    gap     : calc($global-spacing / 2);
+
+    #message-input {
+      width            : 100%;
+      height           : 100%;
+      border           : none;
+      border-radius    : calc($global-radius / 2);
+      padding          : 0 calc($global-spacing / 2);
+      color            : $white;
+      font-size        : 1.2em;
+      outline          : none;
+      flex             : 1;
+      background-color : $color-primaryDark;
+
+      &::placeholder {
+        color : $gray;
+      }
+    }
+
+    #message-send {
+      display          : flex;
+      justify-content  : center;
+      align-items      : center;
+      color            : $white;
+      font-size        : 1.3em;
+      width            : 50px;
+      height           : 50px;
+      border-radius    : calc($global-radius / 2);
+      background-color : $color-primary;
+      border           : none;
+      outline          : none;
+      cursor           : pointer;
+      flex             : 0 0 50px;
+    }
+
+  }
+}

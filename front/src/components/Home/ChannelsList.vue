@@ -1,12 +1,15 @@
 <template>
   <div id="channels-container">
-    <div v-if="selectedServer" id="nameOfServer">{{ selectedServer.serverName }}</div>
+
 
     <!-- Liste des channels -->
     <div v-if="channels.length > 0" id="channels-list">
       <div v-for="channel in channels" :key="channel.id" class="channel-item" ref="channelItems"
            @click="selectChannel(channel)">
-        <p>{{ channel.channelName }}</p>
+
+        <div class="channel-item__icon">ICON</div>
+        <span class="channel-item__name">{{ channel.channelName }}</span>
+
       </div>
     </div>
     <div v-else>
@@ -16,7 +19,7 @@
 </template>
 
 <script>
-import { ref, onMounted, watch, nextTick } from 'vue';
+import {ref, onMounted, watch, nextTick} from 'vue';
 import axios from 'axios';
 
 export default {
@@ -27,7 +30,7 @@ export default {
       default: null,
     },
   },
-  setup(props,{ emit }) {
+  setup(props, {emit}) {
     const channels = ref([]);
 
     const fetchChannels = async () => {
