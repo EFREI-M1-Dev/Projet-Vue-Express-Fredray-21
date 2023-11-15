@@ -17,14 +17,14 @@ export class MessageBDDService implements MessageService {
         const channelService = new ChannelBDDService();
 
         try {
+            const ownerFormated = await userService.findUserByUsername(owner.username);
+            if (!ownerFormated) throw new Error('Owner not found');
             const creationDate = new Date().getTime();
             const statement = db.prepare('INSERT INTO messages (owner, content, serverId, channelId, creationDate) VALUES (?, ?, ?, ?, ?)');
-            const info = statement.run(owner.userId, content, server.serverId, channel.channelId, creationDate);
+            const info = statement.run(ownerFormated.getId(), content, server.serverId, channel.channelId, creationDate);
             if (info.changes !== 1) throw new Error('Failed to insert message');
             const messageId = Number(info.lastInsertRowid);
 
-            const ownerFormated = await userService.getById(owner.userId);
-            if (!ownerFormated) throw new Error('Owner not found');
             const serverFormated = await serverService.getById(server.serverId);
             if (!serverFormated) throw new Error('Server not found');
             const channelFormated = await channelService.getById(channel.channelId);

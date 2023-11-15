@@ -29,11 +29,10 @@
 
     <div id="message-input-container">
       <input type="text" id="message-input" placeholder="Message" class="message-input">
-      <button id="message-send" class="message-send">
-        <font-awesome-icon :icon="'paper-plane'" />
+      <button id="message-send" class="message-send" @click="sendMsg">
+        <font-awesome-icon :icon="'paper-plane'"/>
       </button>
     </div>
-
 
 
   </div>
@@ -62,7 +61,6 @@ export default {
     const formatMessageDate = (creationDate) => {
       const today = new Date();
       const messageDate = new Date(creationDate);
-
       if (
           today.getDate() === messageDate.getDate() &&
           today.getMonth() === messageDate.getMonth() &&
@@ -123,10 +121,36 @@ export default {
       return message.owner.username === decodedToken.username;
     };
 
+
+    const sendMsg = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.post(`http://127.0.0.1:3000/api/message/`,
+            {
+              owner: {username: decodedToken.username},
+              content: document.getElementById("message-input").value,
+              channel: {channelId: props.selectedChannel.channelId},
+              server: {serverId: props.selectedServer.serverId}
+            },
+            {
+              headers: {
+                Authorization: 'Bearer ' + token,
+              },
+            }
+        );
+      } catch (error) {
+        console.error('Erreur lors de l\'envoi du message', error);
+      } finally {
+        document.getElementById("message-input").value = "";
+        await fetchMessages();
+      }
+    }
+
     return {
       messages,
       formatMessageDate,
-      isCurrentUser
+      isCurrentUser,
+      sendMsg,
     };
   },
 };
