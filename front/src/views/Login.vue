@@ -27,29 +27,21 @@
       </div>
     </div>
   </div>
-  <section class="sticky">
-    <div class="bubbles">
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-    </div>
-  </section>
+  <Bubbles />
 </template>
 
 <script>
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import Bubbles from '/src/components/Bubbles.vue';
+
 
 export default {
   name: 'Login',
+  components: {
+    Bubbles,
+  },
   setup() {
     const username = ref('');
     const password = ref('');

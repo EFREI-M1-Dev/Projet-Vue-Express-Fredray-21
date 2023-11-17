@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <div class="custom-cursor"></div>
   </div>
 </template>
 

@@ -10,27 +10,18 @@
       </div>
     </div>
   </div>
-  <section class="sticky">
-    <div class="bubbles">
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-    </div>
-  </section>
+  <Bubbles />
 </template>
 
 <script>
 import { useRouter } from 'vue-router';
+import Bubbles from '/src/components/Bubbles.vue';
 
 export default {
   name: 'Reconnection',
+  components: {
+    Bubbles,
+  },
   setup() {
         const router = useRouter();
 
@@ -38,7 +29,7 @@ export default {
           router.push('/login');
         };
     return {
-      goToLogin
+      goToLogin,
     };
   },
 };
