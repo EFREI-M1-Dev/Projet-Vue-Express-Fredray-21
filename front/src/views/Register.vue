@@ -27,7 +27,7 @@
             </i>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Inscription</button>
+        <button type="submit" class="btn">Inscription</button>
       </form>
 
       <p>
@@ -132,5 +132,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'src/styles/pages/loginRegistration';
+@import 'src/styles/pages/auth';
 </style>

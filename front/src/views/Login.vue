@@ -16,7 +16,7 @@
             </i>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Connexion</button>
+        <button type="submit" class="btn">Connexion</button>
       </form>
       <p>
         Envie de créer un compte ?
@@ -94,5 +94,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'src/styles/pages/loginRegistration';
+@import 'src/styles/pages/auth';
 </style>

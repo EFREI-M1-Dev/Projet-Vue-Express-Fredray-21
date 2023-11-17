@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="fix(front): ADD MSG (by username)">
-      <change afterPath="$PROJECT_DIR$/front/src/views/Reconnection.vue" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="fix(front): gestion des erreurs / reconnection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/pages/_loginRegistration.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/pages/_auth.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/Reconnection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Reconnection.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +287,7 @@
       <workItem from="1699910410483" duration="3873000" />
       <workItem from="1699995909786" duration="6334000" />
       <workItem from="1700077158762" duration="14809000" />
-      <workItem from="1700246019277" duration="3807000" />
+      <workItem from="1700246019277" duration="4159000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -474,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700091982210</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fix(front): gestion des erreurs / reconnection">
+      <created>1700261534461</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1700261534462</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +497,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(all): back et front / et script setup/start" />
     <MESSAGE value="feat(readme): ajout readme setup / start" />
     <MESSAGE value="feat(back): ajout schema BDD" />
     <MESSAGE value="feat(back): structure BDD" />
@@ -518,6 +521,7 @@
     <MESSAGE value="fix(front): style de base grid HomePage" />
     <MESSAGE value="fix(front): minimal edsign Channel et design Messages" />
     <MESSAGE value="fix(front-back): ADD MSG (by username)" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front-back): ADD MSG (by username)" />
+    <MESSAGE value="fix(front): gestion des erreurs / reconnection" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(front): gestion des erreurs / reconnection" />
   </component>
 </project>

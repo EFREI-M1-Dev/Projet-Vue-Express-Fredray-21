@@ -120,6 +120,7 @@ html {
     transform : translateX(-200px);
   }
 }
+
 // End of bubble animation
 
 
@@ -199,19 +200,21 @@ html {
           color        : $gray;
         }
       }
+    }
+  }
 
-      button {
-        background-color : $color-primary;
-        color            : #fff;
-        padding          : 10px;
-        border           : none;
-        border-radius    : 4px;
-        transition       : background-color 0.3s;
+  button.btn {
+    background-color : $color-primary;
+    color            : #fff;
+    padding          : 10px;
+    border           : none;
+    border-radius    : 4px;
+    transition       : background-color 0.3s;
+    cursor           : pointer;
+    width            : 100%;
 
-        &:hover {
-          background-color : $color-hover-primary;
-        }
-      }
+    &:hover {
+      background-color : $color-hover-primary;
     }
   }
 
