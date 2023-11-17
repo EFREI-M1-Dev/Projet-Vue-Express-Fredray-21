@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="fix(front): minimal edsign Channel et design Messages">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="fix(front): ADD MSG (by username)">
+      <change afterPath="$PROJECT_DIR$/front/src/views/Reconnection.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +86,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/front/src/styles/components",
+    "last_opened_file_path": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/front/src/views",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -104,11 +108,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\views" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\styles\components" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\components\Home" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\public\font" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\public\img" />
-      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\message" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\components\Home" />
@@ -285,7 +289,8 @@
       <workItem from="1699825533272" duration="7751000" />
       <workItem from="1699910410483" duration="3873000" />
       <workItem from="1699995909786" duration="6334000" />
-      <workItem from="1700077158762" duration="14593000" />
+      <workItem from="1700077158762" duration="14809000" />
+      <workItem from="1700246019277" duration="3807000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -462,15 +467,32 @@
       <option name="project" value="LOCAL" />
       <updated>1700090378664</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="fix(front): ADD MSG (by username)">
+      <created>1700091982210</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1700091982210</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(all): create template project vue" />
     <MESSAGE value="feat(all): back et front / et script setup/start" />
     <MESSAGE value="feat(readme): ajout readme setup / start" />
     <MESSAGE value="feat(back): ajout schema BDD" />
@@ -495,6 +517,7 @@
     <MESSAGE value="fix(front): passage en composition api" />
     <MESSAGE value="fix(front): style de base grid HomePage" />
     <MESSAGE value="fix(front): minimal edsign Channel et design Messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front): minimal edsign Channel et design Messages" />
+    <MESSAGE value="fix(front-back): ADD MSG (by username)" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(front-back): ADD MSG (by username)" />
   </component>
 </project>

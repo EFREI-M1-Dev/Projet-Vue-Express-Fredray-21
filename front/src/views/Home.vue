@@ -1,13 +1,28 @@
 <template>
   <div className="container">
-    <ServersList @serverSelected="handleServerSelected" />
-    <div class="container__child" >
-      <ChannelsList :selectedServer="selectedServer" @channelSelected="handleChannelSelected" class="container__child--channels" />
-      <MessagesList :selectedServer="selectedServer" :selectedChannel="selectedChannel" class="container__child--chat"/>
+    <ServersList
+        @serverSelected="handleServerSelected"
+        @reconnect="handleReconnect"
+        class="container__child--servers"
+    />
+    <div class="container__child">
+      <ChannelsList
+          :selectedServer="selectedServer"
+          @channelSelected="handleChannelSelected"
+          @reconnect="handleReconnect"
+          class="container__child--channels"
+      />
+      <MessagesList
+          :selectedServer="selectedServer"
+          :selectedChannel="selectedChannel"
+          @reconnect="handleReconnect"
+          class="container__child--chat"
+      />
       <MembersList
           :selectedServer="selectedServer"
           :selectedChannel="selectedChannel"
           @memberSelected="handleMemberSelected"
+          @reconnect="handleReconnect"
           class="container__child--users"
       />
     </div>
@@ -20,6 +35,7 @@ import ServersList from '/src/components/Home/ServersList.vue';
 import ChannelsList from '/src/components/Home/ChannelsList.vue';
 import MessagesList from '/src/components/Home/MessagesList.vue';
 import MembersList from '/src/components/Home/MembersList.vue';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'Home',
@@ -33,6 +49,8 @@ export default {
     const selectedServer = ref(null);
     const selectedChannel = ref(null);
     const selectedMember = ref(null);
+    const router = useRouter();
+
 
     const handleServerSelected = (server) => {
       selectedServer.value = server;
@@ -46,6 +64,16 @@ export default {
       selectedMember.value = member;
     };
 
+    const handleLogout = () => {
+      window.localStorage.removeItem('token');
+      router.push('/login');
+    };
+
+    const handleReconnect = () => {
+      window.localStorage.removeItem('token');
+      router.push('/reconnection');
+    };
+
     return {
       selectedServer,
       selectedChannel,
@@ -53,6 +81,8 @@ export default {
       handleServerSelected,
       handleChannelSelected,
       handleMemberSelected,
+      handleLogout,
+      handleReconnect
     };
   },
 };

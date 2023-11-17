@@ -55,7 +55,7 @@ export default {
       default: null,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const messages = ref([]);
 
     const formatMessageDate = (creationDate) => {
@@ -125,7 +125,7 @@ export default {
     const sendMsg = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.post(`http://127.0.0.1:3000/api/message/`,
+        await axios.post(`http://127.0.0.1:3000/api/message/`,
             {
               owner: {username: decodedToken.username},
               content: document.getElementById("message-input").value,
@@ -139,7 +139,9 @@ export default {
             }
         );
       } catch (error) {
-        console.error('Erreur lors de l\'envoi du message', error);
+        const code = error.response ? error.response.status : null;
+        if (code === 401) emit('reconnect');
+        console.error('Erreur lors de l\'envoi du message:', error);
       } finally {
         document.getElementById("message-input").value = "";
         await fetchMessages();

@@ -50,6 +50,8 @@ export default {
           handleElements();
         });
       } catch (error) {
+        const code = error.response ? error.response.status : null;
+        if (code === 401) emit('reconnect');
         console.error('Erreur lors de la récupération des members', error);
       }
     };

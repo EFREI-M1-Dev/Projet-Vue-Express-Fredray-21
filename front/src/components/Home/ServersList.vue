@@ -33,6 +33,9 @@ export default {
         const token = localStorage.getItem('token');
         const decodedToken = jwt.decode(token);
 
+        // Si le token n'est pas valide, rediriger vers la page de reconnexion
+        if(!decodedToken) emit('reconnect');
+
         const response = await axios.get(`http://127.0.0.1:3000/api/user/${decodedToken.username}/servers`, {
           headers: {
             Authorization: 'Bearer ' + token,
@@ -44,7 +47,8 @@ export default {
           handleElements();
         });
       } catch (error) {
-        console.error('Erreur lors de la récupération des serveurs', error);
+        const code = error.response ? error.response.status : null;
+        if (code === 401) emit('reconnect');
       }
     };
 

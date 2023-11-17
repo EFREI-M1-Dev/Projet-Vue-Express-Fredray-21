@@ -35,10 +35,7 @@ export default {
 
     const fetchChannels = async () => {
       try {
-        if (!props.selectedServer) {
-          // Si selectedServer est null, ne faites rien
-          return;
-        }
+        if (!props.selectedServer) return;
 
         const response = await axios.get('http://127.0.0.1:3000/api/channel/server/' + props.selectedServer.serverId);
         channels.value = response.data;
@@ -47,6 +44,8 @@ export default {
           handleElements();
         });
       } catch (error) {
+        const code = error.response ? error.response.status : null;
+        if (code === 401) emit('reconnect');
         console.error('Erreur lors de la récupération des channels', error);
       }
     };
