@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { ref, onMounted, watch, nextTick } from 'vue';
+import { ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { gestionKeyBoard } from '/src/script/gestionKeyBoard';
@@ -68,6 +68,7 @@ export default {
 
     const messagesList = ref(null);
     const messageInput = ref(null);
+
 
     const formatMessageDate = (creationDate) => {
       const today = new Date();
@@ -143,25 +144,6 @@ export default {
       if (!channelName.value) console.log(props.selectedChannel);
     };
 
-    onMounted(() => {
-      fetchMessages();
-      updateServerName();
-      fetchNbUsers();
-      updateChannelName();
-      //gestionKeyBoard(sendMsg);
-    });
-
-    watch(() => props.selectedServer, async () => {
-      updateServerName();
-      await fetchNbUsers();
-      await fetchMessages();
-    });
-
-    watch(() => props.selectedChannel, async () => {
-      await fetchMessages();
-      updateChannelName();
-    });
-
     const decodedToken = jwt.decode(token);
     const isCurrentUser = (message) => {
       return message.owner.username === decodedToken.username;
@@ -203,6 +185,32 @@ export default {
         }
       }
     };
+
+
+    const { addKeyboardListener, removeKeyboardListener } = gestionKeyBoard(sendMsg);
+
+    onMounted(() => {
+      fetchMessages();
+      updateServerName();
+      fetchNbUsers();
+      updateChannelName();
+      addKeyboardListener();
+    });
+
+    onBeforeUnmount(() => {
+      removeKeyboardListener();
+    });
+
+    watch(() => props.selectedServer, async () => {
+      updateServerName();
+      await fetchNbUsers();
+      await fetchMessages();
+    });
+
+    watch(() => props.selectedChannel, async () => {
+      await fetchMessages();
+      updateChannelName();
+    });
 
     return {
       messages,
