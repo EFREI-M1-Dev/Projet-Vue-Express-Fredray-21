@@ -63,6 +63,7 @@ export default {
     const router = useRouter();
     const isPageReady = ref(false);
 
+
     const handleServerSelected = (server) => {
       selectedServer.value = server;
     };
@@ -110,7 +111,7 @@ export default {
         const token = localStorage.getItem('token');
         const decodedToken = jwt.decode(token);
         if (!decodedToken) handleReconnect();
-        
+
         const response = await axios.get(`http://127.0.0.1:3000/api/server/${selectedServer.value.serverId}/firstChannel`, {
           headers: {
             Authorization: 'Bearer ' + token,
@@ -145,7 +146,7 @@ export default {
       handleMemberSelected,
       handleLogout,
       handleReconnect,
-      isPageReady
+      isPageReady,
     };
   },
 };

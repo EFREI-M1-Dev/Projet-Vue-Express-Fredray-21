@@ -8,7 +8,17 @@
           <span class="container-info-server__text-sub">{{ serverName }} | {{ nbUsers }} membres</span>
         </div>
       </div>
-      <div>UWU</div>
+      <div class="container-info-server__btns">
+        <button class="container-info-server__btns-btn">
+          <font-awesome-icon :icon="'user-plus'"/>
+        </button>
+        <button class="container-info-server__btns-btn">
+          <font-awesome-icon :icon="'cog'"/>
+        </button>
+        <button class="container-info-server__btns-btn" >
+          <font-awesome-icon :icon="'users'"/>
+        </button>
+      </div>
     </div>
     <!-- Liste des messages -->
     <div v-if="messages.length > 0" id="messages-list" ref="messagesList">
@@ -185,7 +195,6 @@ export default {
         }
       }
     };
-
 
     const { addKeyboardListener, removeKeyboardListener } = gestionKeyBoard(sendMsg);
 
