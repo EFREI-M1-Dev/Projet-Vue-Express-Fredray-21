@@ -29,7 +29,7 @@
   </div>
 
   <div v-else>
-    ON LOAD ATTA
+    <Spinner />
   </div>
 
 </template>
@@ -45,6 +45,8 @@ import ChannelsList from '/src/components/Home/ChannelsList.vue';
 import MessagesList from '/src/components/Home/MessagesList.vue';
 import MembersList from '/src/components/Home/MembersList.vue';
 
+import Spinner from '/src/components/Spinner.vue';
+
 export default {
   name: 'Home',
   components: {
@@ -52,6 +54,7 @@ export default {
     ChannelsList,
     MessagesList,
     MembersList,
+    Spinner,
   },
   setup() {
     const selectedServer = ref(null);
