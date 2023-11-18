@@ -32,7 +32,6 @@ export default {
       try {
         const token = localStorage.getItem('token');
         const decodedToken = jwt.decode(token);
-
         // Si le token n'est pas valide, rediriger vers la page de reconnexion
         if(!decodedToken) emit('reconnect');
 
@@ -68,12 +67,12 @@ export default {
     };
 
     const selectServer = (server) => {
-      // Émettre un événement pour indiquer la sélection du serveur
       emit('serverSelected', server);
     };
 
-    // Lifecycle hooks
-    onMounted(fetchServers);
+    onMounted(() => {
+      fetchServers();
+    });
 
     return {
       servers,

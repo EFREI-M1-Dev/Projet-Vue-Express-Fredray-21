@@ -92,7 +92,7 @@ export default {
 
     const fetchMessages = async () => {
       try {
-        if (!props.selectedServer || !props.selectedChannel || props.selectedServer.serverId === 'me') {
+        if (!props.selectedServer || !props.selectedChannel) {
           return;
         }
         const response = await axios.get(`http://127.0.0.1:3000/api/message/server/${props.selectedServer.serverId}/channel/${props.selectedChannel.channelId}`, {

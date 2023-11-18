@@ -9,4 +9,5 @@ export interface UserService {
     getById(id: number): Promise<User | null>;
     findUserByUsername(username: string): Promise<User | null>;
     getServersByUser(username: string): Promise<Server[]>;
+    getFirstServerByUser(username: string): Promise<Server>;
 }

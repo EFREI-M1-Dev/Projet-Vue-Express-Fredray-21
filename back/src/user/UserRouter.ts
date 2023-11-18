@@ -23,6 +23,18 @@ export class UserRouter {
             }
         });
 
+        // get first server by user
+        this.router.get('/:username/firstServer', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const result = await this.userController.getFirstServerByUser(
+                    req.params.username,
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
         // Add
         this.router.post('/', async (req: Request, res: Response, next: NextFunction) => {
             try {

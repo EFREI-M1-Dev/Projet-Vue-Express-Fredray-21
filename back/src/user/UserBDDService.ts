@@ -116,4 +116,25 @@ export class UserBDDService implements UserService {
             db.close();
         }
     }
+
+    // getFirstServerByUser
+    async getFirstServerByUser(username: string): Promise<Server> {
+        const db = openConnection();
+        const userService = new UserBDDService();
+
+        try {
+            const statement = db.prepare('SELECT servers.* FROM servers INNER JOIN memberships ON servers.serverId = memberships.serverId INNER JOIN users ON memberships.userId = users.userId WHERE users.username = ?');
+            const row = await statement.get(username);
+            if (row === undefined) {
+                throw new Error('Server not found');
+            }
+            const typedRow = row as ServerData;
+
+            const owner = await userService.getById(typedRow.owner);
+            if (!owner) throw new Error('Owner not found');
+            return new Server(typedRow.serverId, owner, typedRow.creationDate, typedRow.serverName, typedRow.description);
+        } finally {
+            db.close();
+        }
+    }
 }

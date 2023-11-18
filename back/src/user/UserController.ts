@@ -88,4 +88,11 @@ export class UserController {
         return this.userService.getServersByUser(username);
     }
 
+    //getFirstServerByUser
+    async getFirstServerByUser(username: string): Promise<Server | null> {
+        this.checkUsername(username);
+        return this.userService.getFirstServerByUser(username);
+    }
+
+
 }

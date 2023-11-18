@@ -1,5 +1,5 @@
 <template>
-  <div className="container">
+  <div v-if="isPageReady" className="container">
     <ServersList
         @serverSelected="handleServerSelected"
         @reconnect="handleReconnect"
@@ -27,15 +27,23 @@
       />
     </div>
   </div>
+
+  <div v-else>
+    ON LOAD ATTA
+  </div>
+
 </template>
 
 <script>
-import {ref} from 'vue';
+import {ref, onMounted, watch} from 'vue';
+import axios from 'axios';
+import jwt from 'jsonwebtoken';
+import {useRouter} from 'vue-router';
+
 import ServersList from '/src/components/Home/ServersList.vue';
 import ChannelsList from '/src/components/Home/ChannelsList.vue';
 import MessagesList from '/src/components/Home/MessagesList.vue';
 import MembersList from '/src/components/Home/MembersList.vue';
-import { useRouter } from 'vue-router';
 
 export default {
   name: 'Home',
@@ -46,14 +54,11 @@ export default {
     MembersList,
   },
   setup() {
-
-    // server 'me' is the server of the user profile is the default server
-    const selectedServer = ref({serverId: 'me', serverName: 'Profile'});
-
+    const selectedServer = ref(null);
     const selectedChannel = ref(null);
     const selectedMember = ref(null);
     const router = useRouter();
-
+    const isPageReady = ref(false);
 
     const handleServerSelected = (server) => {
       selectedServer.value = server;
@@ -77,6 +82,59 @@ export default {
       router.push('/reconnection');
     };
 
+    const getFirstServer = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const decodedToken = jwt.decode(token);
+        if (!decodedToken) handleReconnect();
+
+        const response = await axios.get(`http://127.0.0.1:3000/api/user/${decodedToken.username}/firstServer`, {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        });
+        handleServerSelected(response.data);
+
+        // Utiliser selectedServer après qu'il ait été mis à jour
+        console.log('selectedServer', selectedServer.value);
+      } catch (error) {
+        const code = error.response ? error.response.status : null;
+        if (code === 401) handleReconnect();
+      }
+    };
+
+    const getFirstChannel = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const decodedToken = jwt.decode(token);
+        if (!decodedToken) handleReconnect();
+
+        const response = await axios.get(`http://127.0.0.1:3000/api/server/${selectedServer.value.serverId}/firstChannel`, {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        });
+        handleChannelSelected(response.data);
+
+        // Utiliser selectedChannel après qu'il ait été mis à jour
+      } catch (error) {
+        const code = error.response ? error.response.status : null;
+        if (code === 401) handleReconnect();
+      } finally {
+        isPageReady.value = true;
+      }
+    };
+
+    onMounted(async () => {
+      await getFirstServer();
+      await getFirstChannel();
+    });
+
+    watch(() => selectedServer.value, async () => {
+      await getFirstChannel();
+    });
+
+
     return {
       selectedServer,
       selectedChannel,
@@ -85,7 +143,8 @@ export default {
       handleChannelSelected,
       handleMemberSelected,
       handleLogout,
-      handleReconnect
+      handleReconnect,
+      isPageReady
     };
   },
 };

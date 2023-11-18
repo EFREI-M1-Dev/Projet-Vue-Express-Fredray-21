@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="fix(front): composant bubbles">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="fix(front-back): gestion des etats entre changement des server/channel">
+      <change afterPath="$PROJECT_DIR$/front/src/script/gestionKeyboard.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/ServerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_messagesList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_messagesList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/pages/_home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/pages/_home.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -291,7 +294,7 @@
       <workItem from="1699910410483" duration="3873000" />
       <workItem from="1699995909786" duration="6334000" />
       <workItem from="1700077158762" duration="14809000" />
-      <workItem from="1700246019277" duration="10568000" />
+      <workItem from="1700246019277" duration="14034000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -496,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700262465032</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="fix(front-back): gestion des etats entre changement des server/channel">
+      <created>1700268351251</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1700268351251</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,7 +525,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(back): structure BDD" />
     <MESSAGE value="feat(back): ajout du CRUD users en SQL" />
     <MESSAGE value="feat(back-server): ajout du CRUD server" />
     <MESSAGE value="feat(back-channel): ajout du CRUD channel" />
@@ -540,6 +549,7 @@
     <MESSAGE value="fix(front): gestion des erreurs / reconnection" />
     <MESSAGE value="fix(front): style global auth et button" />
     <MESSAGE value="fix(front): composant bubbles" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front): composant bubbles" />
+    <MESSAGE value="fix(front-back): gestion des etats entre changement des server/channel" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(front-back): gestion des etats entre changement des server/channel" />
   </component>
 </project>

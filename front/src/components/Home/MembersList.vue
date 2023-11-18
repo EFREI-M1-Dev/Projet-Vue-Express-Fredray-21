@@ -33,10 +33,7 @@ export default {
 
     const fetchMembers = async () => {
       try {
-        if (!props.selectedServer) {
-          // Si selectedServer est null, ne faites rien
-          return;
-        }
+        if (!props.selectedServer) return;
 
         const token = localStorage.getItem("token");
         const response = await axios.get(`http://127.0.0.1:3000/api/server/${props.selectedServer.serverId}/users`, {

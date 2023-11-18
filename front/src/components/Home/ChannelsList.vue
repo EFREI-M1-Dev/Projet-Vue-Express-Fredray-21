@@ -35,14 +35,13 @@ export default {
 
     const fetchChannels = async () => {
       try {
-        if (!props.selectedServer || props.selectedServer.serverId === 'me') return;
+        if (!props.selectedServer) return;
 
         const response = await axios.get('http://127.0.0.1:3000/api/channel/server/' + props.selectedServer.serverId);
         channels.value = response.data;
 
         nextTick(() => {
           handleElements();
-          selectDefaultChannel();
         });
       } catch (error) {
         const code = error.response ? error.response.status : null;
