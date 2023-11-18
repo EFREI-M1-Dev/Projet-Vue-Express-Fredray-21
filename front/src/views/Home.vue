@@ -97,9 +97,6 @@ export default {
           },
         });
         handleServerSelected(response.data);
-
-        // Utiliser selectedServer après qu'il ait été mis à jour
-        console.log('selectedServer', selectedServer.value);
       } catch (error) {
         const code = error.response ? error.response.status : null;
         if (code === 401) handleReconnect();
@@ -108,10 +105,12 @@ export default {
 
     const getFirstChannel = async () => {
       try {
+        // console.log(selectedServer.value);
+        // console.log(token);
         const token = localStorage.getItem('token');
         const decodedToken = jwt.decode(token);
         if (!decodedToken) handleReconnect();
-
+        
         const response = await axios.get(`http://127.0.0.1:3000/api/server/${selectedServer.value.serverId}/firstChannel`, {
           headers: {
             Authorization: 'Bearer ' + token,

@@ -8,12 +8,10 @@
           <span class="container-info-server__text-sub">{{ serverName }} | {{ nbUsers }} membres</span>
         </div>
       </div>
-
       <div>UWU</div>
-
     </div>
     <!-- Liste des messages -->
-    <div v-if="messages.length > 0" id="messages-list">
+    <div v-if="messages.length > 0" id="messages-list" ref="messagesList">
       <div v-for="message in messages" :key="message.id" :class="{ 'message-item_me': message.isCurrentUser }"
            class="message-item" ref="messageItems">
         <img v-if="!message.isCurrentUser" src="http://fakeimg.pl/300/" alt="Avatar" class="message-item__avatar">
@@ -27,7 +25,6 @@
         <img v-if="message.isCurrentUser" src="http://fakeimg.pl/300/" alt="Avatar" class="message-item__avatar">
       </div>
     </div>
-
     <!-- Aucun message -->
     <div v-else id="messages-list">
       <div class="message-item">
@@ -36,9 +33,8 @@
         </div>
       </div>
     </div>
-
     <div id="message-input-container">
-      <input type="text" id="message-input" placeholder="Message" class="message-input">
+      <input type="text" id="message-input" ref="messageInput" placeholder="Message" class="message-input">
       <button id="message-send" class="message-send" @click="sendMsg">
         <font-awesome-icon :icon="'paper-plane'"/>
       </button>
@@ -47,10 +43,9 @@
 </template>
 
 <script>
-import {ref, onMounted, watch, nextTick} from 'vue';
+import { ref, onMounted, watch, nextTick } from 'vue';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-
 import { gestionKeyBoard } from '/src/script/gestionKeyBoard';
 
 export default {
@@ -65,11 +60,14 @@ export default {
       default: null,
     },
   },
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     const messages = ref([]);
     const serverName = ref(null);
     const nbUsers = ref(null);
     const channelName = ref('');
+
+    const messagesList = ref(null);
+    const messageInput = ref(null);
 
     const formatMessageDate = (creationDate) => {
       const today = new Date();
@@ -108,10 +106,6 @@ export default {
           ...message,
           isCurrentUser: isCurrentUser(message),
         }));
-
-        nextTick(() => {
-          handleElements();
-        });
       } catch (error) {
         const code = error.response ? error.response.status : null;
         if (code === 401) emit('reconnect');
@@ -137,15 +131,6 @@ export default {
       }
     };
 
-    const handleElements = () => {
-      const messageItems = document.getElementsByClassName('message-item');
-      if (messageItems) {
-        Array.from(messageItems).forEach(message => {
-          // Handle individual message item if needed
-        });
-      }
-    };
-
     const updateServerName = () => {
       serverName.value = props.selectedServer ? props.selectedServer.serverName : null;
       if (!serverName.value) emit('reconnect');
@@ -163,7 +148,7 @@ export default {
       updateServerName();
       fetchNbUsers();
       updateChannelName();
-      gestionKeyBoard(sendMsg);
+      //gestionKeyBoard(sendMsg);
     });
 
     watch(() => props.selectedServer, async () => {
@@ -183,32 +168,41 @@ export default {
     };
 
     const sendMsg = async () => {
-      const valueContent = document.getElementById("message-input").value;
+      const valueContent = messageInput.value.value;
       if (!valueContent || valueContent.length === 0 || valueContent.trim().length === 0) return;
       try {
         const token = localStorage.getItem("token");
-        await axios.post(`http://127.0.0.1:3000/api/message/`,
+        await axios.post(
+            `http://127.0.0.1:3000/api/message/`,
             {
-              owner: {username: decodedToken.username},
+              owner: { username: decodedToken.username },
               content: valueContent,
-              channel: {channelId: props.selectedChannel.channelId},
-              server: {serverId: props.selectedServer.serverId}
+              channel: { channelId: props.selectedChannel.channelId },
+              server: { serverId: props.selectedServer.serverId },
             },
             {
               headers: {
-                Authorization: 'Bearer ' + token,
+                Authorization: "Bearer " + token,
               },
             }
         );
       } catch (error) {
         const code = error.response ? error.response.status : null;
-        if (code === 401) emit('reconnect');
-        console.error('Erreur lors de l\'envoi du message:', error);
+        if (code === 401) emit("reconnect");
+        console.error("Erreur lors de l'envoi du message:", error);
       } finally {
-        document.getElementById("message-input").value = "";
+        if (messageInput.value) messageInput.value.value = "";
         await fetchMessages();
+        await nextTick();
+
+        const messagesListRef = messagesList.value;
+        console.log('messagesListRef:', messagesListRef);
+        if (messagesListRef) {
+          console.log('Scrolling to the bottom...');
+          messagesListRef.scrollTop = messagesListRef.scrollHeight;
+        }
       }
-    }
+    };
 
     return {
       messages,
@@ -218,6 +212,8 @@ export default {
       serverName,
       channelName,
       nbUsers,
+      messagesList,
+      messageInput,
     };
   },
 };

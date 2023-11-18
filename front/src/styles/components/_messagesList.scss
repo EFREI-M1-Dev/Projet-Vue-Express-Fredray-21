@@ -54,6 +54,9 @@
   #messages-list {
     box-sizing : border-box;
     padding    : calc($global-spacing / 2) $global-spacing;
+    flex       : 1;
+    overflow-y : auto;
+    scroll-behavior: smooth;
 
     .message-item {
       height          : $global-spacing*2;

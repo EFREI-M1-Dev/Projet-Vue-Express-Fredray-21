@@ -49,21 +49,26 @@ export default {
     const router = useRouter();
 
 
-    const login = () => {
+    const login = async () => {
       const userData = {
         username: username.value,
         password: password.value,
       };
 
-      axios.post('http://127.0.0.1:3000/api/login', userData, { withCredentials: true, credentials: 'include' })
-          .then(response => {
-            const token = response.data.token;
-            window.localStorage.setItem('token', token);
-            router.push('/');
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
+      try {
+        const response = await axios.post('http://127.0.0.1:3000/api/login', userData, {
+          withCredentials: true,
+          credentials: 'include',
+        });
+
+        const token = response.data.token;
+        await window.localStorage.setItem('token', token);
+
+        // Maintenant que le token est défini, vous pouvez rediriger l'utilisateur
+        await router.push('/');
+      } catch (error) {
+        console.error('Error:', error);
+      }
     };
 
     const togglePasswordVisibility = () => {

@@ -13,6 +13,7 @@
     gap                   : $global-spacing;
     grid-template-columns : 300px 1fr 300px;
     flex                  : 1;
+    overflow              : hidden;
 
     &--channels,
     &--chat,

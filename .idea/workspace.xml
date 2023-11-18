@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : Gestion du clavier Enter focus/sendMsg">
-      <change afterPath="$PROJECT_DIR$/front/src/components/Spinner.vue" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : ajout Spinner">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/script/gestionKeyboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/script/gestionKeyboard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_messagesList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_messagesList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/pages/_home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/pages/_home.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +289,7 @@
       <workItem from="1699910410483" duration="3873000" />
       <workItem from="1699995909786" duration="6334000" />
       <workItem from="1700077158762" duration="14809000" />
-      <workItem from="1700246019277" duration="15670000" />
+      <workItem from="1700246019277" duration="20021000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -511,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700272825913</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="feat(front) : ajout Spinner">
+      <created>1700273449152</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1700273449152</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +541,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(back-channel): ajout du CRUD channel" />
     <MESSAGE value="feat(back-message): ajout du CRUD message" />
     <MESSAGE value="feat(back): on passe en async" />
     <MESSAGE value="feat(back): ajout update message et auth" />
@@ -555,6 +565,7 @@
     <MESSAGE value="fix(front-back): gestion des etats entre changement des server/channel" />
     <MESSAGE value="feat(front) : Par defaut on select le premier server et le premier channel de chaque server" />
     <MESSAGE value="feat(front) : Gestion du clavier Enter focus/sendMsg" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : Gestion du clavier Enter focus/sendMsg" />
+    <MESSAGE value="feat(front) : ajout Spinner" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : ajout Spinner" />
   </component>
 </project>
