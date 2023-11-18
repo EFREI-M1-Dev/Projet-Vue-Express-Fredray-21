@@ -1,11 +1,15 @@
 <template>
   <div id="channels-container">
 
-
     <!-- Liste des channels -->
     <div v-if="channels.length > 0" id="channels-list">
-      <div v-for="channel in channels" :key="channel.id" class="channel-item" ref="channelItems"
-           @click="selectChannel(channel)">
+      <div
+          v-for="channel in channels" :key="channel.channelId"
+          class="channel-item"
+          ref="channelItems"
+          @click="selectChannel(channel)"
+          :class="{ 'channel-item_selected': channel.channelId === selectedChannel.channelId }"
+      >
 
         <div class="channel-item__icon">ICON</div>
         <span class="channel-item__name">{{ channel.channelName }}</span>
@@ -26,6 +30,10 @@ export default {
   name: 'ChannelsList',
   props: {
     selectedServer: {
+      type: Object,
+      default: null,
+    },
+    selectedChannel: {
       type: Object,
       default: null,
     },

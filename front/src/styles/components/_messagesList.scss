@@ -159,6 +159,15 @@
       }
     }
 
+    .message-item-empty {
+      display         : flex;
+      justify-content : center;
+      align-items     : center;
+      height          : 100%;
+      color           : $gray;
+      font-size       : 1.5em;
+    }
+
     &::-webkit-scrollbar {
       width : 10px;
     }

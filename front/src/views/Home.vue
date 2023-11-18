@@ -8,6 +8,7 @@
     <div class="container__child">
       <ChannelsList
           :selectedServer="selectedServer"
+          :selectedChannel="selectedChannel"
           @channelSelected="handleChannelSelected"
           @reconnect="handleReconnect"
           class="container__child--channels"
@@ -20,7 +21,6 @@
       />
       <MembersList
           :selectedServer="selectedServer"
-          :selectedChannel="selectedChannel"
           @memberSelected="handleMemberSelected"
           @reconnect="handleReconnect"
           class="container__child--users"

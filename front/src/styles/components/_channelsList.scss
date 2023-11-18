@@ -20,8 +20,8 @@
       padding         : 0 $global-spacing;
       height          : $global-spacing*1.5;
 
-      &:hover {
-        background-color : rgba($color-hover-primary, 0.2);
+      &:hover, &_selected {
+        background-color : rgba($color-primaryLight, 0.2);
         cursor           : pointer;
       }
     }

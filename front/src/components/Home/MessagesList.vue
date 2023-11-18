@@ -37,16 +37,14 @@
     </div>
     <!-- Aucun message -->
     <div v-else id="messages-list">
-      <div class="message-item">
-        <div class="message-item__content">
-          <div class="message-item__content-txt">Aucun message</div>
-        </div>
+      <div class="message-item-empty">
+          <div>Aucun message</div>
       </div>
     </div>
     <div id="message-input-container">
-      <input type="text" id="message-input" ref="messageInput" placeholder="Message" class="message-input">
+      <input type="text" id="message-input" ref="messageInput" :placeholder="`Envoyer un message dans #${channelName}`" class="message-input">
       <button id="message-send" class="message-send" @click="sendMsg">
-        <font-awesome-icon :icon="'paper-plane'"/>
+        <font-awesome-icon :icon="'paper-plane'" />
       </button>
     </div>
   </div>
