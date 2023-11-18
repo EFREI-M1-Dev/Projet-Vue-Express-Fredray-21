@@ -79,6 +79,12 @@ export default {
     const messagesList = ref(null);
     const messageInput = ref(null);
 
+    const scrollToBottom = () => {
+      const messagesListRef = messagesList.value;
+      if (messagesListRef) {
+        messagesListRef.scrollTop = messagesListRef.scrollHeight;
+      }
+    };
 
     const formatMessageDate = (creationDate) => {
       const today = new Date();
@@ -117,6 +123,9 @@ export default {
           ...message,
           isCurrentUser: isCurrentUser(message),
         }));
+
+        await nextTick();
+        scrollToBottom();
       } catch (error) {
         const code = error.response ? error.response.status : null;
         if (code === 401) emit('reconnect');
@@ -159,6 +168,7 @@ export default {
       return message.owner.username === decodedToken.username;
     };
 
+
     const sendMsg = async () => {
       const valueContent = messageInput.value.value;
       if (!valueContent || valueContent.length === 0 || valueContent.trim().length === 0) return;
@@ -185,14 +195,9 @@ export default {
       } finally {
         if (messageInput.value) messageInput.value.value = "";
         await fetchMessages();
-        await nextTick();
 
-        const messagesListRef = messagesList.value;
-        console.log('messagesListRef:', messagesListRef);
-        if (messagesListRef) {
-          console.log('Scrolling to the bottom...');
-          messagesListRef.scrollTop = messagesListRef.scrollHeight;
-        }
+        await nextTick();
+        scrollToBottom();
       }
     };
 
