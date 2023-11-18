@@ -134,7 +134,6 @@ export default {
       await getFirstChannel();
     });
 
-
     return {
       selectedServer,
       selectedChannel,

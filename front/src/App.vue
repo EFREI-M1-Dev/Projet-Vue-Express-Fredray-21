@@ -9,14 +9,13 @@
 </style>
 
 <script>
-import { gestionKeyBoard } from './script/gestionKeyBoard';
-
 export default {
   name: 'App',
   components: {
   },
   setup() {
-    gestionKeyBoard();
+    return {
+    };
   },
 }
 </script>

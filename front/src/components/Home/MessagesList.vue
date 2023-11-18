@@ -51,6 +51,8 @@ import {ref, onMounted, watch, nextTick} from 'vue';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
+import { gestionKeyBoard } from '/src/script/gestionKeyBoard';
+
 export default {
   name: 'MessagesList',
   props: {
@@ -161,6 +163,7 @@ export default {
       updateServerName();
       fetchNbUsers();
       updateChannelName();
+      gestionKeyBoard(sendMsg);
     });
 
     watch(() => props.selectedServer, async () => {
@@ -174,19 +177,20 @@ export default {
       updateChannelName();
     });
 
-
     const decodedToken = jwt.decode(token);
     const isCurrentUser = (message) => {
       return message.owner.username === decodedToken.username;
     };
 
     const sendMsg = async () => {
+      const valueContent = document.getElementById("message-input").value;
+      if (!valueContent || valueContent.length === 0 || valueContent.trim().length === 0) return;
       try {
         const token = localStorage.getItem("token");
         await axios.post(`http://127.0.0.1:3000/api/message/`,
             {
               owner: {username: decodedToken.username},
-              content: document.getElementById("message-input").value,
+              content: valueContent,
               channel: {channelId: props.selectedChannel.channelId},
               server: {serverId: props.selectedServer.serverId}
             },
