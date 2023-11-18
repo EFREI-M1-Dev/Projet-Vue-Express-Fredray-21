@@ -33,6 +33,30 @@ export class ServerRouter {
             }
         });
 
+        //get number of users by server
+        this.router.get('/:id/users/count', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const result = await this.serverController.getUsersCountByServer(
+                    Number(req.params.id),
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
+        //get fist channel of server
+        this.router.get('/:id/firstChannel', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const result = await this.serverController.getFirstChannelByServer(
+                    Number(req.params.id),
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
 
         // Get
         this.router.get('/:id', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {

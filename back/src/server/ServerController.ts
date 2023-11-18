@@ -1,3 +1,4 @@
+import { Channel } from '../channel/Channel';
 import { User, UserData } from '../user/User';
 import { Server } from './Server';
 import { ServerService } from './ServerService';
@@ -27,6 +28,14 @@ export class ServerController {
 
     async getUsersByServer(id: number): Promise<User[]> {
         return await this.serverService.getUsersByServer(id);
+    }
+
+    async getUsersCountByServer(id: number): Promise<number> {
+        return await this.serverService.getUsersCountByServer(id);
+    }
+
+    async getFirstChannelByServer(id: number): Promise<Channel> {
+        return await this.serverService.getFirstChannelByServer(id);
     }
 
 }

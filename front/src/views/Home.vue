@@ -46,7 +46,10 @@ export default {
     MembersList,
   },
   setup() {
-    const selectedServer = ref(null);
+
+    // server 'me' is the server of the user profile is the default server
+    const selectedServer = ref({serverId: 'me', serverName: 'Profile'});
+
     const selectedChannel = ref(null);
     const selectedMember = ref(null);
     const router = useRouter();

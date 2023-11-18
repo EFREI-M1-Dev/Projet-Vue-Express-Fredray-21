@@ -1,11 +1,21 @@
 <template>
   <div id="messages-container">
-    <!-- Liste des messages -->
+    <div id="container-info-server">
+      <div class="container-info-server">
+        <img src="http://fakeimg.pl/300/" alt="AvatarServer" class="container-info-server__avatar">
+        <div class="container-info-server__text">
+          <span class="container-info-server__text-server">{{ channelName }}</span>
+          <span class="container-info-server__text-sub">{{ serverName }} | {{ nbUsers }} membres</span>
+        </div>
+      </div>
 
+      <div>UWU</div>
+
+    </div>
+    <!-- Liste des messages -->
     <div v-if="messages.length > 0" id="messages-list">
       <div v-for="message in messages" :key="message.id" :class="{ 'message-item_me': message.isCurrentUser }"
            class="message-item" ref="messageItems">
-
         <img v-if="!message.isCurrentUser" src="http://fakeimg.pl/300/" alt="Avatar" class="message-item__avatar">
         <div class="message-item__content">
           <div class="message-item__content-txt">{{ message.content }}</div>
@@ -33,8 +43,6 @@
         <font-awesome-icon :icon="'paper-plane'"/>
       </button>
     </div>
-
-
   </div>
 </template>
 
@@ -55,8 +63,11 @@ export default {
       default: null,
     },
   },
-  setup(props, { emit }) {
+  setup(props, {emit}) {
     const messages = ref([]);
+    const serverName = ref(null);
+    const nbUsers = ref(null);
+    const channelName = ref('');
 
     const formatMessageDate = (creationDate) => {
       const today = new Date();
@@ -81,7 +92,7 @@ export default {
 
     const fetchMessages = async () => {
       try {
-        if (!props.selectedServer || !props.selectedChannel) {
+        if (!props.selectedServer || !props.selectedChannel || props.selectedServer.serverId === 'me') {
           return;
         }
         const response = await axios.get(`http://127.0.0.1:3000/api/message/server/${props.selectedServer.serverId}/channel/${props.selectedChannel.channelId}`, {
@@ -100,7 +111,27 @@ export default {
           handleElements();
         });
       } catch (error) {
+        const code = error.response ? error.response.status : null;
+        if (code === 401) emit('reconnect');
         console.error('Erreur lors de la récupération des channels', error);
+      }
+    };
+
+    const fetchNbUsers = async () => {
+      try {
+        if (!props.selectedServer || props.selectedServer.serverId === 'me') {
+          return;
+        }
+        const response = await axios.get(`http://127.0.0.1:3000/api/server/${props.selectedServer.serverId}/users/count`, {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        });
+        nbUsers.value = response.data;
+      } catch (error) {
+        const code = error.response ? error.response.status : null;
+        if (code === 401) emit('reconnect');
+        console.error('Erreur lors de la récupération des users', error);
       }
     };
 
@@ -113,14 +144,41 @@ export default {
       }
     };
 
-    onMounted(fetchMessages);
-    watch([() => props.selectedServer, () => props.selectedChannel], fetchMessages);
+    const updateServerName = () => {
+      serverName.value = props.selectedServer ? props.selectedServer.serverName : null;
+      if (!serverName.value) emit('reconnect');
+    };
+
+    const updateChannelName = () => {
+      channelName.value = props.selectedChannel ? props.selectedChannel.channelName : null;
+      if (!channelName.value) emit('reconnect');
+
+      if (!channelName.value) console.log(props.selectedChannel);
+    };
+
+    onMounted(() => {
+      fetchMessages();
+      updateServerName();
+      fetchNbUsers();
+      updateChannelName();
+    });
+
+    watch(() => props.selectedServer, async () => {
+      updateServerName();
+      await fetchNbUsers();
+      await fetchMessages();
+    });
+
+    watch(() => props.selectedChannel, async () => {
+      await fetchMessages();
+      updateChannelName();
+    });
+
 
     const decodedToken = jwt.decode(token);
     const isCurrentUser = (message) => {
       return message.owner.username === decodedToken.username;
     };
-
 
     const sendMsg = async () => {
       try {
@@ -153,6 +211,9 @@ export default {
       formatMessageDate,
       isCurrentUser,
       sendMsg,
+      serverName,
+      channelName,
+      nbUsers,
     };
   },
 };

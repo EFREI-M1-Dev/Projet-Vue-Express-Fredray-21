@@ -19,6 +19,7 @@
     &--users {
       border-radius    : $global-radius;
       background-color : $color-secondary;
+      overflow         : hidden;
     }
   }
 }

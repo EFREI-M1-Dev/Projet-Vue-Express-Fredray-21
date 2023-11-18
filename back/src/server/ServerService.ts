@@ -1,3 +1,4 @@
+import { Channel } from '../channel/Channel';
 import { User, UserData } from '../user/User';
 import { Server } from './Server';
 
@@ -8,4 +9,6 @@ export interface ServerService {
     getAll(): Promise<Server[]>;
     getById(id: number): Promise<Server | null>;
     getUsersByServer(id: number): Promise<User[]>;
+    getUsersCountByServer(id: number): Promise<number>;
+    getFirstChannelByServer(id: number): Promise<Channel>;
 }

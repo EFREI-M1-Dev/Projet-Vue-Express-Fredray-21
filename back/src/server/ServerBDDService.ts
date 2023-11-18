@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import {openConnection} from "../../db";
 import {User, UserData} from '../user/User';
 import {UserBDDService} from '../user/UserBDDService';
+import { Channel, ChannelData } from '../channel/Channel';
 
 export class ServerBDDService implements ServerService {
 
@@ -110,6 +111,40 @@ export class ServerBDDService implements ServerService {
             }
 
             return users;
+        } finally {
+            db.close();
+        }
+    }
+
+    // getUsersCountByServer
+    async getUsersCountByServer(id: number): Promise<number> {
+        const db = openConnection();
+        try {
+            const statement = db.prepare('SELECT COUNT(*) AS count FROM users INNER JOIN memberships ON users.userId = memberships.userId INNER JOIN servers ON memberships.serverId = servers.serverId WHERE servers.serverId = ?');
+            const result = statement.get(id);
+            if (result === undefined) {
+                return 0;
+            }
+            const typedResult = result as {count: number};
+            return typedResult.count;
+        } finally {
+            db.close();
+        }
+    }
+
+    // get first channel of server
+    async getFirstChannelByServer(id: number): Promise<Channel> {
+        const db = openConnection();
+        try {
+            const statement = db.prepare('SELECT * FROM channels WHERE serverId = ? LIMIT 1');
+            const result = statement.get(id);
+            if (result === undefined) {
+                throw new Error('No channel found');
+            }
+            const typedResult = result as ChannelData;
+            const server = await this.getById(typedResult.serverId);
+            if (!server) throw new Error('Server not found');
+            return new Channel(typedResult.channelId, typedResult.channelName, typedResult.description, typedResult.creationDate, server);
         } finally {
             db.close();
         }

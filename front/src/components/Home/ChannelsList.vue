@@ -35,18 +35,26 @@ export default {
 
     const fetchChannels = async () => {
       try {
-        if (!props.selectedServer) return;
+        if (!props.selectedServer || props.selectedServer.serverId === 'me') return;
 
         const response = await axios.get('http://127.0.0.1:3000/api/channel/server/' + props.selectedServer.serverId);
         channels.value = response.data;
 
         nextTick(() => {
           handleElements();
+          selectDefaultChannel();
         });
       } catch (error) {
         const code = error.response ? error.response.status : null;
         if (code === 401) emit('reconnect');
         console.error('Erreur lors de la récupération des channels', error);
+      }
+    };
+
+    const selectDefaultChannel = () => {
+      if (channels.value.length > 0) {
+        const defaultChannel = channels.value[0];
+        selectChannel(defaultChannel);
       }
     };
 
@@ -65,7 +73,10 @@ export default {
     };
 
     onMounted(fetchChannels);
-    watch(() => props.selectedServer, fetchChannels);
+    watch(() => props.selectedServer, () => {
+      fetchChannels();
+      selectDefaultChannel();
+    });
 
     return {
       channels,
