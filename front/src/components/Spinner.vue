@@ -1,68 +1,44 @@
 <template>
-  <div class="spinner" >
-    <span class="sync" v-bind:style="[spinnerStyle, spinnerDelay1]"></span>
-    <span class="sync" v-bind:style="[spinnerStyle, spinnerDelay2]"></span>
-    <span class="sync" v-bind:style="[spinnerStyle, spinnerDelay3]"></span>
+  <div className="spinner">
+    <span className="sync" v-bind:style="[spinnerStyle, spinnerDelay1]"></span>
+    <span className="sync" v-bind:style="[spinnerStyle, spinnerDelay2]"></span>
+    <span className="sync" v-bind:style="[spinnerStyle, spinnerDelay3]"></span>
   </div>
 </template>
-<script>
-export default {
-  name: "Spinner",
-  props: {
-    color: {
-      type: String,
-      default: "#5dc596"
-    },
-    size: {
-      type: String,
-      default: "25px"
-    },
-    margin: {
-      type: String,
-      default: "10px"
-    },
-    radius: {
-      type: String,
-      default: "100%"
-    }
-  },
-  data() {
-    return {
-      spinnerStyle: {
-        backgroundColor: this.color,
-        height: this.size,
-        width: this.size,
-        borderRadius: this.radius,
-        margin: this.margin,
-        display: 'inline-block',
-        animationName: 'spinerAnimation',
-        animationDuration: '1.25s',
-        animationIterationCount: 'infinite',
-        animationTimingFunction: 'ease-in-out',
-        animationFillMode: 'both'
-      },
-      spinnerDelay1: {
-        animationDelay: '0.07s'
-      },
-      spinnerDelay2: {
-        animationDelay: '0.14s'
-      },
-      spinnerDelay3: {
-        animationDelay: '0.21s'
-      }
-    };
-  },
-  methods: {
-    start() {
-      this.loading = true;
-    },
-    end() {
-      this.loading = false;
-    }
-  }
-};
 
+<script setup>
+
+import { ref, defineProps } from 'vue';
+
+const props = defineProps(['color', 'size', 'margin', 'radius']);
+
+const spinnerStyle = ref({
+  backgroundColor: props.color,
+  height: props.size,
+  width: props.size,
+  borderRadius: props.radius,
+  margin: props.margin,
+  display: 'inline-block',
+  animationName: 'spinerAnimation',
+  animationDuration: '1.25s',
+  animationIterationCount: 'infinite',
+  animationTimingFunction: 'ease-in-out',
+  animationFillMode: 'both',
+});
+
+const spinnerDelay1 = ref({
+  animationDelay: '0.07s',
+});
+
+const spinnerDelay2 = ref({
+  animationDelay: '0.14s',
+});
+
+const spinnerDelay3 = ref({
+  animationDelay: '0.21s',
+});
 </script>
+
 <style>
 .spinner {
   width           : 100%;

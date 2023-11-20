@@ -4,15 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : scroll auto">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : channelName in input &amp;&amp; selectedItems style">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Bubbles.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Bubbles.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_channelsList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_channelsList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_messagesList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_messagesList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Spinner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Spinner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/Reconnection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Reconnection.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,31 +84,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/front/src/views",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/node_modules/jest",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "terminal",
-    "ts.external.directory.path": "C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/front/src/views&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\"main\""
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\&quot;main\&quot;&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\views" />
@@ -289,7 +293,8 @@
       <workItem from="1699910410483" duration="3873000" />
       <workItem from="1699995909786" duration="6334000" />
       <workItem from="1700077158762" duration="14809000" />
-      <workItem from="1700246019277" duration="27229000" />
+      <workItem from="1700246019277" duration="27316000" />
+      <workItem from="1700474276963" duration="6536000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -550,7 +555,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700323708418</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="feat(front) : channelName in input &amp;&amp; selectedItems style">
+      <created>1700327236199</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1700327236199</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,7 +581,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(front): ajout page register et debut loginUnique" />
     <MESSAGE value="feat(front): style error register / form" />
     <MESSAGE value="feat(back-auth): add verifyTokenMiddleware to secure request &amp;&amp; start use &amp;&amp; back to register" />
     <MESSAGE value="feat(front): ajout des composant server/channel List et get Username by token" />
@@ -594,6 +605,7 @@
     <MESSAGE value="feat(front) : c'est le retour de la gestion keyboard" />
     <MESSAGE value="feat(front) : ajout des icons d'action serveur" />
     <MESSAGE value="feat(front) : scroll auto" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : scroll auto" />
+    <MESSAGE value="feat(front) : channelName in input &amp;&amp; selectedItems style" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : channelName in input &amp;&amp; selectedItems style" />
   </component>
 </project>

@@ -1,19 +1,16 @@
 <template>
   <div id="channels-container">
-
-    <!-- Liste des channels -->
     <div v-if="channels.length > 0" id="channels-list">
       <div
-          v-for="channel in channels" :key="channel.channelId"
+          v-for="channel in channels"
+          :key="channel.channelId"
           class="channel-item"
           ref="channelItems"
           @click="selectChannel(channel)"
           :class="{ 'channel-item_selected': channel.channelId === selectedChannel.channelId }"
       >
-
         <div class="channel-item__icon">ICON</div>
         <span class="channel-item__name">{{ channel.channelName }}</span>
-
       </div>
     </div>
     <div v-else>
@@ -22,75 +19,58 @@
   </div>
 </template>
 
-<script>
-import {ref, onMounted, watch, nextTick} from 'vue';
+<script setup>
+import { ref, onMounted, watch, nextTick, defineProps, defineEmits } from 'vue';
 import axios from 'axios';
 
-export default {
-  name: 'ChannelsList',
-  props: {
-    selectedServer: {
-      type: Object,
-      default: null,
-    },
-    selectedChannel: {
-      type: Object,
-      default: null,
-    },
-  },
-  setup(props, {emit}) {
-    const channels = ref([]);
+const props = defineProps(['selectedServer', 'selectedChannel']);
+const emit = defineEmits(['reconnect', 'channelSelected']);
 
-    const fetchChannels = async () => {
-      try {
-        if (!props.selectedServer) return;
+const channels = ref([]);
 
-        const response = await axios.get('http://127.0.0.1:3000/api/channel/server/' + props.selectedServer.serverId);
-        channels.value = response.data;
+const fetchChannels = async () => {
+  try {
+    if (!props.selectedServer) return;
 
-        nextTick(() => {
-          handleElements();
-        });
-      } catch (error) {
-        const code = error.response ? error.response.status : null;
-        if (code === 401) emit('reconnect');
-        console.error('Erreur lors de la récupération des channels', error);
-      }
-    };
+    const response = await axios.get(`http://127.0.0.1:3000/api/channel/server/${props.selectedServer.serverId}`);
+    channels.value = response.data;
 
-    const selectDefaultChannel = () => {
-      if (channels.value.length > 0) {
-        const defaultChannel = channels.value[0];
-        selectChannel(defaultChannel);
-      }
-    };
-
-    const handleElements = () => {
-      const channelItems = document.getElementsByClassName('channel-item');
-      if (channelItems) {
-        Array.from(channelItems).forEach(channel => {
-          // Handle individual channel item if needed
-        });
-      }
-    };
-
-    const selectChannel = (channel) => {
-      // Émettre un événement pour indiquer la sélection du channel
-      emit('channelSelected', channel);
-    };
-
-    onMounted(fetchChannels);
-    watch(() => props.selectedServer, () => {
-      fetchChannels();
-      selectDefaultChannel();
+    nextTick(() => {
+      handleElements();
     });
-
-    return {
-      channels,
-      selectChannel,
-    };
-  },
+  } catch (error) {
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit('reconnect');
+    console.error('Erreur lors de la récupération des channels', error);
+  }
 };
+
+const selectDefaultChannel = () => {
+  if (channels.value.length > 0) {
+    const defaultChannel = channels.value[0];
+    selectChannel(defaultChannel);
+  }
+};
+
+const handleElements = () => {
+  const channelItems = document.getElementsByClassName('channel-item');
+  if (channelItems) {
+    Array.from(channelItems).forEach(channel => {
+      // Handle individual channel item if needed
+    });
+  }
+};
+
+const selectChannel = (channel) => {
+  emit('channelSelected', channel);
+};
+
+onMounted(fetchChannels);
+watch(() => props.selectedServer, () => {
+  fetchChannels();
+  selectDefaultChannel();
+});
+
 </script>
 
 <style lang="scss">

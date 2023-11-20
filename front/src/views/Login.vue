@@ -30,63 +30,45 @@
   <Bubbles />
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import Bubbles from '/src/components/Bubbles.vue';
 
+const username = ref('');
+const password = ref('');
+const showPassword = ref(false);
+const router = useRouter();
 
-export default {
-  name: 'Login',
-  components: {
-    Bubbles,
-  },
-  setup() {
-    const username = ref('');
-    const password = ref('');
-    const showPassword = ref(false);
-    const router = useRouter();
+const login = async () => {
+  const userData = {
+    username: username.value,
+    password: password.value,
+  };
 
+  try {
+    const response = await axios.post('http://127.0.0.1:3000/api/login', userData, {
+      withCredentials: true,
+      credentials: 'include',
+    });
 
-    const login = async () => {
-      const userData = {
-        username: username.value,
-        password: password.value,
-      };
+    const token = response.data.token;
+    await window.localStorage.setItem('token', token);
 
-      try {
-        const response = await axios.post('http://127.0.0.1:3000/api/login', userData, {
-          withCredentials: true,
-          credentials: 'include',
-        });
+    // Now that the token is set, you can redirect the user
+    await router.push('/');
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
 
-        const token = response.data.token;
-        await window.localStorage.setItem('token', token);
-
-        // Maintenant que le token est défini, vous pouvez rediriger l'utilisateur
-        await router.push('/');
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-
-    const togglePasswordVisibility = () => {
-      showPassword.value = !showPassword.value;
-      const passwordInput = document.querySelector('input[name="password"]');
-      if (passwordInput) {
-        passwordInput.type = showPassword.value ? 'text' : 'password';
-      }
-    };
-
-    return {
-      username,
-      password,
-      showPassword,
-      login,
-      togglePasswordVisibility
-    };
-  },
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value;
+  const passwordInput = document.querySelector('input[name="password"]');
+  if (passwordInput) {
+    passwordInput.type = showPassword.value ? 'text' : 'password';
+  }
 };
 </script>
 

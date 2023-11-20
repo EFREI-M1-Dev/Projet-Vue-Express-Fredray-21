@@ -5,7 +5,7 @@
       <form @submit.prevent="registration">
         <div class="form-group">
           <label for="username">Identifiant</label>
-          <input v-model="username" type="text" name="username" class="form-control" required autofocus>
+          <input v-model="username" @input="handleUsernameInput" type="text" name="username" class="form-control" required autofocus>
           <p class="infoUsername">
             Il s'agit du nom par lequel les autres utilisateurs vous verront.
             <br>
@@ -43,84 +43,66 @@
 
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import Bubbles from '/src/components/Bubbles.vue';
 
-export default {
-  name: 'Registration',
-  components: {
-    Bubbles,
-  },
-  setup() {
-    const username = ref('');
-    const password = ref('');
-    const email = ref('');
-    const showPassword = ref(false);
-    const router = useRouter();
+const username = ref('');
+const password = ref('');
+const email = ref('');
+const showPassword = ref(false);
+const router = useRouter();
 
-    const registration = () => {
-      const userData = {
-        username: username.value,
-        email: email.value,
-        password: password.value,
-      };
+const registration = () => {
+  const userData = {
+    username: username.value,
+    email: email.value,
+    password: password.value,
+  };
 
-      axios.post('http://127.0.0.1:3000/api/user/', userData)
-          .then(response => {
-            console.log(response.data);
-            router.push('/');
-          })
-          .catch(error => {
-            console.error('Error:', error.response.data.message);
-          });
-    };
-
-    const togglePasswordVisibility = () => {
-      showPassword.value = !showPassword.value;
-      const passwordInput = document.querySelector('input[name="password"]');
-      if (passwordInput) {
-        passwordInput.type = showPassword.value ? 'text' : 'password';
-      }
-    };
-
-    return {
-      username,
-      password,
-      email,
-      showPassword,
-      registration,
-      togglePasswordVisibility
-    };
-  },
-  mounted() {
-    const usernameInput = document.querySelector('input[name="username"]');
-    usernameInput.addEventListener('input', (e) => {
-      const usernameValue = e.target.value;
-      const input = document.querySelector('[name="username"]');
-      const containerInfo = document.querySelector(".infoUsername");
-      const defaultValueInfo = "Il s'agit du nom par lequel les autres utilisateurs vous verront. <br> Vous pourrez toujours le modifier plus tard."
-
-      if (usernameValue.length > 3) {
-        axios.get('http://127.0.0.1:3000/api/user/username/'+ usernameValue)
-            .then(response => {
-              response.data ? input.style.border = "2px solid red" : input.style.border = "1px solid #e0e0e0";
-              response.data ? containerInfo.innerHTML="*Cet identifiant est indisponible" : containerInfo.innerHTML=defaultValueInfo;
-              response.data ? containerInfo.style.color="red" : containerInfo.style.color="#808080";
-            })
-            .catch(error => {
-              console.log("ERROR", error);
-            });
-      } else {
-        input.style.border = "2px solid red";
-        containerInfo.innerHTML="*L’identifiant doit faire entre 4 et 25 caractères.";
-        containerInfo.style.color="red";
-      }
-    });
-  },
+  axios.post('http://127.0.0.1:3000/api/user/', userData)
+      .then(response => {
+        console.log(response.data);
+        router.push('/');
+      })
+      .catch(error => {
+        console.error('Error:', error.response.data.message);
+      });
 };
+
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value;
+  const passwordInput = document.querySelector('input[name="password"]');
+  if (passwordInput) {
+    passwordInput.type = showPassword.value ? 'text' : 'password';
+  }
+};
+
+const handleUsernameInput = (e) => {
+  const usernameValue = e.target.value;
+  const input = document.querySelector('[name="username"]');
+  const containerInfo = document.querySelector(".infoUsername");
+  const defaultValueInfo = "Il s'agit du nom par lequel les autres utilisateurs vous verront. <br> Vous pourrez toujours le modifier plus tard."
+
+  if (usernameValue.length > 3) {
+    axios.get('http://127.0.0.1:3000/api/user/username/' + usernameValue)
+        .then(response => {
+          response.data ? input.style.border = "2px solid red" : input.style.border = "1px solid #e0e0e0";
+          response.data ? containerInfo.innerHTML = "*Cet identifiant est indisponible" : containerInfo.innerHTML = defaultValueInfo;
+          response.data ? containerInfo.style.color = "red" : containerInfo.style.color = "#808080";
+        })
+        .catch(error => {
+          console.log("ERROR", error);
+        });
+  } else {
+    input.style.border = "2px solid red";
+    containerInfo.innerHTML = "*L’identifiant doit faire entre 4 et 25 caractères.";
+    containerInfo.style.color = "red";
+  }
+};
+
 </script>
 
 <style lang="scss">
