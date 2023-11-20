@@ -1,6 +1,5 @@
 <template>
-  <div id="servers-container" >
-    <!-- Liste des serveurs -->
+  <div id="servers-container">
     <div v-if="servers.length > 0" id="server-list" @wheel="handleScroll">
       <div
           v-for="server in servers"
@@ -9,18 +8,17 @@
           ref="serverItems"
           @click="selectServer(server)"
           :class="{ 'server-item_selected': server.serverId === selectedServer.serverId }"
+          :data-server-name="server.serverName"
       >
         <img v-if="server.icon == null" src="/img/logo.png"/>
         <img v-else :src="server.icon"/>
-
-        <div class="server-name">{{ server.serverName }}</div>
-        <!-- Vous pouvez ajouter d'autres détails du serveur ici -->
       </div>
     </div>
     <div v-else>
       Aucun serveur trouvé.
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -53,27 +51,9 @@ const fetchServers = async () => {
     });
     servers.value = response.data;
 
-    nextTick(() => {
-      handleElements();
-    });
   } catch (error) {
     const code = error.response ? error.response.status : null;
     if (code === 401) emit('reconnect');
-  }
-};
-
-const handleElements = () => {
-  const serverItems = document.getElementsByClassName('server-item');
-  if (serverItems) {
-    Array.from(serverItems).forEach((server) => {
-      server.addEventListener('mouseenter', () => {
-        server.querySelector('.server-name').style.display = 'block';
-      });
-
-      server.addEventListener('mouseleave', () => {
-        server.querySelector('.server-name').style.display = 'none';
-      });
-    });
   }
 };
 
