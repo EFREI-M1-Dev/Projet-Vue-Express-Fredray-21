@@ -4,23 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : v1 des server-name">
-      <change afterPath="$PROJECT_DIR$/back/db/db.mock.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/tests/server/serverBDDService.test.ts" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="WIP(back) : mise en place de test (Is not a fakeBDD !!!!)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/db/db.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/jest.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/Server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/Server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,8 +108,8 @@
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\public\font" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\bd" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back" />
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\bd" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\tests" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\tests\server" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\components\Home" />
@@ -330,7 +316,7 @@
       <workItem from="1700246019277" duration="27316000" />
       <workItem from="1700474276963" duration="13616000" />
       <workItem from="1700495035897" duration="1996000" />
-      <workItem from="1700497065624" duration="6262000" />
+      <workItem from="1700497065624" duration="6612000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -626,7 +612,21 @@
       <option name="project" value="LOCAL" />
       <updated>1700493454865</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="feat(front) : debut style ServerList">
+      <created>1700503505482</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1700503505482</updated>
+    </task>
+    <task id="LOCAL-00044" summary="WIP(back) : mise en place de test (Is not a fakeBDD !!!!)">
+      <created>1700503621129</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1700503621129</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -645,8 +645,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(back): changement route get all server -&gt; user" />
-    <MESSAGE value="feat(back): get all users by server" />
     <MESSAGE value="fix(back): rm console.log" />
     <MESSAGE value="fix(front-back): ajout list Members et messages" />
     <MESSAGE value="fix(front): token dans messageList" />
@@ -670,6 +668,8 @@
     <MESSAGE value="feat(front) : serverList scroll vertical = scroll horizontal" />
     <MESSAGE value="feat(front) : focus input after keydown" />
     <MESSAGE value="feat(front) : v1 des server-name" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : v1 des server-name" />
+    <MESSAGE value="feat(front) : debut style ServerList" />
+    <MESSAGE value="WIP(back) : mise en place de test (Is not a fakeBDD !!!!)" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP(back) : mise en place de test (Is not a fakeBDD !!!!)" />
   </component>
 </project>
