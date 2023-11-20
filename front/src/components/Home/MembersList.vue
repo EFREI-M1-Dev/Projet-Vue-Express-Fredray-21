@@ -5,14 +5,13 @@
         <img v-if="member.icon == null" src="/img/logo.png" style="width: 50px; height: 50px" />
         <img v-else :src="member.icon"/>
         <div class="member-name">{{ member.username }}</div>
-        <!-- Add other member details here if needed -->
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch, nextTick, defineProps, defineEmits } from 'vue';
+import { ref, onMounted, watch, defineProps, defineEmits } from 'vue';
 import axios from 'axios';
 
 const props = defineProps(['selectedServer']);
@@ -32,22 +31,10 @@ const fetchMembers = async () => {
     });
     members.value = response.data;
 
-    nextTick(() => {
-      handleElements();
-    });
   } catch (error) {
     const code = error.response ? error.response.status : null;
     if (code === 401) emit('reconnect');
     console.error('Erreur lors de la récupération des members', error);
-  }
-};
-
-const handleElements = () => {
-  const memberItems = document.getElementsByClassName('member-item');
-  if (memberItems) {
-    Array.from(memberItems).forEach(member => {
-      // Handle individual member item if needed
-    });
   }
 };
 

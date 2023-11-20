@@ -4,8 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : focus input after keydown">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : v1 des server-name">
+      <change afterPath="$PROJECT_DIR$/back/db/db.mock.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/tests/server/serverBDDService.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/db/db.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/jest.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/message/MessageBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/Server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/Server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" afterDir="false" />
     </list>
@@ -75,48 +88,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/front/src/views&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "terminal",
+    "ts.external.directory.path": "C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ],
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\&quot;main\&quot;&quot;
+    "RunConfigurationTargetLRU": [
+      "23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\"main\""
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\views" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\styles\components" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\components\Home" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\public\font" />
-      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\public\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\bd" />
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back" />
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\tests" />
+      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\tests\server" />
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\components\Home" />
-      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\views" />
-      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\styles\pages" />
-      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\styles" />
-      <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\back\src\infrastructure\auth" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.UserJSONService.getById">
+  <component name="RunManager" selected="Jest.ServerBDDService add">
     <configuration name="schema_db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/back/schema_db.sql" />
       <script-mode>FILE</script-mode>
@@ -141,6 +154,34 @@
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ServerBDDService add" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <config-file value="$PROJECT_DIR$/back/package.json" />
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/back/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/back" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/back/src/tests/server/serverBDDService.test.ts" />
+      <test-names>
+        <test-name value="ServerBDDService add" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="ServerBDDService" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <config-file value="$PROJECT_DIR$/back/package.json" />
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/back/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/back" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/back/src/tests/server/serverBDDService.test.ts" />
+      <test-names>
+        <test-name value="ServerBDDService" />
+      </test-names>
       <method v="2" />
     </configuration>
     <configuration name="UserJSONService.getById" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
@@ -247,6 +288,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.ServerBDDService add" />
+        <item itemvalue="Jest.ServerBDDService" />
         <item itemvalue="Jest.UserJSONService.getById" />
         <item itemvalue="Jest.UserJSONService.getById.doit renvoyer un utilisateur par son identifiant s'il existe" />
         <item itemvalue="Database Script.schema_db.sql" />
@@ -285,7 +328,9 @@
       <workItem from="1699995909786" duration="6334000" />
       <workItem from="1700077158762" duration="14809000" />
       <workItem from="1700246019277" duration="27316000" />
-      <workItem from="1700474276963" duration="12044000" />
+      <workItem from="1700474276963" duration="13616000" />
+      <workItem from="1700495035897" duration="1996000" />
+      <workItem from="1700497065624" duration="6262000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -574,7 +619,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700483740522</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="feat(front) : v1 des server-name">
+      <created>1700493454865</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1700493454865</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +645,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(front): non conditionel" />
     <MESSAGE value="feat(back): changement route get all server -&gt; user" />
     <MESSAGE value="feat(back): get all users by server" />
     <MESSAGE value="fix(back): rm console.log" />
@@ -618,6 +669,7 @@
     <MESSAGE value="feat(front) : on passe le tout en &lt;script setup&gt; et scroll sur serverList" />
     <MESSAGE value="feat(front) : serverList scroll vertical = scroll horizontal" />
     <MESSAGE value="feat(front) : focus input after keydown" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : focus input after keydown" />
+    <MESSAGE value="feat(front) : v1 des server-name" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : v1 des server-name" />
   </component>
 </project>
