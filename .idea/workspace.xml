@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : channelName in input &amp;&amp; selectedItems style">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : on passe le tout en &lt;script setup&gt; et scroll sur serverList">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Bubbles.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Bubbles.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Spinner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Spinner.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/Reconnection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Reconnection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/views/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +286,7 @@
       <workItem from="1699995909786" duration="6334000" />
       <workItem from="1700077158762" duration="14809000" />
       <workItem from="1700246019277" duration="27316000" />
-      <workItem from="1700474276963" duration="6536000" />
+      <workItem from="1700474276963" duration="7022000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -562,7 +554,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700327236199</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="feat(front) : on passe le tout en &lt;script setup&gt; et scroll sur serverList">
+      <created>1700482590651</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1700482590651</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,7 +580,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="feat(front): style error register / form" />
     <MESSAGE value="feat(back-auth): add verifyTokenMiddleware to secure request &amp;&amp; start use &amp;&amp; back to register" />
     <MESSAGE value="feat(front): ajout des composant server/channel List et get Username by token" />
     <MESSAGE value="feat(front): non conditionel" />
@@ -606,6 +604,7 @@
     <MESSAGE value="feat(front) : ajout des icons d'action serveur" />
     <MESSAGE value="feat(front) : scroll auto" />
     <MESSAGE value="feat(front) : channelName in input &amp;&amp; selectedItems style" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : channelName in input &amp;&amp; selectedItems style" />
+    <MESSAGE value="feat(front) : on passe le tout en &lt;script setup&gt; et scroll sur serverList" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : on passe le tout en &lt;script setup&gt; et scroll sur serverList" />
   </component>
 </project>

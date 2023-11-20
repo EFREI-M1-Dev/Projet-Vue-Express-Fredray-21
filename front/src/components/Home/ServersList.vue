@@ -1,7 +1,7 @@
 <template>
-  <div id="servers-container">
+  <div id="servers-container" >
     <!-- Liste des serveurs -->
-    <div v-if="servers.length > 0" id="server-list">
+    <div v-if="servers.length > 0" id="server-list" @wheel="handleScroll">
       <div
           v-for="server in servers"
           :key="server.serverId"
@@ -10,8 +10,8 @@
           @click="selectServer(server)"
           :class="{ 'server-item_selected': server.serverId === selectedServer.serverId }"
       >
-        <img v-if="server.icon == null" src="/img/logo.png" />
-        <img v-else :src="server.icon" />
+        <img v-if="server.icon == null" src="/img/logo.png"/>
+        <img v-else :src="server.icon"/>
 
         <div class="server-name">{{ server.serverName }}</div>
         <!-- Vous pouvez ajouter d'autres détails du serveur ici -->
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue';
+import {ref, onMounted, nextTick} from 'vue';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
@@ -79,6 +79,12 @@ const handleElements = () => {
 
 const selectServer = (server) => {
   emit('serverSelected', server);
+};
+
+// Ajoutez la gestion du défilement
+const handleScroll = (event) => {
+  const serverList = document.getElementById('server-list');
+  serverList.scrollLeft -= event.deltaY;
 };
 
 onMounted(() => {
