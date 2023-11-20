@@ -14,10 +14,10 @@ export const gestionKeyBoard = (sendMsg) => {
     };
 
     const handleKeyDown = (e) => {
+        if (window.location.pathname !== "/") return;
+        let element = document.getElementById("message-input") as HTMLInputElement;
         if (e.key === "Enter") {
-            if (window.location.pathname !== "/") return;
             e.preventDefault();
-            let element = document.getElementById("message-input");
             if (element != null) {
                 if (document.activeElement !== element) {
                     element.focus();
@@ -26,7 +26,15 @@ export const gestionKeyBoard = (sendMsg) => {
                 }
             }
         }
+
+        if (e.key.length === 1) {
+            if (element != null) {
+                if (document.activeElement !== element) {
+                    element.focus();
+                }
+            }
+        }
     };
 
-    return { addKeyboardListener, removeKeyboardListener };
+    return {addKeyboardListener, removeKeyboardListener};
 };
