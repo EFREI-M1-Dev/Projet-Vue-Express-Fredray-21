@@ -14,11 +14,12 @@
         <img v-else :src="server.icon"/>
       </div>
     </div>
-    <div v-else>
-      Aucun serveur trouvé.
+
+    <div id="user-info">
+      <h1>{{ username }}</h1>
+      <img src="http://fakeimg.pl/300/"/>
     </div>
   </div>
-
 </template>
 
 <script setup>
@@ -61,11 +62,17 @@ const selectServer = (server) => {
   emit('serverSelected', server);
 };
 
-// Ajoutez la gestion du défilement
 const handleScroll = (event) => {
   const serverList = document.getElementById('server-list');
   serverList.scrollLeft -= event.deltaY;
 };
+
+
+const token = localStorage.getItem('token');
+const decodedToken = jwt.decode(token);
+if (!decodedToken) emit('reconnect');
+const username = decodedToken.username;
+
 
 onMounted(() => {
   fetchServers();
