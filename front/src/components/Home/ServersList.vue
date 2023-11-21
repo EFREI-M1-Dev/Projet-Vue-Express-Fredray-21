@@ -71,8 +71,8 @@ const handleScroll = (event) => {
 const token = localStorage.getItem('token');
 const decodedToken = jwt.decode(token);
 if (!decodedToken) emit('reconnect');
-const username = decodedToken.username;
-
+const username = decodedToken?.username ?? null;
+if (!username) emit('reconnect');
 
 onMounted(() => {
   fetchServers();

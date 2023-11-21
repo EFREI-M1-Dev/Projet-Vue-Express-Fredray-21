@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import {openConnection} from '../../db';
+import {openConnection} from '../../db';"eeeeeeezézzzzzzq"
 import {User, UserData} from '../user/User';
 import {UserBDDService} from '../user/UserBDDService';
 import {ChannelService} from './ChannelService';

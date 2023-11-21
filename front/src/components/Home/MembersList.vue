@@ -1,17 +1,23 @@
 <template>
   <div id="members-container">
-    <div v-if="members.length > 0" id="member-list">
-      <div v-for="member in members" :key="member.id" class="member-item" ref="memberItems" @click="selectMember(member)">
-        <img v-if="member.icon == null" src="/img/logo.png" style="width: 50px; height: 50px" />
+    <div v-if="members.length > 0" id="members-list">
+      <div
+          v-for="member in members"
+          :key="member.id"
+          class="member-item"
+          ref="memberItems"
+          @click="selectMember(member)"
+      >
+        <img v-if="member.icon == null" src="/img/logo.png" class="member-item-icon" />
         <img v-else :src="member.icon"/>
-        <div class="member-name">{{ member.username }}</div>
+        <div class="member-item-name">{{ member.username }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch, defineProps, defineEmits } from 'vue';
+import {ref, onMounted, watch, defineProps, defineEmits} from 'vue';
 import axios from 'axios';
 
 const props = defineProps(['selectedServer']);
@@ -48,5 +54,5 @@ watch(() => props.selectedServer, fetchMembers);
 </script>
 
 <style lang="scss">
-@import 'src/styles/components/channelsList';
+@import 'src/styles/components/membersList';
 </style>

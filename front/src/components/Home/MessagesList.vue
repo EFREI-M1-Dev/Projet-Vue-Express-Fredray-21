@@ -4,8 +4,13 @@
       <div class="container-info-server">
         <img src="http://fakeimg.pl/300/" alt="AvatarServer" class="container-info-server__avatar">
         <div class="container-info-server__text">
-          <span class="container-info-server__text-server">{{ channelName }}</span>
-          <span class="container-info-server__text-sub">{{ serverName }} | {{ nbUsers }} membres</span>
+          <span class="container-info-server__text-server">
+            <font-awesome-icon :icon="'hashtag'"/>
+            {{ channelName }}
+          </span>
+          <span class="container-info-server__text-sub">{{ serverName }} | {{
+              nbUsers
+            }} membre{{ nbUsers > 1 ? "s" : "" }}</span>
         </div>
       </div>
       <div class="container-info-server__btns">
@@ -21,15 +26,29 @@
       </div>
     </div>
     <div v-if="messages.length > 0" id="messages-list" ref="messagesList">
-      <div v-for="message in messages" :key="message.id" :class="{ 'message-item_me': message.isCurrentUser }"
-           class="message-item" ref="messageItems">
+      <div
+          v-for="message in messages"
+          :key="message.id"
+          :class="{ 'message-item_me': message.isCurrentUser }"
+          class="message-item" ref="messageItems"
+      >
         <img v-if="!message.isCurrentUser" src="http://fakeimg.pl/300/" alt="Avatar" class="message-item__avatar">
         <div class="message-item__content">
-          <div class="message-item__content-txt">{{ message.content }}</div>
+          <div class="message-item__content-txt">
+            {{ message.content }}
+
+            <div v-if="message.isCurrentUser" class="message-item__trash">
+              <button class="message-item__trash-btn" @click="deleteMsg(message.messageId)">
+                <font-awesome-icon :icon="'trash-can'"/>
+              </button>
+            </div>
+          </div>
           <div class="message-item__content-info">
             <span>{{ message.owner.username }}</span>
             <span>{{ formatMessageDate(message.creationDate) }}</span>
           </div>
+
+
         </div>
         <img v-if="message.isCurrentUser" src="http://fakeimg.pl/300/" alt="Avatar" class="message-item__avatar">
       </div>
@@ -54,6 +73,7 @@ import {ref, onMounted, onBeforeUnmount, watch, nextTick, defineProps, defineEmi
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import {gestionKeyBoard} from '/src/script/gestionKeyBoard';
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 const props = defineProps(['selectedServer', 'selectedChannel']);
 const emit = defineEmits(['reconnect']);
@@ -151,8 +171,10 @@ const updateChannelName = () => {
 };
 
 const decodedToken = jwt.decode(token);
+const username = decodedToken?.username ?? null;
+if (!username) emit('reconnect');
 const isCurrentUser = (message) => {
-  return message.owner.username === decodedToken.username;
+  return message.owner.username === username;
 };
 
 const sendMsg = async () => {
@@ -163,7 +185,7 @@ const sendMsg = async () => {
     await axios.post(
         `http://127.0.0.1:3000/api/message/`,
         {
-          owner: {username: decodedToken.username},
+          owner: {username: username},
           content: valueContent,
           channel: {channelId: props.selectedChannel.channelId},
           server: {serverId: props.selectedServer.serverId},
@@ -178,6 +200,34 @@ const sendMsg = async () => {
     const code = error.response ? error.response.status : null;
     if (code === 401) emit("reconnect");
     console.error("Erreur lors de l'envoi du message:", error);
+  } finally {
+    if (messageInput.value) messageInput.value.value = "";
+    await fetchMessages();
+
+    await nextTick();
+    scrollToBottom();
+  }
+};
+
+const deleteMsg = async (messageId) => {
+  try {
+    const token = localStorage.getItem("token");
+    await axios.delete(
+        `http://127.0.0.1:3000/api/message/${messageId}`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          data: {
+            owner: {username: username},
+            content: messageInput.value.value,
+            channel: {channelId: props.selectedChannel.channelId},
+            server: {serverId: props.selectedServer.serverId},
+          },
+        });
+  } catch (error) {
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit("reconnect");
+    console.error("Erreur lors de la suppression du message:", error);
   } finally {
     if (messageInput.value) messageInput.value.value = "";
     await fetchMessages();

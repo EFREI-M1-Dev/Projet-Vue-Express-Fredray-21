@@ -9,7 +9,9 @@
           @click="selectChannel(channel)"
           :class="{ 'channel-item_selected': channel.channelId === selectedChannel.channelId }"
       >
-        <div class="channel-item__icon">ICON</div>
+        <div class="channel-item__icon">
+          <font-awesome-icon :icon="'hashtag'"/>
+        </div>
         <span class="channel-item__name">{{ channel.channelName }}</span>
       </div>
     </div>
@@ -20,8 +22,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, nextTick, defineProps, defineEmits } from 'vue';
+import {ref, onMounted, watch, nextTick, defineProps, defineEmits} from 'vue';
 import axios from 'axios';
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 const props = defineProps(['selectedServer', 'selectedChannel']);
 const emit = defineEmits(['reconnect', 'channelSelected']);
