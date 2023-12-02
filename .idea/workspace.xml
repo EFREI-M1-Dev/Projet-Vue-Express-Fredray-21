@@ -4,19 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(back) : link BDD">
-      <change afterPath="$PROJECT_DIR$/front/src/styles/components/_membersList.scss" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : ad delete msg">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelBDDService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MembersList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Spinner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Spinner.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/icons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/icons.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_channelsList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_channelsList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_membersList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_membersList.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/styles/components/_messagesList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_messagesList.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,31 +84,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/front/src/styles/components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/node_modules/jest",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "terminal",
-    "ts.external.directory.path": "C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/front/src/styles/components&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;C:/dev/EFREI/Projet-Vue-Express-Fredray-21/back/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\pt_fr\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\223.8617.56\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\"main\""
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;23fcf996-6358-46fd-89ff-09f0fd19addc/schema/\&quot;main\&quot;&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\dev\EFREI\Projet-Vue-Express-Fredray-21\front\src\styles\components" />
@@ -284,10 +284,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.ServerBDDService add" />
-        <item itemvalue="Jest.ServerBDDService" />
-        <item itemvalue="Jest.UserJSONService.getById" />
         <item itemvalue="Jest.UserJSONService.getById.doit renvoyer un utilisateur par son identifiant s'il existe" />
+        <item itemvalue="Jest.UserJSONService.getById" />
+        <item itemvalue="Jest.ServerBDDService" />
+        <item itemvalue="Jest.ServerBDDService add" />
         <item itemvalue="Database Script.schema_db.sql" />
       </list>
     </recent_temporary>
@@ -328,7 +328,10 @@
       <workItem from="1700495035897" duration="1996000" />
       <workItem from="1700497065624" duration="7242000" />
       <workItem from="1700520663969" duration="1238000" />
-      <workItem from="1700522663015" duration="4737000" />
+      <workItem from="1700522663015" duration="5137000" />
+      <workItem from="1700570333188" duration="1878000" />
+      <workItem from="1700649114814" duration="1200000" />
+      <workItem from="1701470738188" duration="6299000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -645,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700503745315</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="feat(front) : ad delete msg">
+      <created>1700527465665</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1700527465665</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +674,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix(front-back): ajout list Members et messages" />
     <MESSAGE value="fix(front): token dans messageList" />
     <MESSAGE value="fix(front): passage en composition api" />
     <MESSAGE value="fix(front): style de base grid HomePage" />
@@ -689,6 +698,7 @@
     <MESSAGE value="feat(front) : debut style ServerList" />
     <MESSAGE value="WIP(back) : mise en place de test (Is not a fakeBDD !!!!)" />
     <MESSAGE value="FIX(back) : link BDD" />
-    <option name="LAST_COMMIT_MESSAGE" value="FIX(back) : link BDD" />
+    <MESSAGE value="feat(front) : ad delete msg" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : ad delete msg" />
   </component>
 </project>

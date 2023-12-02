@@ -119,33 +119,73 @@
         }
 
 
-        .message-item__trash {
-          display  : none;
-          position : absolute;
-          left     : -10px;
-          top      : 0;
-          height   : 100%;
+        .message-item__options {
+          display     : flex;
+          position    : absolute;
+          left        : -30px;
+          top         : 0;
+          height      : 100%;
+          align-items : center;
 
           &-btn {
             display          : flex;
             justify-content  : center;
             align-items      : center;
-            color            : $white;
+            color            : $gray;
             font-size        : 1.1em;
             width            : 30px;
             border           : none;
             outline          : none;
             cursor           : pointer;
-            border-radius    : $global-radius 0 0 $global-radius;
             height           : 100%;
-            background-color : $red;
-
+            background-color : transparent;
           }
+
+          &-content {
+            display          : none;
+            flex-direction   : column;
+            justify-content  : center;
+            align-items      : center;
+            background-color : $color-primaryDark;
+            position         : absolute;
+            left             : -35px;
+            top              : 0;
+            opacity          : 1;
+            transition       : all .3s ease-in-out;
+            z-index          : 1;
+            height           : 100%;
+            padding          : .2em;
+            gap              : .2em;
+            box-sizing       : border-box;
+
+            &-btn {
+              display          : flex;
+              justify-content  : center;
+              align-items      : center;
+              color            : $gray;
+              font-size        : .9em;
+              width            : 30px;
+              border           : none;
+              outline          : none;
+              cursor           : pointer;
+              background-color : transparent;
+              height           : 100%;
+
+              &-del {
+                color : $red;
+              }
+            }
+
+            &-btn:hover {
+              color : $white;
+            }
+          }
+
         }
 
         &:hover {
-          .message-item__trash {
-            display : block;
+          .message-item__options-btn {
+            color : $white;
           }
         }
       }

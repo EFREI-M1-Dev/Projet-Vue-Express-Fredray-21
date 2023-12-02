@@ -37,10 +37,25 @@
           <div class="message-item__content-txt">
             {{ message.content }}
 
-            <div v-if="message.isCurrentUser" class="message-item__trash">
-              <button class="message-item__trash-btn" @click="deleteMsg(message.messageId)">
-                <font-awesome-icon :icon="'trash-can'"/>
+            <div v-if="message.isCurrentUser" class="message-item__options">
+              <button class="message-item__options-btn" :data-msgId="message.messageId"
+                      @click="toggleOptions(message.messageId)">
+                <font-awesome-icon :icon="'ellipsis'"/>
               </button>
+
+              <div v-if="message.isCurrentUser" class="message-item__options-content" :data-msgId="message.messageId">
+                <button class="message-item__options-content-btn message-item__options-content-btn-del"
+                        @click="deleteMsg(message.messageId)">
+                  <font-awesome-icon :icon="'trash'"/>
+                  del
+                </button>
+
+                <button class="message-item__options-content-btn">
+                  <font-awesome-icon :icon="'edit'"/>
+                  edit
+                </button>
+              </div>
+
             </div>
           </div>
           <div class="message-item__content-info">
@@ -236,6 +251,27 @@ const deleteMsg = async (messageId) => {
     scrollToBottom();
   }
 };
+
+const toggleOptions = (messageId) => {
+  const allBtns = document.querySelectorAll(`.message-item__options-btn`);
+  allBtns.forEach((btn) => {
+    if (Number(btn.dataset.msgid) !== messageId) {
+      btn.style.transform = 'rotate(0deg)';
+    } else {
+      btn.style.transform = btn.style.transform === 'rotate(90deg)' ? 'rotate(0deg)' : 'rotate(90deg)';
+    }
+  });
+
+  const allOptions = document.querySelectorAll(`.message-item__options-content`);
+  allOptions.forEach((option) => {
+    if (Number(option.dataset.msgid) !== messageId) {
+      option.style.display = 'none';
+    } else {
+      option.style.display = option.style.display === 'flex' ? 'none' : 'flex';
+    }
+  });
+};
+
 
 const {addKeyboardListener, removeKeyboardListener} = gestionKeyBoard(sendMsg);
 

@@ -8,16 +8,16 @@
 
 <script setup>
 
-import { ref, defineProps } from 'vue';
+import {ref, defineProps} from 'vue';
 
-const props = defineProps(['color', 'size', 'margin', 'radius']);
+const props = defineProps(['color','size', 'margin', 'radius']);
 
 const spinnerStyle = ref({
-  backgroundColor: props.color,
+  backgroundColor: props.color || '#5dc596',
   height: props.size,
   width: props.size,
-  borderRadius: props.radius,
-  margin: props.margin,
+  borderRadius: props.radius || '100%',
+  margin: props.margin || "10px",
   display: 'inline-block',
   animationName: 'spinerAnimation',
   animationDuration: '1.25s',

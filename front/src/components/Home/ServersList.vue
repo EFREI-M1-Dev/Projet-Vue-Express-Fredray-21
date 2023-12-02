@@ -10,8 +10,8 @@
           :class="{ 'server-item_selected': server.serverId === selectedServer.serverId }"
           :data-server-name="server.serverName"
       >
-        <img v-if="server.icon == null" src="/img/logo.png"/>
-        <img v-else :src="server.icon"/>
+        <img v-if="server.icon != null" src="/img/logo.png"/>
+        <img v-else src="http://fakeimg.pl/300/"/>
       </div>
     </div>
 
@@ -64,7 +64,7 @@ const selectServer = (server) => {
 
 const handleScroll = (event) => {
   const serverList = document.getElementById('server-list');
-  serverList.scrollLeft -= event.deltaY;
+  serverList.scrollLeft += event.deltaY;
 };
 
 

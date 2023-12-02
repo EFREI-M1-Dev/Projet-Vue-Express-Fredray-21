@@ -7,10 +7,14 @@
           class="member-item"
           ref="memberItems"
           @click="selectMember(member)"
+          :class="{ 'member-item_active': selectedMember && member.userId === selectedMember.userId }"
       >
         <img v-if="member.icon == null" src="/img/logo.png" class="member-item-icon" />
         <img v-else :src="member.icon"/>
-        <div class="member-item-name">{{ member.username }}</div>
+        <div class="member-item-info">
+          <span>{{ member.username }}</span>
+          <span v-if="member.bio != null" >{{member.bio}}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -20,7 +24,7 @@
 import {ref, onMounted, watch, defineProps, defineEmits} from 'vue';
 import axios from 'axios';
 
-const props = defineProps(['selectedServer']);
+const props = defineProps(['selectedServer', 'selectedMember']);
 const emit = defineEmits(['reconnect', 'memberSelected']);
 
 const members = ref([]);

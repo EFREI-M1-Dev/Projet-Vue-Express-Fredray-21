@@ -1,14 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import Login from '../views/Login.vue';
 import Home from '../views/Home.vue';
 import Register from '../views/Register.vue';
 import Reconnection from '../views/Reconnection.vue';
 
 const routes = [
-    { path: '/', component: Home },
-    { path: '/login', component: Login },
-    { path: '/register', component: Register },
-    { path: '/reconnection', component: Reconnection },
+    {path: '/', component: Home},
+    {path: '/login', component: Login},
+    {path: '/register', component: Register},
+    {path: '/reconnection', component: Reconnection},
 
     // Ajoutez d'autres routes ici
 ];
@@ -24,13 +24,12 @@ router.beforeEach((to, from, next) => {
 
     const publicPages = ['/login', '/register', '/reconnection'];
     if (!loggedIn && !publicPages.includes(to.path)) {
-        // Si l'utilisateur n'est pas logué et qu'il essaie d'accéder à une autre page que page public, redirigez-le vers la page d'accueil
+        // Si l'utilisateur n'est pas logué et qu'il essaie d'accéder à une autre page que la page publique, redirigez-le vers la page de connexion
         next('/login');
+    } else if (loggedIn && publicPages.includes(to.path)) {
+        // Si l'utilisateur est logué et qu'il essaie d'accéder à une page publique, redirigez-le vers la page d'accueil
+        next('/');
     } else {
-        if(loggedIn && publicPages.includes(to.path)) {
-            // Si l'utilisateur est logué et qu'il essaie d'accéder à la page public, redirigez-le vers la page d'accueil
-            next('/');
-        }
         // Sinon, autorisez l'accès à la page
         next();
     }

@@ -27,7 +27,21 @@
         height : 40px;
       }
 
-      &:hover {
+      &-info {
+        display         : flex;
+        justify-content : flex-start;
+        align-items     : center;
+        flex-direction  : column;
+        margin-left     : $global-spacing;
+        flex            : 1;
+
+        &-name {
+          font-size : 1.2rem;
+          font-weight : 500;
+        }
+      }
+
+      &:hover, &_active {
         background-color : rgba($color-primaryLight, 0.2);
         cursor           : pointer;
       }

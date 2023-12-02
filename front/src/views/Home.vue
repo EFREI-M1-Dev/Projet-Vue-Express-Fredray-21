@@ -22,6 +22,7 @@
       />
       <MembersList
           :selectedServer="selectedServer"
+          :selectedMember="selectedMember"
           @memberSelected="handleMemberSelected"
           @reconnect="handleReconnect"
           class="container__child--users"
@@ -30,7 +31,7 @@
   </div>
 
   <div v-else>
-    <Spinner/>
+    <Spinner :size="'25px'" />
   </div>
 </template>
 
@@ -62,6 +63,7 @@ const handleChannelSelected = (channel) => {
 };
 
 const handleMemberSelected = (member) => {
+  console.log(member);
   selectedMember.value = member;
 };
 
