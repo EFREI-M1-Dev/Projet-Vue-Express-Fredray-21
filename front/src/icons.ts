@@ -8,8 +8,9 @@ import {
     faUserPlus,
     faUsers,
     faHashtag,
-    faTrashCan,
-    faEllipsis
+    faTrash,
+    faEllipsis,
+    faPen
 } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
@@ -21,6 +22,7 @@ library.add(
     faUserPlus,
     faUsers,
     faHashtag,
-    faTrashCan,
-    faEllipsis
+    faTrash,
+    faEllipsis,
+    faPen
 )

@@ -17,9 +17,9 @@ export const gestionKeyBoard = (sendMsg) => {
         if (window.location.pathname !== "/") return;
         let element = document.getElementById("message-input") as HTMLInputElement;
         if (e.key === "Enter") {
-            e.preventDefault();
             if (element != null) {
-                if (document.activeElement !== element) {
+                if (document.activeElement.tagName.toLowerCase() !== 'input' && document.activeElement !== element) {
+                    e.preventDefault();
                     element.focus();
                 } else {
                     sendMsg();
@@ -29,7 +29,7 @@ export const gestionKeyBoard = (sendMsg) => {
 
         if (e.key.length === 1) {
             if (element != null) {
-                if (document.activeElement !== element) {
+                if (document.activeElement.tagName.toLowerCase() !== 'input' && document.activeElement !== element) {
                     element.focus();
                 }
             }

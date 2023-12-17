@@ -111,6 +111,19 @@
               border-width : 0 1em 1em 0;
               border-color : transparent transparent $color-primaryDark $color-primaryDark;
             }
+
+            &-input {
+              background-color : $color-secondary;
+              color            : $white;
+              padding          : 0 .5em;
+              margin-bottom    : .8em;
+              border-radius    : $global-radius /2;
+              font-size        : initial;
+              border           : none;
+              outline          : none;
+              width            : 100%;
+              box-sizing       : border-box;
+            }
           }
 
           &-info {

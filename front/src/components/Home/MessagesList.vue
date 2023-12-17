@@ -34,8 +34,10 @@
       >
         <img v-if="!message.isCurrentUser" src="http://fakeimg.pl/300/" alt="Avatar" class="message-item__avatar">
         <div class="message-item__content">
-          <div class="message-item__content-txt">
-            {{ message.content }}
+          <div class="message-item__content-txt" :data-msgId="message.messageId">
+            <span>
+              {{ message.content }}
+            </span>
 
             <div v-if="message.isCurrentUser" class="message-item__options">
               <button class="message-item__options-btn" :data-msgId="message.messageId"
@@ -50,8 +52,9 @@
                   del
                 </button>
 
-                <button class="message-item__options-content-btn">
-                  <font-awesome-icon :icon="'edit'"/>
+                <button class="message-item__options-content-btn"
+                        @click="editMsgToggleInput(message.messageId)">
+                  <font-awesome-icon :icon="'pen'"/>
                   edit
                 </button>
               </div>
@@ -231,14 +234,10 @@ const deleteMsg = async (messageId) => {
         `http://127.0.0.1:3000/api/message/${messageId}`, {
           headers: {
             Authorization: "Bearer " + token,
-          },
-          data: {
-            owner: {username: username},
-            content: messageInput.value.value,
-            channel: {channelId: props.selectedChannel.channelId},
-            server: {serverId: props.selectedServer.serverId},
-          },
+          }
         });
+
+    toggleOptions(-1); // close all options
   } catch (error) {
     const code = error.response ? error.response.status : null;
     if (code === 401) emit("reconnect");
@@ -246,7 +245,72 @@ const deleteMsg = async (messageId) => {
   } finally {
     if (messageInput.value) messageInput.value.value = "";
     await fetchMessages();
+    await nextTick();
+    scrollToBottom();
+  }
+};
 
+const editMsgToggleInput = async (messageId) => {
+  const msgItem = document.querySelector(`.message-item__content-txt[data-msgid="${messageId}"]`);
+  const containerSpan = msgItem.querySelector('span');
+  const inputEdit = containerSpan.querySelector('input')
+  let content = "";
+
+  if (window.localStorage.getItem('content') !== null) {
+    content = window.localStorage.getItem('content');
+  } else {
+    content = inputEdit !== null ? inputEdit.value : containerSpan.innerText;
+    window.localStorage.setItem('content', JSON.stringify({id: messageId, content: content}));
+  }
+
+  if (inputEdit === null) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = content;
+    input.classList.add('message-item__content-txt-input');
+    input.dataset.msgid = messageId;
+
+    input.addEventListener('keyup', (e) => {
+          if (e.key === 'Enter') {
+            editMsg(messageId, input.value);
+          }
+          if (e.key === 'Escape') {
+            closeEditInput(messageId);
+            toggleOptions(-1); // close all options
+          }
+        }
+    )
+    containerSpan.replaceChild(input,containerSpan.firstChild);
+    input.focus();
+  } else {
+    closeEditInput(messageId);
+    toggleOptions(-1); // close all options
+  }
+}
+
+const editMsg = async (messageId, content) => {
+  try {
+    const token = localStorage.getItem("token");
+    await axios.put(
+        `http://127.0.0.1:3000/api/message/${messageId}`,
+        {
+          content: content,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+    );
+
+    await editMsgToggleInput(messageId);
+
+  } catch (error) {
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit("reconnect");
+    console.error("Erreur lors l'edition du message:", error);
+  } finally {
+    await fetchMessages();
     await nextTick();
     scrollToBottom();
   }
@@ -260,6 +324,7 @@ const toggleOptions = (messageId) => {
     } else {
       btn.style.transform = btn.style.transform === 'rotate(90deg)' ? 'rotate(0deg)' : 'rotate(90deg)';
     }
+    closeEditInput(Number(btn.dataset.msgid));
   });
 
   const allOptions = document.querySelectorAll(`.message-item__options-content`);
@@ -271,6 +336,17 @@ const toggleOptions = (messageId) => {
     }
   });
 };
+
+const closeEditInput = (messageId) => {
+  if (window.localStorage.getItem('content') !== null && JSON.parse(window.localStorage.getItem('content')).id === messageId) {
+    const msgItem = document.querySelector(`.message-item__content-txt[data-msgid="${messageId}"]`);
+    const containerSpan = msgItem.querySelector('span');
+    containerSpan.innerText = JSON.parse(window.localStorage.getItem('content')).content;
+    window.localStorage.removeItem('content');
+  }
+}
+
+
 
 
 const {addKeyboardListener, removeKeyboardListener} = gestionKeyBoard(sendMsg);
