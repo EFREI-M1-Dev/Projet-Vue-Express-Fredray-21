@@ -1,5 +1,10 @@
 <template>
   <div id="channels-container">
+    <div id="channels-container--add">
+      <button type="button" @click="modalAddChannel = true">
+        <font-awesome-icon :icon="'plus'"/>
+      </button>
+    </div>
     <div v-if="channels.length > 0" id="channels-list">
       <div
           v-for="channel in channels"
@@ -18,6 +23,18 @@
     <div v-else>
       Aucun channels trouvé.
     </div>
+
+    <Modal v-if="modalAddChannel" :close="() => modalAddChannel = false">
+      <template v-slot:Title>
+        <span>Créer un salon</span>
+      </template>
+      <template v-slot:inputs>
+        <button type="button" @click="() => modalAddChannel = false">Cancel</button>
+        <button type="button" @click="confirm">Confirm</button>
+      </template>
+      <input type="text" placeholder="Nom du salon" v-model="channelName">
+    </Modal>
+
   </div>
 </template>
 
@@ -25,11 +42,14 @@
 import {ref, onMounted, watch, nextTick, defineProps, defineEmits} from 'vue';
 import axios from 'axios';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import Modal from '/src/components/Modal.vue';
 
 const props = defineProps(['selectedServer', 'selectedChannel']);
 const emit = defineEmits(['reconnect', 'channelSelected']);
 
 const channels = ref([]);
+const modalAddChannel = ref(false);
+const channelName = ref('');
 
 const fetchChannels = async () => {
   try {

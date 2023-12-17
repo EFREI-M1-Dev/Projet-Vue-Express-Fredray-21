@@ -31,7 +31,7 @@
   </div>
 
   <div v-else>
-    <Spinner :size="'25px'" />
+    <Spinner :size="'25px'"/>
   </div>
 </template>
 
@@ -47,6 +47,7 @@ import MessagesList from '/src/components/Home/MessagesList.vue';
 import MembersList from '/src/components/Home/MembersList.vue';
 
 import Spinner from '/src/components/Spinner.vue';
+
 
 const selectedServer = ref(null);
 const selectedChannel = ref(null);

@@ -13,12 +13,32 @@
         <img v-if="server.icon != null" src="/img/logo.png"/>
         <img v-else src="http://fakeimg.pl/300/"/>
       </div>
+
+      <div
+          class="server-item add-server"
+          @click="() => modalAddServeur = true"
+          >
+        <div class="add-server-icon">
+          <font-awesome-icon :icon="'plus'"/>
+        </div>
+      </div>
     </div>
 
     <div id="user-info">
       <h1>{{ username }}</h1>
       <img src="http://fakeimg.pl/300/"/>
     </div>
+
+    <Modal v-if="modalAddServeur" :close="() => modalAddServeur = false">
+      <template v-slot:Title>
+        <span>Créer un serveur</span>
+      </template>
+      <template v-slot:inputs>
+        <button type="button" @click="() => modalAddServeur = false">Cancel</button>
+        <button type="button" @click="confirm">Confirm</button>
+      </template>
+      <input type="text" placeholder="Nom du serveur" v-model="serveurName">
+    </Modal>
   </div>
 </template>
 
@@ -26,6 +46,11 @@
 import {ref, onMounted, nextTick} from 'vue';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import Modal from '/src/components/Modal.vue';
+
+const modalAddServeur = ref(false);
+const serveurName = ref('');
 
 const props = defineProps({
   selectedServer: {
