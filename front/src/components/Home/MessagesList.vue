@@ -182,10 +182,7 @@ const updateServerName = () => {
 };
 
 const updateChannelName = () => {
-  channelName.value = props.selectedChannel ? props.selectedChannel.channelName : null;
-  if (!channelName.value) emit('reconnect');
-
-  if (!channelName.value) console.log(props.selectedChannel);
+  channelName.value = props.selectedChannel ? props.selectedChannel.channelName : "";
 };
 
 const decodedToken = jwt.decode(token);

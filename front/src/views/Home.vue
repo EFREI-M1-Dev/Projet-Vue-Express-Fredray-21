@@ -107,10 +107,13 @@ const getFirstChannel = async () => {
         Authorization: 'Bearer ' + token,
       },
     });
-    handleChannelSelected(response.data);
+
+    if(response.data) handleChannelSelected(response.data);
   } catch (error) {
     const code = error.response ? error.response.status : null;
     if (code === 401) handleReconnect();
+    if (code === 500) handleChannelSelected(null);
+
   } finally {
     isPageReady.value = true;
   }

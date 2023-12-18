@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { ChannelController } from './ChannelController';
+import {verifyTokenMiddleware} from '../infrastructure/auth/authUtils';
 
 export class ChannelRouter {
     router = Router();
@@ -11,7 +12,7 @@ export class ChannelRouter {
     private configureRoutes(): void {
 
         // all
-        this.router.get('/', async (req, res, next) => {
+        this.router.get('/', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.channelController.getAll();
                 res.status(200).json(result);
@@ -21,7 +22,7 @@ export class ChannelRouter {
         });
 
         // get
-        this.router.get('/:id', async (req, res, next) => {
+        this.router.get('/:id', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.channelController.getById(Number(req.params.id));
                 res.status(200).json(result);
@@ -31,7 +32,7 @@ export class ChannelRouter {
         });
 
         // add
-        this.router.post('/', async (req, res, next) => {
+        this.router.post('/', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.channelController.add(
                     req.body.channelName,
@@ -45,7 +46,7 @@ export class ChannelRouter {
         });
 
         // update
-        this.router.put('/:id', async (req, res, next) => {
+        this.router.put('/:id', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.channelController.update(
                     Number(req.params.id),
@@ -59,7 +60,7 @@ export class ChannelRouter {
         });
 
         // delete
-        this.router.delete('/:id', async (req, res, next) => {
+        this.router.delete('/:id', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.channelController.remove(Number(req.params.id));
                 res.status(200).json(result);
@@ -70,7 +71,7 @@ export class ChannelRouter {
 
 
         // get channel by server
-        this.router.get('/server/:id', async (req, res, next) => {
+        this.router.get('/server/:id', verifyTokenMiddleware, async (req, res, next) => {
             try {
                 const result = await this.channelController.getByServer(Number(req.params.id));
                 res.status(200).json(result);

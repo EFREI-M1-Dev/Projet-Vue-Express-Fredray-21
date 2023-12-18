@@ -12,7 +12,7 @@
           class="channel-item"
           ref="channelItems"
           @click="selectChannel(channel)"
-          :class="{ 'channel-item_selected': channel.channelId === selectedChannel.channelId }"
+          :class="{ 'channel-item_selected': selectedChannel && channel.channelId === selectedChannel.channelId}"
       >
         <div class="channel-item__icon">
           <font-awesome-icon :icon="'hashtag'"/>
@@ -30,7 +30,7 @@
       </template>
       <template v-slot:inputs>
         <button type="button" @click="() => modalAddChannel = false">Cancel</button>
-        <button type="button" @click="confirm">Confirm</button>
+        <button type="button" @click="addChannel()">Confirm</button>
       </template>
       <input type="text" placeholder="Nom du salon" v-model="channelName">
     </Modal>
@@ -43,6 +43,7 @@ import {ref, onMounted, watch, nextTick, defineProps, defineEmits} from 'vue';
 import axios from 'axios';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Modal from '/src/components/Modal.vue';
+import jwt from 'jsonwebtoken';
 
 const props = defineProps(['selectedServer', 'selectedChannel']);
 const emit = defineEmits(['reconnect', 'channelSelected']);
@@ -50,12 +51,17 @@ const emit = defineEmits(['reconnect', 'channelSelected']);
 const channels = ref([]);
 const modalAddChannel = ref(false);
 const channelName = ref('');
+const token = localStorage.getItem("token");
 
 const fetchChannels = async () => {
   try {
     if (!props.selectedServer) return;
 
-    const response = await axios.get(`http://127.0.0.1:3000/api/channel/server/${props.selectedServer.serverId}`);
+    const response = await axios.get(`http://127.0.0.1:3000/api/channel/server/${props.selectedServer.serverId}`, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
     channels.value = response.data;
 
     nextTick(() => {
@@ -87,6 +93,38 @@ const handleElements = () => {
 const selectChannel = (channel) => {
   emit('channelSelected', channel);
 };
+
+
+const addChannel = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt.decode(token);
+    // Si le token n'est pas valide, rediriger vers la page de reconnexion
+    if (!decodedToken) emit('reconnect');
+
+    await axios.post(`http://127.0.0.1:3000/api/channel/`,
+        {
+          channelName: channelName.value,
+          server: props.selectedServer,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          }
+        }).then((response) => {
+      selectChannel(response.data)
+    })
+
+  } catch (error) {
+    console.error('Erreur lors de la création du channel', error);
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit('reconnect');
+  } finally {
+    modalAddChannel.value = false;
+    await fetchChannels();
+  }
+};
+
 
 onMounted(fetchChannels);
 watch(() => props.selectedServer, () => {

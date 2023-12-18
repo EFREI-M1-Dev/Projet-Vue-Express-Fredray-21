@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : gestion du edit Msg">
-      <change afterPath="$PROJECT_DIR$/front/src/components/Modal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/styles/components/_modal.scss" afterDir="false" />
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : creation component Modal et start implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/channel/ChannelRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/channel/ChannelRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/icons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/icons.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_serversList.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -330,7 +327,8 @@
       <workItem from="1700570333188" duration="1878000" />
       <workItem from="1700649114814" duration="1200000" />
       <workItem from="1701470738188" duration="6482000" />
-      <workItem from="1702815517997" duration="11772000" />
+      <workItem from="1702815517997" duration="11946000" />
+      <workItem from="1702933014383" duration="3842000" />
     </task>
     <task id="LOCAL-00001" summary="feat(all): create template project vue">
       <created>1698767174923</created>
@@ -668,7 +666,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702828061483</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="feat(front) : creation component Modal et start implementation">
+      <created>1702832701546</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1702832701546</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,7 +692,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix(front): style de base grid HomePage" />
     <MESSAGE value="fix(front): minimal edsign Channel et design Messages" />
     <MESSAGE value="fix(front-back): ADD MSG (by username)" />
     <MESSAGE value="fix(front): gestion des erreurs / reconnection" />
@@ -712,6 +716,7 @@
     <MESSAGE value="feat(front) : ad delete msg" />
     <MESSAGE value="feat(front) : msgList(style du del/edit) &amp;&amp; debut style members" />
     <MESSAGE value="feat(front) : gestion du edit Msg" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : gestion du edit Msg" />
+    <MESSAGE value="feat(front) : creation component Modal et start implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : creation component Modal et start implementation" />
   </component>
 </project>

@@ -14,16 +14,20 @@ export class ServerBDDService implements ServerService {
         const userService = new UserBDDService();
 
         try {
+            const ownerFormated = await userService.findUserByUsername(owner.username);
+            if (!ownerFormated) throw new Error('Owner not found');
             const creationDate = new Date().getTime();
             const statement = db.prepare('INSERT INTO servers (serverName, description, owner, creationDate) VALUES (?, ?, ?, ?)');
-            const info = statement.run(serverName, description, owner.userId, creationDate);
+            const info = statement.run(serverName, description, ownerFormated.getId(), creationDate);
             if (info.changes !== 1) throw new Error('Failed to insert server');
             const serverId = Number(info.lastInsertRowid);
-
-            const ownerFormated = await userService.getById(owner.userId);
-            if (!ownerFormated) throw new Error('Owner not found');
             const server = await this.getById(serverId);
             if (!server) throw new Error('Server not found');
+
+            const statement2 = db.prepare('INSERT INTO memberships (userId, serverId) VALUES (?, ?)');
+            const info2 = statement2.run(ownerFormated.getId(), server.getId());
+            if (info2.changes !== 1) throw new Error('Failed to insert membership');
+
             return server;
         } finally {
             db.close();

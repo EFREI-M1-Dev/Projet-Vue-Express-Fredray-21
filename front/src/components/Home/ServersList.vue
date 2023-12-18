@@ -17,7 +17,7 @@
       <div
           class="server-item add-server"
           @click="() => modalAddServeur = true"
-          >
+      >
         <div class="add-server-icon">
           <font-awesome-icon :icon="'plus'"/>
         </div>
@@ -35,7 +35,7 @@
       </template>
       <template v-slot:inputs>
         <button type="button" @click="() => modalAddServeur = false">Cancel</button>
-        <button type="button" @click="confirm">Confirm</button>
+        <button type="button" @click="createServer()">Confirm</button>
       </template>
       <input type="text" placeholder="Nom du serveur" v-model="serveurName">
     </Modal>
@@ -92,12 +92,34 @@ const handleScroll = (event) => {
   serverList.scrollLeft += event.deltaY;
 };
 
-
 const token = localStorage.getItem('token');
 const decodedToken = jwt.decode(token);
 if (!decodedToken) emit('reconnect');
 const username = decodedToken?.username ?? null;
 if (!username) emit('reconnect');
+
+const createServer = async () => {
+  try {
+    await axios.post(`http://127.0.0.1:3000/api/server/`,
+        {
+          serverName: serveurName.value,
+          owner: {username: username},
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        }).then((response) => {
+      selectServer(response.data);
+    });
+  } catch (error) {
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit('reconnect');
+  } finally {
+    modalAddServeur.value = false;
+    await fetchServers();
+  }
+};
 
 onMounted(() => {
   fetchServers();
