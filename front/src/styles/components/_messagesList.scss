@@ -117,7 +117,7 @@
               color            : $white;
               padding          : 0 .5em;
               margin-bottom    : .8em;
-              border-radius    : $global-radius /2;
+              border-radius    : calc($global-radius / 2);
               font-size        : initial;
               border           : none;
               outline          : none;

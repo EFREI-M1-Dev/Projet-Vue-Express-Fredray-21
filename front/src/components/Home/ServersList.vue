@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted, nextTick} from 'vue';
+import {ref, onMounted, watch} from 'vue';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
@@ -124,6 +124,11 @@ const createServer = async () => {
 onMounted(() => {
   fetchServers();
 });
+
+watch(() => props.selectedServer, async () => {
+  await fetchServers();
+});
+
 </script>
 
 <style lang="scss">

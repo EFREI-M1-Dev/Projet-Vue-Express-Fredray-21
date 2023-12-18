@@ -17,7 +17,7 @@
         <button class="container-info-server__btns-btn">
           <font-awesome-icon :icon="'user-plus'"/>
         </button>
-        <button class="container-info-server__btns-btn">
+        <button class="container-info-server__btns-btn" @click="() => modalOptionIsOpen = true">
           <font-awesome-icon :icon="'cog'"/>
         </button>
         <button class="container-info-server__btns-btn">
@@ -65,8 +65,6 @@
             <span>{{ message.owner.username }}</span>
             <span>{{ formatMessageDate(message.creationDate) }}</span>
           </div>
-
-
         </div>
         <img v-if="message.isCurrentUser" src="http://fakeimg.pl/300/" alt="Avatar" class="message-item__avatar">
       </div>
@@ -83,6 +81,32 @@
         <font-awesome-icon :icon="'paper-plane'"/>
       </button>
     </div>
+
+
+    <Modal v-if="modalOptionIsOpen" :close="() => modalOptionIsOpen = false">
+      <template v-slot:Title>
+        <span>Gestion du serveur</span>
+      </template>
+
+      <input type="text" placeholder="Nom du serveur" :disabled="inputEditIsDisabled" v-model="inputEditServerName">
+      <button @click="() => inputEditIsDisabled = false" v-if="inputEditIsDisabled">Modifier le nom du serveur</button>
+      <div v-else>
+        <button
+            @click="() => {
+                  inputEditIsDisabled = true;
+                  inputEditServerName = serverName;
+                }">Annuler
+        </button>
+        <button @click="() => updateServerName()">Confirmer la modification</button>
+      </div>
+
+      <div>
+        <input type="email" placeholder="Email pour confirmer la suppression du serveur">
+        <button @click="() => deleteServeur()">
+          SUPPRIMER LE SERVEUR
+        </button>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -92,9 +116,10 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import {gestionKeyBoard} from '/src/script/gestionKeyBoard';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import Modal from '/src/components/Modal.vue';
 
 const props = defineProps(['selectedServer', 'selectedChannel']);
-const emit = defineEmits(['reconnect']);
+const emit = defineEmits(['reconnect', 'selectFirstServer']);
 
 const messages = ref([]);
 const serverName = ref(null);
@@ -103,6 +128,10 @@ const channelName = ref('');
 
 const messagesList = ref(null);
 const messageInput = ref(null);
+
+const modalOptionIsOpen = ref(false);
+const inputEditIsDisabled = ref(true);
+const inputEditServerName = ref('');
 
 const scrollToBottom = () => {
   const messagesListRef = messagesList.value;
@@ -176,8 +205,9 @@ const fetchNbUsers = async () => {
   }
 };
 
-const updateServerName = () => {
+const setServerName = () => {
   serverName.value = props.selectedServer ? props.selectedServer.serverName : null;
+  inputEditServerName.value = props.selectedServer ? props.selectedServer.serverName : null;
   if (!serverName.value) emit('reconnect');
 };
 
@@ -277,7 +307,7 @@ const editMsgToggleInput = async (messageId) => {
           }
         }
     )
-    containerSpan.replaceChild(input,containerSpan.firstChild);
+    containerSpan.replaceChild(input, containerSpan.firstChild);
     input.focus();
   } else {
     closeEditInput(messageId);
@@ -343,14 +373,58 @@ const closeEditInput = (messageId) => {
   }
 }
 
+const openModalOption = () => {
+};
 
+
+const updateServerName = async () => {
+  try {
+    await axios.put(`http://localhost:3000/api/server/${props.selectedServer.serverId}`, {
+      serverName: inputEditServerName.value,
+      description: props.selectedServer.description,
+    }, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
+
+    serverName.value = inputEditServerName.value;
+    inputEditIsDisabled.value = true;
+
+
+  } catch (error) {
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit('reconnect');
+    console.error('Erreur lors de la récupération des channels', error);
+  } finally {
+    props.selectedServer.serverName = serverName.value;
+  }
+}
+
+const deleteServeur = async () => {
+  try {
+    await axios.delete(`http://localhost:3000/api/server/${props.selectedServer.serverId}`, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
+    emit('selectFirstServer')
+    modalOptionIsOpen.value = false;
+    inputEditIsDisabled.value = true;
+
+  } catch (error) {
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit('reconnect');
+    console.error('Erreur lors de la récupération des channels', error);
+  }
+}
 
 
 const {addKeyboardListener, removeKeyboardListener} = gestionKeyBoard(sendMsg);
 
 onMounted(() => {
   fetchMessages();
-  updateServerName();
+  setServerName();
   fetchNbUsers();
   updateChannelName();
   addKeyboardListener();
@@ -361,7 +435,7 @@ onBeforeUnmount(() => {
 });
 
 watch(() => props.selectedServer, async () => {
-  updateServerName();
+  await setServerName();
   await fetchNbUsers();
   await fetchMessages();
 });

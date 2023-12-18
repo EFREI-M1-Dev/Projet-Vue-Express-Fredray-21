@@ -18,6 +18,7 @@
           :selectedServer="selectedServer"
           :selectedChannel="selectedChannel"
           @reconnect="handleReconnect"
+          @selectFirstServer="getFirstServer"
           class="container__child--chat"
       />
       <MembersList
@@ -64,9 +65,9 @@ const handleChannelSelected = (channel) => {
 };
 
 const handleMemberSelected = (member) => {
-  console.log(member);
   selectedMember.value = member;
 };
+
 
 const handleLogout = () => {
   window.localStorage.removeItem('token');

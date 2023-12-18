@@ -38,17 +38,18 @@ CREATE TABLE Messages
     owner        INT REFERENCES Users (userId),
     content      TEXT,
     serverId     INT REFERENCES Servers (serverId),
-    channelId    INT REFERENCES Channels (channelId)
+    channelId    INT REFERENCES Channels (channelId),
 );
 
 -- Création de la table "Memberships"
 CREATE TABLE Memberships
 (
-    serverId    INT REFERENCES Servers (serverId),
-    userId      INT REFERENCES Users (userId),
+    serverId    INT REFERENCES Servers (serverId) ON DELETE CASCADE,
+    userId      INT REFERENCES Users (userId) ON DELETE CASCADE,
     joiningDate TIMESTAMP,
     PRIMARY KEY (serverId, userId)
 );
+
 
 -- Si possible :
 
