@@ -29,5 +29,5 @@ Ici on lance les deux projets (client et serveur) en parallèle.
 npm run start
 ```
 
-## Auteurs
+## Auteur
 - [**Fredray-21**](https://github.com/Fredray-21)
