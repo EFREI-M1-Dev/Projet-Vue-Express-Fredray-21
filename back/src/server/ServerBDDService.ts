@@ -6,6 +6,7 @@ import {openConnection} from "../../db";
 import {User, UserData} from '../user/User';
 import {UserBDDService} from '../user/UserBDDService';
 import { Channel, ChannelData } from '../channel/Channel';
+import path from 'path';
 
 export class ServerBDDService implements ServerService {
 
@@ -34,11 +35,11 @@ export class ServerBDDService implements ServerService {
         }
     }
 
-    async update(id: number, serverName: string, description: string | null): Promise<Server> {
+    async update(id: number, serverName: string, description: string | null, imageUrl: string | null): Promise<Server> {
         const db = openConnection();
         try {
-            const statement = db.prepare('UPDATE servers SET serverName = ?, description = ? WHERE serverId = ?');
-            const info = statement.run(serverName, description, id);
+            const statement = db.prepare('UPDATE servers SET serverName = ?, description = ?, imageUrl = ? WHERE serverId = ?');
+            const info = statement.run(serverName, description, imageUrl, id);
             if (info.changes !== 1) throw new Error('Failed to update server');
             const server = await this.getById(id);
             if (!server) throw new Error('Server not found');
@@ -72,7 +73,7 @@ export class ServerBDDService implements ServerService {
 
                 const owner = await userService.getById(typedRow.owner); // Utilisez await ici
                 if (!owner) throw new Error('Owner not found');
-                servers.push(new Server(typedRow.serverId, owner, typedRow.creationDate, typedRow.serverName, typedRow.description));
+                servers.push(new Server(typedRow.serverId, owner, typedRow.creationDate, typedRow.serverName, typedRow.description, typedRow.imageUrl));
             }
 
             return servers;
@@ -93,7 +94,7 @@ export class ServerBDDService implements ServerService {
             const userService = new UserBDDService();
             const owner = await userService.getById(typedResult.owner); // Utilisez await ici
             if (!owner) throw new Error('Owner not found');
-            return new Server(typedResult.serverId, owner, typedResult.creationDate, typedResult.serverName, typedResult.description);
+            return new Server(typedResult.serverId, owner, typedResult.creationDate, typedResult.serverName, typedResult.description, typedResult.imageUrl);
         } finally {
             db.close();
         }
@@ -154,4 +155,25 @@ export class ServerBDDService implements ServerService {
         }
     }
 
+    async uploadImage(id: number, image: string, imageName: string): Promise<boolean> {
+            try {
+                const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
+                const buffer = Buffer.from(base64Data, 'base64');
+                const folderPath = 'public/images/';
+
+                if (!fs.existsSync(folderPath)) {
+                    fs.mkdirSync(folderPath, { recursive: true });
+                }
+
+                const filePath = path.join(folderPath, imageName);
+
+                fs.writeFileSync(filePath, buffer);
+
+                return true;
+            } catch (error) {
+                console.error('Erreur lors de l\'upload de l\'image:', error);
+                throw new Error('Erreur lors de l\'upload de l\'image');
+                return false;
+            }
+    }
 }

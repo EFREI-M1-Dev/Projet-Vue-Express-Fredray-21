@@ -17,7 +17,7 @@
         <button class="container-info-server__btns-btn">
           <font-awesome-icon :icon="'user-plus'"/>
         </button>
-        <button class="container-info-server__btns-btn" @click="() => modalOptionIsOpen = true">
+        <button class="container-info-server__btns-btn" @click="openModalOption">
           <font-awesome-icon :icon="'cog'"/>
         </button>
         <button class="container-info-server__btns-btn">
@@ -83,26 +83,48 @@
     </div>
 
 
-    <Modal v-if="modalOptionIsOpen" :close="() => modalOptionIsOpen = false">
+    <Modal v-if="modalOptionIsOpen" :close="closeModalOption">
       <template v-slot:Title>
         <span>Gestion du serveur</span>
       </template>
 
-      <input type="text" placeholder="Nom du serveur" :disabled="inputEditIsDisabled" v-model="inputEditServerName">
-      <button @click="() => inputEditIsDisabled = false" v-if="inputEditIsDisabled">Modifier le nom du serveur</button>
-      <div v-else>
-        <button
-            @click="() => {
+      <div>
+        <input type="text" placeholder="Nom du serveur" :disabled="inputEditIsDisabled" v-model="inputEditServerName">
+        <button @click="() => inputEditIsDisabled = false" v-if="inputEditIsDisabled">Modifier le nom du serveur
+        </button>
+        <div v-else>
+          <button
+              @click="() => {
                   inputEditIsDisabled = true;
                   inputEditServerName = serverName;
                 }">Annuler
+          </button>
+          <button @click="updateServerName">Confirmer la modification</button>
+        </div>
+      </div>
+
+      <div>
+        <span>Image du serveur</span>
+        <input id='upPicture' type='file' @change='onPictureChange' accept='image/*' style='display: none'/>
+        <label for='upPicture' class='label'>
+          <img :key="image" class='popin__content__img' :src='image' v-if='image'
+               :style="{width: '100px', height: '100px'}"/>
+          <div class='picture__add' v-else>
+            <FontAwesomeIcon :icon="'plus'"/>
+          </div>
+        </label>
+        <div class='picture__remove' @click='removePictureView' v-if='image' title="Supprimer l'image">
+          <FontAwesomeIcon :icon="'times'"/>
+        </div>
+
+        <button @click="updateImageServer">
+          CONFIRMER LA MODIFICATION DE L'IMAGE
         </button>
-        <button @click="() => updateServerName()">Confirmer la modification</button>
       </div>
 
       <div>
         <input type="email" placeholder="Email pour confirmer la suppression du serveur">
-        <button @click="() => deleteServeur()">
+        <button @click="deleteServeur">
           SUPPRIMER LE SERVEUR
         </button>
       </div>
@@ -132,6 +154,75 @@ const messageInput = ref(null);
 const modalOptionIsOpen = ref(false);
 const inputEditIsDisabled = ref(true);
 const inputEditServerName = ref('');
+
+const image = ref('');
+const imageUrl = ref('');
+
+const openModalOption = () => {
+  modalOptionIsOpen.value = true;
+  image.value = `http://localhost:3000/images/${props.selectedServer.imageUrl}`;
+
+};
+
+const closeModalOption = () => {
+  modalOptionIsOpen.value = false;
+};
+
+const onPictureChange = (event) => {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => {
+    image.value = reader.result;
+  };
+
+  // Réinitialise la valeur de l'input pour déclencher le changement la prochaine fois
+  event.target.value = null;
+};
+const removePictureView = () => {
+  image.value = '';
+};
+
+const updateImageServer = async () => {
+  try {
+    imageUrl.value = 'img-' + serverName.value.replace(/\s/g, '-').toLowerCase() + '-' + Date.now() + '.png';
+
+    const result = await axios.post(`http://localhost:3000/api/server/upload`, {
+      serverId: props.selectedServer.serverId,
+      image: image.value,
+      imageUrl: imageUrl.value
+    }, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
+
+    if (result) {
+      await axios.put(`http://localhost:3000/api/server/${props.selectedServer.serverId}`, {
+        serverName: props.selectedServer.serverName,
+        description: props.selectedServer.description,
+        imageUrl: imageUrl.value
+      }, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      }).then(() => {
+
+      });
+    } else {
+      imageUrl.value = null;
+    }
+
+  } catch (error) {
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit('reconnect');
+    console.error('Erreur de l\'upload de l\'image', error);
+    imageUrl.value = null;
+  } finally {
+    modalOptionIsOpen.value = false;
+    props.selectedServer.imageUrl = imageUrl.value;
+  }
+}
 
 const scrollToBottom = () => {
   const messagesListRef = messagesList.value;
@@ -373,10 +464,6 @@ const closeEditInput = (messageId) => {
   }
 }
 
-const openModalOption = () => {
-};
-
-
 const updateServerName = async () => {
   try {
     await axios.put(`http://localhost:3000/api/server/${props.selectedServer.serverId}`, {
@@ -390,7 +477,6 @@ const updateServerName = async () => {
 
     serverName.value = inputEditServerName.value;
     inputEditIsDisabled.value = true;
-
 
   } catch (error) {
     const code = error.response ? error.response.status : null;

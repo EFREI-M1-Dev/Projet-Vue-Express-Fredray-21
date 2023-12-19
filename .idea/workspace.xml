@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front) : edit serveurName &amp;&amp; delete serveur">
+    <list default="true" id="33532fab-5a6e-475a-9189-d69d4dbb4fc1" name="Changes" comment="feat(front-channel) : edit channelName &amp;&amp; delete channel">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/expressChat.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/expressChat.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ChannelsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/styles/components/_channelsList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/components/_channelsList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/infrastructure/express-server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/infrastructure/express-server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/Server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/Server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/server/ServerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/server/ServerService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/user/UserBDDService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/MessagesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Home/ServersList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/icons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/icons.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,14 +337,7 @@
       <workItem from="1701470738188" duration="6482000" />
       <workItem from="1702815517997" duration="11946000" />
       <workItem from="1702933014383" duration="9110000" />
-      <workItem from="1703019109816" duration="2330000" />
-    </task>
-    <task id="LOCAL-00003" summary="feat(readme): ajout readme setup / start">
-      <created>1698832846364</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1698832846364</updated>
+      <workItem from="1703019109816" duration="9926000" />
     </task>
     <task id="LOCAL-00004" summary="feat(back): ajout schema BDD">
       <created>1698835674990</created>
@@ -672,7 +675,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702941739766</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="feat(front-channel) : edit channelName &amp;&amp; delete channel">
+      <created>1703021501898</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1703021501899</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,7 +701,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="fix(front): gestion des erreurs / reconnection" />
     <MESSAGE value="fix(front): style global auth et button" />
     <MESSAGE value="fix(front): composant bubbles" />
     <MESSAGE value="fix(front-back): gestion des etats entre changement des server/channel" />
@@ -716,6 +725,7 @@
     <MESSAGE value="feat(front) : creation component Modal et start implementation" />
     <MESSAGE value="feat(front) : create channel &amp;&amp; create server" />
     <MESSAGE value="feat(front) : edit serveurName &amp;&amp; delete serveur" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front) : edit serveurName &amp;&amp; delete serveur" />
+    <MESSAGE value="feat(front-channel) : edit channelName &amp;&amp; delete channel" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front-channel) : edit channelName &amp;&amp; delete channel" />
   </component>
 </project>

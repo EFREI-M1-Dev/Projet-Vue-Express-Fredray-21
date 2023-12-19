@@ -5,3 +5,5 @@ back/node_modules
 # Ignore env files
 back/.env
 
+back/public/images/
+

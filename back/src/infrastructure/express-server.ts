@@ -3,6 +3,7 @@ import {ExpressRouter} from './express-router';
 import cors from 'cors';
 import session from 'express-session';
 import passport from './auth/express-auth'
+import path from 'path';
 
 export class ExpressServer {
     private express = express();
@@ -13,6 +14,7 @@ export class ExpressServer {
     ) {
         this.setupMiddleware();
         this.configureRoutes();
+        this.configureStaticFiles();
     }
 
     bootstrap(): void {
@@ -51,5 +53,10 @@ export class ExpressServer {
                 saveUninitialized: false,
             })
         );
+    }
+
+    private configureStaticFiles(): void {
+        const imagesPath = path.resolve(__dirname, '../../public/images');
+        this.express.use('/images', express.static(imagesPath));
     }
 }

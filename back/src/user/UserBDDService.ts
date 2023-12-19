@@ -108,7 +108,7 @@ export class UserBDDService implements UserService {
 
                 const owner = await userService.getById(typedRow.owner);
                 if (!owner) throw new Error('Owner not found');
-                servers.push(new Server(typedRow.serverId, owner, typedRow.creationDate, typedRow.serverName, typedRow.description));
+                servers.push(new Server(typedRow.serverId, owner, typedRow.creationDate, typedRow.serverName, typedRow.description, typedRow.imageUrl));
             }
 
             return servers;
@@ -132,7 +132,7 @@ export class UserBDDService implements UserService {
 
             const owner = await userService.getById(typedRow.owner);
             if (!owner) throw new Error('Owner not found');
-            return new Server(typedRow.serverId, owner, typedRow.creationDate, typedRow.serverName, typedRow.description);
+            return new Server(typedRow.serverId, owner, typedRow.creationDate, typedRow.serverName, typedRow.description, typedRow.imageUrl);
         } finally {
             db.close();
         }

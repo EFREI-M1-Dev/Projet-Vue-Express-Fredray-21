@@ -7,10 +7,10 @@
           class="server-item"
           ref="serverItems"
           @click="selectServer(server)"
-          :class="{ 'server-item_selected': server.serverId === selectedServer.serverId }"
+          :class="{'server-item_selected': server.serverId === selectedServer.serverId }"
           :data-server-name="server.serverName"
       >
-        <img v-if="server.icon != null" src="/img/logo.png"/>
+        <img v-if="server.imageUrl != null" :src="'http://localhost:3000/images/' + server.imageUrl" />
         <img v-else src="http://fakeimg.pl/300/"/>
       </div>
 
@@ -67,7 +67,6 @@ const fetchServers = async () => {
   try {
     const token = localStorage.getItem('token');
     const decodedToken = jwt.decode(token);
-    // Si le token n'est pas valide, rediriger vers la page de reconnexion
     if (!decodedToken) emit('reconnect');
 
     const response = await axios.get(`http://127.0.0.1:3000/api/user/${decodedToken.username}/servers`, {
@@ -100,6 +99,7 @@ if (!username) emit('reconnect');
 
 const createServer = async () => {
   try {
+    if (!serveurName.value || serveurName.value.trim() === '') return;
     await axios.post(`http://127.0.0.1:3000/api/server/`,
         {
           serverName: serveurName.value,
@@ -126,6 +126,10 @@ onMounted(() => {
 });
 
 watch(() => props.selectedServer, async () => {
+  await fetchServers();
+});
+
+watch(() => props.selectedServer.imageUrl, async () => {
   await fetchServers();
 });
 

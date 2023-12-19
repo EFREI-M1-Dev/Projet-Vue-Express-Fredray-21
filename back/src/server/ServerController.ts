@@ -10,8 +10,8 @@ export class ServerController {
         return await this.serverService.add(serverName, description, owner);
     }
 
-    async update(id: number, serverName: string, description: string | null): Promise<Server> {
-        return await this.serverService.update(id, serverName, description);
+    async update(id: number, serverName: string, description: string | null, imageUrl:string | null): Promise<Server> {
+        return await this.serverService.update(id, serverName, description, imageUrl);
     }
 
     async getById(id: number): Promise<Server | null> {
@@ -36,6 +36,14 @@ export class ServerController {
 
     async getFirstChannelByServer(id: number): Promise<Channel> {
         return await this.serverService.getFirstChannelByServer(id);
+    }
+
+
+    async uploadImage(id: number, image: string, imageName: string): Promise<boolean> {
+        if (image !== image.trim()) throw new Error("L'image ne peut pas être vide");
+        if (imageName !== imageName.trim()) throw new Error("Le nom de l'image ne peut pas être vide");
+        if (imageName.length > 255) throw new Error("Le nom de l'image ne peut pas dépasser 255 caractères");
+        return await this.serverService.uploadImage(id, image, imageName);
     }
 
 }

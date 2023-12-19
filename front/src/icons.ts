@@ -11,7 +11,8 @@ import {
     faTrash,
     faEllipsis,
     faPen,
-    faPlus
+    faPlus,
+    faTimes
 } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
@@ -26,5 +27,6 @@ library.add(
     faTrash,
     faEllipsis,
     faPen,
-    faPlus
+    faPlus,
+    faTimes
 )

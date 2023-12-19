@@ -84,7 +84,8 @@ export class ServerRouter {
                 const result = await this.serverController.update(
                     Number(req.params.id),
                     req.body.serverName,
-                    req.body.description
+                    req.body.description,
+                    req.body.imageUrl
                 );
                 res.status(200).json(result);
             } catch (error: unknown) {
@@ -96,6 +97,17 @@ export class ServerRouter {
         this.router.delete('/:id', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await this.serverController.remove(Number(req.params.id));
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
+
+        // upload image
+        this.router.post('/upload', verifyTokenMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const result = await this.serverController.uploadImage(req.body.serverId, req.body.image, req.body.imageUrl);
                 res.status(200).json(result);
             } catch (error: unknown) {
                 next(error);

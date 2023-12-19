@@ -6,6 +6,7 @@ export interface ServerData {
     creationDate: Date;
     serverName: string;
     description: string;
+    imageUrl: string;
 }
 
 export class Server {
@@ -14,7 +15,8 @@ export class Server {
         private owner: User,
         private creationDate: Date,
         private serverName: string,
-        private description: string
+        private description: string,
+        private imageUrl: string
     ) {
     }
 
@@ -36,5 +38,9 @@ export class Server {
 
     getDescription(): string {
         return this.description;
+    }
+
+    getImageUrl(): string {
+        return this.imageUrl;
     }
 }

@@ -12,11 +12,9 @@
 <script>
 export default {
   name: 'App',
-  components: {
-  },
+  components: {},
   setup() {
-    return {
-    };
+    return {};
   },
 }
 </script>
