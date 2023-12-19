@@ -1,7 +1,7 @@
 <template>
   <div id="channels-container">
     <div id="channels-container--add">
-      <button type="button" @click="modalAddChannel = true">
+      <button type="button" @click="openModalAddChannel">
         <font-awesome-icon :icon="'plus'"/>
       </button>
     </div>
@@ -16,6 +16,12 @@
       >
         <div class="channel-item__icon">
           <font-awesome-icon :icon="'hashtag'"/>
+
+          <button type="button" class="channel-item__icon__close"
+                  v-if="selectedChannel && channel.channelId === selectedChannel.channelId"
+                  @click="openModalEditChannel">
+            <font-awesome-icon :icon="'pen'"/>
+          </button>
         </div>
         <span class="channel-item__name">{{ channel.channelName }}</span>
       </div>
@@ -24,13 +30,25 @@
       Aucun channels trouvé.
     </div>
 
-    <Modal v-if="modalAddChannel" :close="() => modalAddChannel = false">
+    <Modal v-if="modalAddChannel" :close="closeModalAddChannel">
       <template v-slot:Title>
         <span>Créer un salon</span>
       </template>
       <template v-slot:inputs>
-        <button type="button" @click="() => modalAddChannel = false">Cancel</button>
+        <button type="button" @click="closeModalAddChannel">Cancel</button>
         <button type="button" @click="addChannel()">Confirm</button>
+      </template>
+      <input type="text" placeholder="Nom du salon" v-model="channelName">
+    </Modal>
+
+    <Modal v-if="modalEditChannel" :close="closeModalEditChannel">
+      <template v-slot:Title>
+        <span>Modifier le salon #{{ selectedChannel.channelName }}</span>
+      </template>
+      <template v-slot:inputs>
+        <button type="button" @click="deleteChannel">Delete channel</button>
+        <button type="button" @click="closeModalEditChannel">Cancel</button>
+        <button type="button" @click="editChannel">Confirm</button>
       </template>
       <input type="text" placeholder="Nom du salon" v-model="channelName">
     </Modal>
@@ -52,6 +70,26 @@ const channels = ref([]);
 const modalAddChannel = ref(false);
 const channelName = ref('');
 const token = localStorage.getItem("token");
+
+const modalEditChannel = ref(false);
+
+const openModalEditChannel = () => {
+  modalEditChannel.value = true;
+  channelName.value = props.selectedChannel.channelName;
+};
+
+const closeModalEditChannel = () => {
+  modalEditChannel.value = false;
+};
+
+const openModalAddChannel = () => {
+  modalAddChannel.value = true;
+};
+
+const closeModalAddChannel = () => {
+  modalAddChannel.value = false;
+};
+
 
 const fetchChannels = async () => {
   try {
@@ -94,12 +132,40 @@ const selectChannel = (channel) => {
   emit('channelSelected', channel);
 };
 
-
-const addChannel = async () => {
+const editChannel = async () => {
   try {
     const token = localStorage.getItem('token');
     const decodedToken = jwt.decode(token);
-    // Si le token n'est pas valide, rediriger vers la page de reconnexion
+    if (!decodedToken) emit('reconnect');
+
+    await axios.put(`http://127.0.0.1:3000/api/channel/${props.selectedChannel.channelId}`,
+        {
+          channelName: channelName.value,
+          description: props.selectedChannel.description,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          }
+        }).then((response) => {
+      selectChannel(response.data);
+      channelName.value = response.data.channelName;
+    })
+  } catch (error) {
+    console.error('Erreur lors de la modification du channel', error);
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit('reconnect');
+  } finally {
+    await fetchChannels();
+    closeModalEditChannel();
+  }
+};
+
+const addChannel = async () => {
+  try {
+    if (!channelName.value || channelName.value.trim() === '') return;
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt.decode(token);
     if (!decodedToken) emit('reconnect');
 
     await axios.post(`http://127.0.0.1:3000/api/channel/`,
@@ -112,7 +178,7 @@ const addChannel = async () => {
             Authorization: 'Bearer ' + token,
           }
         }).then((response) => {
-      selectChannel(response.data)
+      selectChannel(response.data);
     })
 
   } catch (error) {
@@ -122,16 +188,38 @@ const addChannel = async () => {
   } finally {
     modalAddChannel.value = false;
     await fetchChannels();
+    channelName.value = '';
   }
 };
 
+const deleteChannel = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt.decode(token);
+    if (!decodedToken) emit('reconnect');
+
+    await axios.delete(`http://127.0.0.1:3000/api/channel/${props.selectedChannel.channelId}`, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      }
+    }).then(() => {
+      selectDefaultChannel();
+    })
+  } catch (error) {
+    console.error('Erreur lors de la suppression du channel', error);
+    const code = error.response ? error.response.status : null;
+    if (code === 401) emit('reconnect');
+  } finally {
+    await fetchChannels();
+    closeModalEditChannel();
+  }
+};
 
 onMounted(fetchChannels);
 watch(() => props.selectedServer, () => {
   fetchChannels();
   selectDefaultChannel();
 });
-
 </script>
 
 <style lang="scss">

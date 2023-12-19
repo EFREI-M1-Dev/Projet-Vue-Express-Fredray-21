@@ -8,9 +8,9 @@
   overflow        : hidden;
 
   #channels-list {
-    width   : 100%;
-    box-sizing: border-box;
-    padding    : calc($global-spacing/2) 0;
+    width      : 100%;
+    box-sizing : border-box;
+    padding    : calc($global-spacing / 2) 0;
 
     .channel-item {
       color           : $white;
@@ -21,7 +21,23 @@
       height          : $global-spacing*1.5;
 
       &__icon {
-        font-size: 1.4rem;
+        font-size       : 1.4rem;
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+
+        &__close {
+          font-size  : 1rem;
+          background : none;
+          border     : none;
+          color      : $white;
+          cursor     : pointer;
+
+          &:hover {
+            color : $color-primary;
+          }
+        }
+
       }
 
       &:hover, &_selected {
